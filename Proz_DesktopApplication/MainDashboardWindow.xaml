@@ -1,0 +1,24 @@
+﻿<mah:MetroWindow x:Class="Proz_DesktopApplication.MainDashboardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:materialDesignControls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proz_DesktopApplication"
+        mc:Ignorable="d"
+        Title="MainDashboardWindow" Height="450" Width="800" WindowState="Maximized" Loaded="Window_Loaded" TitleAlignment="Center" TitleBarHeight="20"   ResizeMode="CanMinimize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <mah:MetroWindow.Resources>
+  
+    </mah:MetroWindow.Resources>
+   
+    <Grid>
+        <TabControl x:Name="TabController">
+
+        </TabControl>
+    </Grid>
+
+  
+</mah:MetroWindow>

@@ -7,7 +7,87 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Compile Update="MainDashboardWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ParentUserControls\Employee_UserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="RegisterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\AddaALeaveRequest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\AddAFeedback.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\AnswersToMyLeaveRequests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\SeeFeedbackAnswers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\EmployeeFeedback.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\EmployeeLeaveRequest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\EmployeeSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\MyPersonalData.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainDashboardWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ParentUserControls\Employee_UserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SigninWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\AddaALeaveRequest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\AddAFeedback.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\AnswersToMyLeaveRequests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\SeeFeedbackAnswers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\EmployeeFeedback.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\EmployeeLeaveRequest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\EmployeeSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\MyPersonalData.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
