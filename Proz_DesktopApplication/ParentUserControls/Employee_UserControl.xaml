@@ -9,23 +9,34 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Border Margin="20,30,20,20">
-        <mah:MetroAnimatedSingleRowTabControl TabStripPlacement="Bottom">
+        <mah:MetroAnimatedSingleRowTabControl   mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
+
+        
             <!-- TAB 1 -->
-            <TabItem Header="Account Info">
-                <sub_usercontrols:UserSettings />
+            <TabItem Header="Account Info" >
+                <sub_usercontrols:UserSettings/>
             </TabItem>
 
             <!-- TAB 2 -->
-            <TabItem Header="Feedbacks">
+            <TabItem Header="Feedback" >
                 <sub_usercontrols:EmployeeFeedback/>
             </TabItem>
-
-            <!-- TAB 3 -->
-            <TabItem Header="Leave Requests">
+            
+            <TabItem Header="Leave Request" >
                 <sub_usercontrols:EmployeeLeaveRequest/>
             </TabItem>
-            <TabItem Header="View Personal Data">
+
+          
+            
+            <TabItem Header="Profile">
                 <sub_usercontrols:MyPersonalData/>
+            </TabItem>
+
+        
+           
+
+            <TabItem Header="My Login History">
+                <sub_usercontrols:MyLoginHistory/>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
     </Border>

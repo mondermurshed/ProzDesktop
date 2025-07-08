@@ -142,10 +142,10 @@ namespace Proz_DesktopApplication.Sub_UserControls
         private void Usernametextbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             char inputChar = e.Text[0];
-            if (e.Text.Any(char.IsUpper))
-            {
-                e.Handled = true;
-            }
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
 
             var textbox = (TextBox)sender;
             int currentLength = textbox.Text.Length;
@@ -188,10 +188,10 @@ namespace Proz_DesktopApplication.Sub_UserControls
         private void Passwordtextbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             char inputChar = e.Text[0];
-            if (e.Text.Any(char.IsUpper))
-            {
-                e.Handled = true;
-            }
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
 
             var passwordBox = (PasswordBox)sender;
             int currentLength = passwordBox.Password.Length;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ControlzEx.Theming;
 using MahApps.Metro.Controls;
+using MahApps.Metro.IconPacks;
 using ModernMessageBoxLib;
 
 namespace Proz_DesktopApplication
@@ -83,7 +85,7 @@ namespace Proz_DesktopApplication
                 else if (clickedButton == PasswordButton)
                 {
                     targetTextBlock = PasswordTextBlock;
-                    helpMessage = "It must contain letters,digits and symbols.";
+                    helpMessage = "It must contain at least an uppercase letter, a symbol and a bunch of letters and digits.";
                 }
                 else if (clickedButton == ConfirmPasswordButton)
                 {
@@ -251,10 +253,10 @@ namespace Proz_DesktopApplication
         private void Passwordtextbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             char inputChar = e.Text[0];
-            if (e.Text.Any(char.IsUpper))
-            {
-                e.Handled = true;
-            }
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
 
             var passwordBox = (PasswordBox)sender;
             int currentLength = passwordBox.Password.Length;
@@ -274,15 +276,40 @@ namespace Proz_DesktopApplication
                 e.Handled = true;
             }
         }
-    
+        private void Passwordtextbox2_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            char inputChar = e.Text[0];
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
+
+            var passwordBox = (TextBox)sender;
+            int currentLength = passwordBox.Text.Length;
+
+
+            if (currentLength == 0 && !char.IsLetter(inputChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsLetterOrDigit(inputChar) &&
+            !char.IsPunctuation(inputChar) &&
+            !char.IsSymbol(inputChar))
+            // Allows backspace, enter, etc.
+            {
+                e.Handled = true;
+            }
+        }
 
         private void ConfirmPasswordTextbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             char inputChar = e.Text[0];
-            if (e.Text.Any(char.IsUpper))
-            {
-                e.Handled = true;
-            }
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
 
             var passwordBox = (PasswordBox)sender;
             int currentLength = passwordBox.Password.Length;
@@ -339,12 +366,48 @@ namespace Proz_DesktopApplication
         {
             bool pass = true;
             RegisterErrorTextBlock.Inlines.Clear(); // Clear previous messages
-
+            if(Passwordtextbox.Visibility==Visibility.Collapsed)
+            {
+                Passwordtextbox.Password = Passwordtextbox2.Text;
+                Passwordtextbox2.Visibility = Visibility.Collapsed;
+                Passwordtextbox.Visibility = Visibility.Visible;
+                ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+            }
+             if (ConfirmPasswordTextbox.Visibility==Visibility.Collapsed)
+            {
+                MessageBox.Show("g");
+                ConfirmPasswordTextbox.Password = ConfirmPasswordTextbox2.Text;
+                ConfirmPasswordTextbox2.Visibility = Visibility.Collapsed;
+                ConfirmPasswordTextbox.Visibility = Visibility.Visible;
+                ShowConfirmPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+            }
+          
             if (string.IsNullOrEmpty(Usernametextbox.Text) || string.IsNullOrEmpty(EmailTextbox.Text)
                 || string.IsNullOrEmpty(Passwordtextbox.Password) || string.IsNullOrEmpty(ConfirmPasswordTextbox.Password))
             {
                 pass = false;
-                RegisterErrorTextBlock.Inlines.Add(new Run("-You have forgot one or more of your fields empty or blank.\n")
+                RegisterErrorTextBlock.Inlines.Add(new Run("-Please fill all your fields.\n")
+                {
+                    Foreground = Brushes.IndianRed
+                });
+                return;
+            }
+            bool hasUpperCase = Regex.IsMatch(Passwordtextbox.Password, "[A-Z]");
+
+            // Check if password has at least one symbol
+            bool hasSymbol = Regex.IsMatch(ConfirmPasswordTextbox.Password, "[^a-zA-Z0-9]");
+            if(!hasUpperCase)
+            {
+                pass = false;
+                RegisterErrorTextBlock.Inlines.Add(new Run("-Your Password should atleast contain one uppercase letter.\n")
+                {
+                    Foreground = Brushes.IndianRed
+                });
+            }
+            if (!hasSymbol)
+            {
+                pass = false;
+                RegisterErrorTextBlock.Inlines.Add(new Run("-Your Password should atleast contain one symbol in it.\n")
                 {
                     Foreground = Brushes.IndianRed
                 });
@@ -410,13 +473,51 @@ namespace Proz_DesktopApplication
             {
                 //call endpoint here...
                 this.IsEnabled = false;
-                var win = new IndeterminateProgressWindow("Please wait while we are creating your account. . .");
-                win.Show();
-                await Task.Delay(5000);
-                win.Close();
+                //var win = new IndeterminateProgressWindow("Please wait while we are creating your account. . .");
+                //win.Show();
+                //await Task.Delay(5000);
+                //win.Close();
                 this.IsEnabled=true;
             }
        
+        }
+
+        private void ShowPassword_Click(object sender, RoutedEventArgs e)
+        {
+           if(Passwordtextbox.Visibility == Visibility.Visible)
+            {
+            Passwordtextbox.Visibility=Visibility.Collapsed;
+            Passwordtextbox2.Visibility=Visibility.Visible;
+            Passwordtextbox2.Text = Passwordtextbox.Password;
+                ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeRegular;
+            }
+            else
+            {
+                Passwordtextbox.Visibility = Visibility.Visible;
+                Passwordtextbox2.Visibility = Visibility.Collapsed;
+                Passwordtextbox.Password = Passwordtextbox2.Text;
+                
+                ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+            }
+        }
+
+        private void ShowConfirmPassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (ConfirmPasswordTextbox.Visibility == Visibility.Visible)
+            {
+                ConfirmPasswordTextbox.Visibility = Visibility.Collapsed;
+                ConfirmPasswordTextbox2.Visibility = Visibility.Visible;
+                ConfirmPasswordTextbox2.Text = ConfirmPasswordTextbox.Password;
+                ShowConfirmPasswordIcon.Kind = PackIconFontAwesomeKind.EyeRegular;
+            }
+            else
+            {
+                ConfirmPasswordTextbox.Visibility = Visibility.Visible;
+                ConfirmPasswordTextbox2.Visibility = Visibility.Collapsed;
+                ConfirmPasswordTextbox.Password = ConfirmPasswordTextbox2.Text;
+
+                ShowConfirmPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+            }
         }
     }
 }

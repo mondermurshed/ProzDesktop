@@ -12,37 +12,199 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+     
             </Grid.RowDefinitions>
-            <materialDesign:Card Grid.Row="0" UniformCornerRadius="20" Margin="5,20,5,5">
-                <Border CornerRadius="20" Margin="7" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Row="0" Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Basic Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5"/>
+                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 
 
-                        <StackPanel >
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="First Name :" Margin="0,0,5,0"/>
-                                <TextBlock Text="Monder"/>
+                        <StackPanel Margin="7">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="First Name :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Monder"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Last Name :" Margin="0,0,5,0"/>
-                                <TextBlock Text="Murshed"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Last Name :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Murshed"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Age :" Margin="0,0,5,0"/>
-                                <TextBlock Text="21"/>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Age :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="21"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date of birth :" Margin="0,0,5,0"/>
-                                <TextBlock Text="2003/9/14"/>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Date of birth :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="2003/9/14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Gender :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Male"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Nationality :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yemeni"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Living in Primary place :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yes"/>
                             </StackPanel>
                         </StackPanel>
 
                     </ScrollViewer>
                 </Border>
-            </materialDesign:Card>
+            </Grid>
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 
+
+            <Grid Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Address Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5"/>
+                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+
+                        <StackPanel Margin="7">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Country Name :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yemen"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="City Name :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Aden"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Street Address :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="New Aden"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Department_Number :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="52"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="The Location in depth :" Margin="0,0,5,0"/>
+                                <Grid>
+
+
+                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" MaxWidth="250" TextWrapping="Wrap" Text="اعيش في اليمن في ميدينة عدن وتجديدا في منطقة اسمها عدن الجديدة او مدينة الوالي (فريب مدينة الشعب) في عماره رقمها 12 شقة 4"/>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Nationality :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yemeni"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Living in Primary place :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yes"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+
+
+
+            <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+
+            <Grid Grid.Row="1" Grid.Column="0" Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Health Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5"/>
+                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+
+                        <StackPanel Margin="7">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Medical Conditions :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="None"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Allergies :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="ربو وضيق في التنفس"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="DisabilityStatus :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="None"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Emergency Contact Name :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Mohammed abu kalied"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Emergency Contact Phone :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" MaxWidth="250" TextWrapping="Wrap" Text="976 735151551"/>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Nationality :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yemeni"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Living in Primary place :" Margin="0,0,5,0"/>
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Yes"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+
+
+
+
+            <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Access Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5" Grid.ColumnSpan="2"/>
+                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+
+                        <StackPanel Margin="7">
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Phone Numbers :" Margin="0,0,5,5" HorizontalAlignment="Center"/>
+                                <ItemsControl x:Name="PhoneNumbersControl">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="{Binding}" FontSize="14" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                       
+                       
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+            
         </Grid>
   
 

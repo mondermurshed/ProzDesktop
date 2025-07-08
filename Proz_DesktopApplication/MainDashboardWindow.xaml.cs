@@ -43,6 +43,7 @@ namespace Proz_DesktopApplication
         {
             // Suppose the logged‑in user has both roles:
             AddRoleTab("As User", new Employee_UserControl());
+            AddRoleTab("As User", new Employee_UserControl());
             //AddRoleTab("As Admin", new Employee_UserControl());
         }
 

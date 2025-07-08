@@ -8,18 +8,18 @@
         xmlns:local="clr-namespace:Proz_DesktopApplication"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="550" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"  TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
-    <Border BorderThickness="2"  Margin="25" Padding="10" >
+    <Border BorderThickness="2"  Margin="20,20,20,10" Padding="10" >
     <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="120"/>
               
             </Grid.RowDefinitions>
             
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
-                    <StackPanel Margin="10">
-                    <StackPanel Grid.Row="0">
-                        <TextBlock Text="Username"/>
+                   
+                    <StackPanel Grid.Row="0" Margin="10">
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Username"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -28,10 +28,10 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- TextBox takes the main space -->
-                            <TextBox  Grid.Column="0" x:Name="Usernametextbox" MaxLength="30" PreviewKeyDown="Usernametextbox_PreviewKeyDown" PreviewTextInput="Usernametextbox_PreviewTextInput" />
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" Text="fasfsaf" Grid.Column="0" x:Name="Usernametextbox" MaxLength="30" PreviewKeyDown="Usernametextbox_PreviewKeyDown" PreviewTextInput="Usernametextbox_PreviewTextInput" />
 
                             <!-- Button with icon -->
-                            <Button Grid.Column="1" x:Name="Usernamebutton"
+                            <Button Grid.Column="1" x:Name="Usernamebutton" Style="{StaticResource MyButtonStyle}"
                            Width="30" Height="30"
                            Padding="0"
                            Margin="5,0,0,0"
@@ -46,8 +46,8 @@
                            VerticalAlignment="Center" />
                             </Button>
                         </Grid>
-                        <TextBlock Margin="0,0,0,20" x:Name="UsernameTextBlock" TextWrapping="Wrap"/>
-                        <TextBlock Text="Email"/>
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="UsernameTextBlock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Email"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -55,10 +55,10 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- TextBox takes the main space -->
-                            <TextBox Grid.Column="0" x:Name="EmailTextbox" TextWrapping="Wrap" MaxLength="254 " PreviewKeyDown="EmailTextbox_PreviewKeyDown" PreviewTextInput="EmailTextbox_PreviewTextInput"/>
+                        <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" Grid.Column="0" x:Name="EmailTextbox" TextWrapping="Wrap" MaxLength="254" PreviewKeyDown="EmailTextbox_PreviewKeyDown" PreviewTextInput="EmailTextbox_PreviewTextInput"/>
 
                             <!-- Button with icon -->
-                            <Button Grid.Column="1" x:Name="Emailbutton"
+                        <Button Grid.Column="1" x:Name="Emailbutton" Style="{StaticResource MyButtonStyle}"
           Width="30" Height="30"
           Padding="0"
           Margin="5,0,0,0"
@@ -73,8 +73,8 @@
           VerticalAlignment="Center" />
                             </Button>
                         </Grid>
-                        <TextBlock Margin="0,0,0,20" x:Name="EmailTextBlock" TextWrapping="Wrap"/>
-                        <TextBlock Text="Password"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="EmailTextBlock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Password"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -82,26 +82,47 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- TextBox takes the main space -->
-                            <PasswordBox Grid.Column="0" x:Name="Passwordtextbox" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"/>
+                            <Grid Grid.Column="0">
+                                <PasswordBox  Padding="5,8,0,8" FontSize="13"  x:Name="Passwordtextbox" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Visibility="Collapsed" Padding="5,8,0,8"  FontSize="13"  x:Name="Passwordtextbox2" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"/>
+                            </Grid>
+                          
 
                             <!-- Button with icon -->
-                            <Button Grid.Column="1" x:Name="PasswordButton"
-         Width="30" Height="30"
-         Padding="0"
-         Margin="5,0,0,0"
-         BorderThickness="0"
-         HorizontalAlignment="Center"
-         VerticalAlignment="Center" Click="HelperButton_Click" >
+                            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                            <Button  x:Name="ShowPassword"  Style="{StaticResource MyButtonStyle}"
+                              Width="30" Height="30"
+                              Padding="0"
+                              Margin="7,0,5,0"
+                              BorderThickness="0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" Click="ShowPassword_Click">
 
-                                <iconPacks:PackIconFontAwesome
-         Kind="QuestionSolid"
-         Width="18" Height="18"
-         HorizontalAlignment="Center"
-         VerticalAlignment="Center" />
-                            </Button>
+                                    <iconPacks:PackIconFontAwesome x:Name="ShowPasswordIcon"
+                               Kind="EyeSlashRegular"
+                               Width="18" Height="18"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                                </Button>
+                            <Button  x:Name="PasswordButton"  Style="{StaticResource MyButtonStyle}"
+                               Width="30" Height="30"
+                               Padding="0"
+                               Margin="5,0,0,0"
+                               BorderThickness="0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Click="HelperButton_Click" >
+                               
+                                                                   <iconPacks:PackIconFontAwesome
+                               Kind="QuestionSolid"
+                               Width="18" Height="18"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                                </Button>
+                            </StackPanel>
+               
                         </Grid>
-                        <TextBlock Margin="0,0,0,20" x:Name="PasswordTextBlock" TextWrapping="Wrap"/>
-                        <TextBlock Text="Confirm Password"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="PasswordTextBlock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Confirm Password"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -109,10 +130,31 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- TextBox takes the main space -->
-                            <PasswordBox Grid.Column="0" x:Name="ConfirmPasswordTextbox" MaxLength="50" PreviewKeyDown="ConfirmPasswordTextbox_PreviewKeyDown" PreviewTextInput="ConfirmPasswordTextbox_PreviewTextInput"/>
+                            <Grid Grid.Column="0">
+                                <PasswordBox Padding="5,8,0,8" FontSize="13"  x:Name="ConfirmPasswordTextbox" MaxLength="50" PreviewKeyDown="ConfirmPasswordTextbox_PreviewKeyDown" PreviewTextInput="ConfirmPasswordTextbox_PreviewTextInput"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Visibility="Collapsed" Padding="5,8,0,8" FontSize="13"  x:Name="ConfirmPasswordTextbox2" MaxLength="50" PreviewKeyDown="ConfirmPasswordTextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"/>
+                            </Grid>
+                           
 
                             <!-- Button with icon -->
-                            <Button Grid.Column="1" x:Name="ConfirmPasswordButton"
+                            <StackPanel Orientation="Horizontal" Grid.Column="1">
+
+
+                            <Button  x:Name="ShowConfirmPassword"  Style="{StaticResource MyButtonStyle}"
+    Width="30" Height="30"
+    Padding="0"
+    Margin="7,0,5,0"
+    BorderThickness="0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center" Click="ShowConfirmPassword_Click">
+
+                                    <iconPacks:PackIconFontAwesome x:Name="ShowConfirmPasswordIcon"
+     Kind="EyeSlashRegular"
+     Width="18" Height="18"
+     HorizontalAlignment="Center"
+     VerticalAlignment="Center" />
+                                </Button>
+                            <Button Grid.Column="1" x:Name="ConfirmPasswordButton"  Style="{StaticResource MyButtonStyle}"
    Width="30" Height="30"
    Padding="0"
    Margin="5,0,0,0"
@@ -126,10 +168,11 @@
    HorizontalAlignment="Center"
    VerticalAlignment="Center" />
                             </Button>
+                            </StackPanel>
                         </Grid>
-                        <TextBlock Margin="0,0,0,50" x:Name="ConfirmPasswordTextblock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,50" x:Name="ConfirmPasswordTextblock" TextWrapping="Wrap"/>
                     </StackPanel>
-                </StackPanel>
+               
                 </ScrollViewer>
            
            
@@ -139,22 +182,32 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="GoToSigninWindowButton" VerticalAlignment="Stretch" Margin="0,15,0,5" Grid.Column="0" Click="GoToSigninWindowButton_Click">
+                <Button  Style="{StaticResource MyButtonStyle}" Padding="15,8" x:Name="GoToSigninWindowButton" VerticalAlignment="Stretch" Margin="0,15,0,5" Grid.Column="0" Click="GoToSigninWindowButton_Click">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <iconPacks:PackIconFontAwesome Kind="ArrowLeftSolid" Width="16" Height="16" Margin="0,0,5,0" />
                         <TextBlock Text="GOT AN &#x0a; ACCOUNT ?" VerticalAlignment="Center" FontSize="10"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="RegisterButton" VerticalAlignment="Stretch" Margin="15,15,0,5" Grid.Column="1" Click="RegisterButton_Click" >
+                <Button  Style="{StaticResource MyButtonStyle}" Padding="0,15" x:Name="RegisterButton" VerticalAlignment="Stretch" Margin="15,15,0,5" Grid.Column="1" Click="RegisterButton_Click" >
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <iconPacks:PackIconMaterial Kind="AccountArrowUp" Width="16" Height="16" Margin="0,0,5,0" />
                         <TextBlock Text="REGISTER" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="15,0,0,0" x:Name="RegisterErrorTextBlock" TextWrapping="Wrap" Foreground="IndianRed"/>
+                <Grid Grid.Column="1" Grid.Row="1" Margin="15,0,0,0">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
+
+
+
+                        <StackPanel Grid.Row="0" Margin="10">
+                            <TextBlock  x:Name="RegisterErrorTextBlock" TextWrapping="Wrap" Foreground="IndianRed"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+             
             </Grid>
            
         </Grid>

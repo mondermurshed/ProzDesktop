@@ -44,6 +44,10 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 TillDatePicker.DisplayDateStart = fromDate;
                 TillDatePicker.DisplayDateEnd = fromDate.AddDays(30);
             }
+            else
+            {
+                TillDatePicker.IsEnabled= false;
+            }
         }
     }
 }

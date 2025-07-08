@@ -77,7 +77,7 @@
        BorderThickness="2"
        BorderBrush="#00b2ff"
        HorizontalContentAlignment="Center"
-      materialDesignControls:ExpanderAssist.HeaderBackground="{DynamicResource MaterialDesignLightSeparatorBackground}"  
+     
        Margin="10" >
 
                 <Expander.Header>
@@ -107,11 +107,11 @@
                 <StackPanel Margin="20">
                     <mah:ToggleSwitch x:Name="LightMode" Content="Light Mode" Toggled="LightMode_Toggled" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,100">
-                        <RadioButton GroupName="SecondaryColor" x:Name="BlueRadioButton" Content="Primary color is Blue" BorderBrush="{DynamicResource MaterialDesignLightSeparatorBackground}" BorderThickness="2" Margin="0,0,15,0" Click="RadioButton_Click" />
-                        <RadioButton GroupName="SecondaryColor" x:Name="GreenRadioButton" Content="Primary color is Green" BorderBrush="{DynamicResource MaterialDesignLightSeparatorBackground}" BorderThickness="2" Margin="0,0,15,0" Click="RadioButton_Click"/>
-                        <RadioButton GroupName="SecondaryColor" x:Name="RedRadioButton" Content="Primary color is Red" BorderBrush="{DynamicResource MaterialDesignLightSeparatorBackground}" BorderThickness="2" Margin="0,0,15,0" Click="RadioButton_Click" Loaded="RedRadioButton_Loaded" />
+                        <RadioButton Background="Transparent"  GroupName="Color" x:Name="BlueRadioButton" Content="Primary color is Blue"  Margin="0,0,15,0" Click="RadioButton_Click" />
+                        <RadioButton Background="Transparent" GroupName="Color" x:Name="GreenRadioButton" Content="Primary color is Green"  Margin="0,0,15,0" Click="RadioButton_Click"/>
+                        <RadioButton Background="Transparent" GroupName="Color" x:Name="RedRadioButton" Content="Primary color is Red"  Margin="0,0,15,0" Click="RadioButton_Click" Loaded="RedRadioButton_Loaded" />
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" x:Name="ApplySettingsButton" Click="ApplySettingsButton_Click">
+                    <Button Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Right" x:Name="ApplySettingsButton" Click="ApplySettingsButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Text="Apply Changes" VerticalAlignment="Center" Margin="0,0,7,0"/>
                             <iconPacks:PackIconFontAwesome Width="20" Height="20" VerticalAlignment="Center" Kind="CheckSolid" Visibility="Collapsed" x:Name="applychangesicon"/>
@@ -158,11 +158,11 @@
                             </DataTemplate>
                         </Expander.HeaderTemplate>
                         <StackPanel Orientation="Vertical" Margin="10,20,0,0" >
-                            <TextBlock Text="Enter your current password" Margin="0,0,0,10"/>
+                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your current password" Margin="0,0,0,10"/>
                             <PasswordBox Margin="0,0,0,30" x:Name="CurrentPasswordUsernameSection" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"  />
-                            <TextBlock Text="Enter your New Username" Margin="0,0,0,10"/>
-                            <TextBox Margin="0,0,0,30" x:Name="NewUsernameUsernameSection" MaxLength="30" PreviewTextInput="Usernametextbox_PreviewTextInput" PreviewKeyDown="Usernametextbox_PreviewKeyDown" />
-                            <Button x:Name="SetNewUserNameButton" Content="Set Username" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2" Click="SetNewUserNameButton_Click"/>
+                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your New Username" Margin="0,0,0,10"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,30" x:Name="NewUsernameUsernameSection" MaxLength="30" PreviewTextInput="Usernametextbox_PreviewTextInput" PreviewKeyDown="Usernametextbox_PreviewKeyDown" />
+                            <Button Style="{StaticResource MyButtonStyle}" x:Name="SetNewUserNameButton" Content="Set Username" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2" Click="SetNewUserNameButton_Click"/>
                         </StackPanel>
 
 
@@ -177,9 +177,9 @@
                             </DataTemplate>
                         </Expander.HeaderTemplate>
                         <StackPanel Orientation="Vertical" Margin="10,0,0,0" >
-                            <TextBlock Text="Enter your current password" Margin="0,0,0,5"/>
+                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your current password" Margin="0,0,0,5"/>
                             <PasswordBox Margin="0,0,0,10" x:Name="CurrentPasswordPasswordSection" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
-                            <TextBlock Text="Enter your New Password" Margin="0,0,0,5"/>
+                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your New Password" Margin="0,0,0,5"/>
                             <Grid Margin="0,0,0,10">
                                 <!-- PasswordBox -->
                                 <PasswordBox x:Name="NewPasswordPasswordSection" MaxLength="50"
@@ -188,13 +188,13 @@
                                 
 
                                 <!-- TextBox for visible password -->
-                                <TextBox x:Name="NewPasswordTextboxPasswordSection" MaxLength="50"
+                                <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="NewPasswordTextboxPasswordSection" MaxLength="50"
                                  Margin="0,0,30,0" 
                                  Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"  />
                                 
 
                                 <!-- Eye Button -->
-                                <Button x:Name="NewPasswordShowerButton"
+                                <Button Style="{StaticResource MyButtonStyle}" x:Name="NewPasswordShowerButton"
                                  Width="24" Height="24"
                                  HorizontalAlignment="Right"
                                  VerticalAlignment="Center"
@@ -202,9 +202,9 @@
                                  <iconPacks:FontAwesome Kind="JarSolid" />
                                 </Button>
                             </Grid>
-                            <TextBlock Text="Confirm your new Password" Margin="0,0,0,5"/>
+                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Confirm your new Password" Margin="0,0,0,5"/>
                             <PasswordBox Margin="0,0,0,10" x:Name="ConfirmNewPasswordPasswordSection" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"/>
-                            <Button x:Name="SetNewPasswordButton" Content="Set Passoword" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,2,2" Click="SetNewPasswordButton_Click"/>
+                            <Button Style="{StaticResource MyButtonStyle}" x:Name="SetNewPasswordButton" Content="Set Passoword" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,2,2" Click="SetNewPasswordButton_Click"/>
                         </StackPanel>
 
 

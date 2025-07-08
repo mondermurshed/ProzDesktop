@@ -30,43 +30,28 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- DatePicker styles -->
-            <Style TargetType="DatePicker">
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesignBody}" />
+            <Style x:Key="MyTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MahApps.Styles.TextBox}">
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="FontFamily" Value="Microsoft YaHei"/>
             </Style>
 
-            <Style TargetType="DatePickerTextBox">
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="IsReadOnly" Value="True"/>
+            <Style x:Key="MyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+                <Setter Property="FontWeight" Value="ExtraBlack"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontFamily" Value="Microsoft YaHei"/>
             </Style>
 
-            <!-- Enhanced Calendar styles -->
-            <Style TargetType="Calendar">
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-            </Style>
-
-            <Style TargetType="CalendarItem">
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-            </Style>
-
-            <Style TargetType="CalendarDayButton">
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-            
+            <Style x:Key="MyButtonStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Padding" Value="7,10"/>
+                <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+                
             </Style>
 
         </ResourceDictionary>
+   
     </Application.Resources>
 </Application>

@@ -20,13 +20,13 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Margin="0,0,10,20">
-                        <TextBlock Text="From" Margin="0,0,0,5" FontWeight="ExtraBold"/>
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="From" Margin="0,0,0,5" FontWeight="ExtraBold"/>
                         <DatePicker x:Name="FromDatePicker" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsTodayHighlighted="True"  Margin="0,0,0,20"  FontSize="14" DisplayDate="2025-07-05" SelectedDateFormat="Short" SelectedDateChanged="FromDatePicker_SelectedDateChanged"   />     
                 
 
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10,0,0,20">
-                        <TextBlock Text="Till" Margin="0,0,0,5" FontWeight="ExtraBold"/>
+                        <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Till" Margin="0,0,0,5" FontWeight="ExtraBold"/>
                         <DatePicker x:Name="TillDatePicker" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsTodayHighlighted="True"  Margin="0,0,0,20"  FontSize="14" DisplayDate="2025-07-05" SelectedDateFormat="Short"   />
                     </StackPanel>
                 </Grid>
@@ -34,8 +34,8 @@
 
 
 
-                <TextBlock Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
-                <TextBox FontWeight="Medium" FontSize="13" 
+                <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                <TextBox Style="{StaticResource MyTextBoxStyle}"  FontWeight="Medium" FontSize="13" 
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
                 MaxLength="500"
@@ -46,7 +46,7 @@
                 Margin="0,0,0,70"/>
 
 
-                <Button HorizontalAlignment="Stretch" Content="Request The Leave Request" FontSize="13" FontWeight="Medium" />
+                <Button Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Stretch" Content="Request The Leave Request" FontSize="13" FontWeight="Medium" />
 
             </StackPanel>
         </ScrollViewer>

@@ -152,13 +152,39 @@ namespace Proz_DesktopApplication
         private void Passwordtextbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             char inputChar = e.Text[0];
-            if (e.Text.Any(char.IsUpper))
-            {
-                e.Handled = true;
-            }
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
 
             var passwordBox = (PasswordBox)sender;
             int currentLength = passwordBox.Password.Length;
+
+
+            if (currentLength == 0 && !char.IsLetter(inputChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsLetterOrDigit(inputChar) &&
+            !char.IsPunctuation(inputChar) &&
+            !char.IsSymbol(inputChar))
+            // Allows backspace, enter, etc.
+            {
+                e.Handled = true;
+            }
+        }
+        private void Passwordtextbox2_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            char inputChar = e.Text[0];
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
+
+            var passwordBox = (TextBox)sender;
+            int currentLength = passwordBox.Text.Length;
 
 
             if (currentLength == 0 && !char.IsLetter(inputChar))
@@ -224,6 +250,25 @@ namespace Proz_DesktopApplication
 
             var ob = new RegisterWindow();
             ob.Show();
+        }
+
+        private void ShowPassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (passwordbox.Visibility == Visibility.Visible)
+            {
+                passwordbox.Visibility = Visibility.Collapsed;
+                passwordbox2.Visibility = Visibility.Visible;
+                passwordbox2.Text = passwordbox.Password;
+                ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeRegular;
+            }
+            else
+            {
+                passwordbox.Visibility = Visibility.Visible;
+                passwordbox2.Visibility = Visibility.Collapsed;
+                passwordbox.Password = passwordbox2.Text;
+
+                ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+            }
         }
     }
 }

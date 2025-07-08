@@ -18,12 +18,12 @@
 
 
 
-                <TextBlock Text="Title" FontWeight="ExtraBold" />
-            <TextBox Margin="0,0,0,20" MaxLength="80" TextWrapping="Wrap"/>
-                <TextBlock Text="Feedback type" FontWeight="ExtraBold"/>
+                <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Title" FontWeight="ExtraBold" />
+            <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" MaxLength="80" TextWrapping="Wrap"/>
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Feedback type" FontWeight="ExtraBold"/>
             <ComboBox Margin="0,0,0,50"/>
-                <TextBlock Text="Description" FontWeight="ExtraBold"  Margin="0,0,0,5"/>
-                <TextBox
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Description" FontWeight="ExtraBold"  Margin="0,0,0,5"/>
+                <TextBox Style="{StaticResource MyTextBoxStyle}"
      AcceptsReturn="True"
      TextWrapping="Wrap"
      MaxLength="1500"
@@ -32,7 +32,7 @@
      VerticalAlignment="Top"
      HorizontalAlignment="Stretch"
      Margin="0,0,0,70"/>
-                <Button HorizontalAlignment="Stretch" Content="Send Feedback!" Click="Button_Click" />
+                <Button Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Stretch" Content="Send Feedback!" Click="Button_Click" />
       
             </StackPanel>
         </ScrollViewer>
