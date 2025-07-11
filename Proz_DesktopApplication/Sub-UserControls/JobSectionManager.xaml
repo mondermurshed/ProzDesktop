@@ -1,0 +1,46 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+              xmlns:sub_subUsercontrols ="clr-namespace:Proz_DesktopApplication.Sub_Sub_Usercontrols"
+             xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Proz_DesktopApplication.Sub_UserControls.JobSectionManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Margin="20,30,20,20">
+        <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
+            <!-- TAB 1 -->
+            <TabItem Header="Shift Info">
+                <sub_subUsercontrols:MyShiftInfo/>
+            </TabItem>
+            <TabItem Header="Attendance">
+                <sub_subUsercontrols:AttendanceUsercontrolManager/>
+            </TabItem>
+
+            <TabItem Header="Payments">
+                <sub_subUsercontrols:PaymentUsercontolManager/>
+            </TabItem>
+
+            <TabItem Header="Rate Employees Performance">
+                <sub_subUsercontrols:EmployeeRatingUsercontrol/>
+            </TabItem>
+
+            <TabItem Header="Manage My Employees Feedbacks Requests">
+                <sub_subUsercontrols:EmployeesFeedbacksManager/>
+            </TabItem>
+            
+            <TabItem Header="Manage My Employees Leave Requests">
+                <sub_subUsercontrols:EmployeesLeaveRequestsManager/>
+            </TabItem>
+
+
+
+
+
+
+
+        </mah:MetroAnimatedTabControl>
+    </Border>
+</UserControl>

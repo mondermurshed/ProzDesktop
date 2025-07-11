@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols.AnsweredLeaveRequestsByTheManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filter Row -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="20,10,20,10">
+            <TextBlock Text="Sub-Department:" Style="{StaticResource MyTextBlockStyle}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="SubDepartmentComboBox" Width="200" Margin="0,0,10,0"/>
+            <Button Content="Get" Style="{StaticResource MyButtonStyle}" Width="80" Click="GetButton_Click"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="CompletedRequestsDataGrid"
+                  Grid.Row="1"
+                  Margin="20,0,20,10"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  AlternationCount="1000000"
+                  SelectionMode="Single"
+                  SelectionChanged="CompletedRequestsDataGrid_SelectionChanged"
+                  FocusVisualStyle="{x:Null}">
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="#" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Employee Name" Binding="{Binding EmployeeName}" />
+                <DataGridTextColumn Header="Start" Binding="{Binding Start}" />
+                <DataGridTextColumn Header="End" Binding="{Binding End}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Details Section -->
+        <Grid Grid.Row="2" Margin="20,0,20,20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="0,10,10,10">
+                    <TextBlock Text="Reason" Style="{StaticResource MyTextBlockStyle}" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="ReasonTextbox" 
+                             Style="{StaticResource MyTextBoxStyle}" 
+                             IsReadOnly="True" 
+                             FontSize="13" 
+                             Margin="0,0,0,20"/>
+
+                    <TextBlock Text="My Message" Style="{StaticResource MyTextBlockStyle}" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="ManagerMessageTextbox" 
+                             Style="{StaticResource MyTextBoxStyle}" 
+                             IsReadOnly="True" 
+                             FontSize="13" 
+                             Margin="0,0,0,20"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

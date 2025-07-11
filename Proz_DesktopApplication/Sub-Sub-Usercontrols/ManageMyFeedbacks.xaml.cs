@@ -42,8 +42,10 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Improvement",
                 Title = "Problem with my data insertion, i can't even resore data",
+                Description="asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2023, 12, 24, 4, 24, 5),
-                Completed = false
+                Completed = false,
+
             });
 
             feedbacks.Add(new Feedback
@@ -51,8 +53,12 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Help question",
                 Title = "You can put a button to make things easy for me when navigting to the add column section",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2025, 5, 11, 18, 4, 15), // 6:04:15 PM
-                Completed =true
+                Completed =true,
+                Answer = "answer!! afsafas fsaf asfn asjfsam asfas fsajf   fwf we geg ewgj ewjgw eg we jg  ewjgewjg kewg wegj ewg we gwe gwe geg wej gewj ewjg ew ",
+                AnswerDate = new DateTime(2023, 12, 24, 4, 24, 5),
+                Respondent = "Ahmed"
             });
 
             feedbacks.Add(new Feedback
@@ -60,6 +66,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed=false
             });
@@ -68,6 +75,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed=false
             });
@@ -76,6 +84,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed=false
             });
@@ -84,6 +93,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed = false
             });
@@ -92,14 +102,28 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
-                Completed=true
+                Completed=true,
+                Answer = "answer!! afsafas fsaf asfn asjfsam asfas fsajf   fwf we geg ewgj ewjgw eg we jg  ewjgewjg kewg wegj ewg we gwe gwe geg wej gewj ewjg ew ",
+                AnswerDate = new DateTime(2023, 12, 24, 4, 24, 5),
+                Respondent = "Ahmed"
             });
             feedbacks.Add(new Feedback
             {
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
+                Date = new DateTime(2024, 9, 30, 12, 15, 30),
+                Completed=false
+            });
+            feedbacks.Add(new Feedback
+            {
+                Id = Guid.NewGuid(), // ✅ Generate a unique ID
+                Type = "Suggestion",
+                Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed=false
             });
@@ -109,21 +133,17 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
-                Completed=false
+                Completed=true,
+                Answer = "answer!! afsafas fsaf asfn asjfsam asfas fsajf   fwf we geg ewgj ewjgw eg we jg  ewjgewjg kewg wegj ewg we gwe gwe geg wej gewj ewjg ew ",
+                AnswerDate = new DateTime(2023, 12, 24, 4, 24, 5),
+                Respondent = "Ahmed"
             });
             feedbacks.Add(new Feedback
             {
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
-                Date = new DateTime(2024, 9, 30, 12, 15, 30),
-                Completed=true
-            });
-            feedbacks.Add(new Feedback
-            {
-                Id = Guid.NewGuid(), // ✅ Generate a unique ID
-                Type = "Suggestion",
-                Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed=false
             });
@@ -132,6 +152,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                 Id = Guid.NewGuid(), // ✅ Generate a unique ID
                 Type = "Suggestion",
                 Title = "You can put a button to make ",
+                Description = "asgsags gsj agsa gas gwkgw qmwq qwm gmqwg qwgwqg qwg weehrehew gegweg ewgew gweg erge gsefa  fewgw gwehre hwe gewgwe gweg ewgew eg we gew gewg wegwet we gewgkewf egw fwg, w gsgsm mge ges egmg qwkg mqw gqwg",
                 Date = new DateTime(2024, 9, 30, 12, 15, 30),
                 Completed = false
 
@@ -140,54 +161,47 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
             FeedbacksDatagrid.ItemsSource = feedbacks;
         }
 
-        private void MyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //if (FeedbacksDatagrid.SelectedItem is Feedback selected)
-            //{
-            //    MessageBox.Show($"You clicked row with ID {selected.id}, Type: {selected.Title}");
-            //}
-        }
+       
+      
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-          
-            QModernMessageBox.Show("The quick brown fox jumps over the lazy dog.", "hello world", QModernMessageBox.QModernMessageBoxButtons.YesNoCancel, ModernMessageboxIcons.Warning);
-            QModernMessageBox.Warning("The quick brown fox jumps over the lazy dog.", "hello world");
-            var msg = new ModernMessageBox("The quick brown fox jumps over the lazy dog.\n", "hello world", ModernMessageboxIcons.Info, "CSharp", "Java",
-    "Python")
-            {
-                Button1Key = Key.D1,
-                Button2Key = Key.D2,
-                Button3Key = Key.D3,
-                CheckboxText = "Don't show this again",
-                CheckboxVisibility = Visibility.Visible,
-                TextBoxText = "some staff",
-                TextBoxVisibility = Visibility.Visible,
-            };
-
-            msg.ShowDialog();
-            var win = new IndeterminateProgressWindow("Please wait while we are installing the virus into your computer. . .");
-            win.Show();
-            //Do Some Staff
-            await Task.Delay(5000);
-            //Change the message the 2nd time
-            win.Message = "Done!!!";
-            win.Close();
-        }
+      
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
           if( QModernMessageBox.Show("Are you sure you wanna claar the data from the textboxes ?", "Warnning message",QModernMessageBox.QModernMessageBoxButtons.YesNo,ModernMessageboxIcons.Warning)==ModernMessageboxResult.Button1)
             {
-                //idtextbox.Clear();
-                //TEXT.Clear();
-                //titletextbox.Clear();
-                //feedbacktypecombobox.SelectedIndex = -1;
+                titletextbox.Clear();
+                descriptiontextbox.Clear();
+                AnswerDateTimetextbox.Clear();
+                Answertextbox.Clear();
+                Respondenttextbox.Clear();
             }
       
         }
 
-    
+        private void FeedbacksDatagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FeedbacksDatagrid.SelectedItem is Feedback selected)
+            {
+              
+                if (selected.Completed == true)
+                {
+                    ClearButton.IsEnabled = true;
+                    titletextbox.Text = selected.Title;
+                    descriptiontextbox.Text = selected.Description;
+                    Answertextbox.Text = selected.Answer;
+                    AnswerDateTimetextbox.Text = selected.AnswerDate.ToString("hh\\:mm");
+                    Respondenttextbox.Text = selected.Respondent;
+                }
+                else
+                {
+                    ClearButton.IsEnabled = false;
+                }
+            }
+          
+        }
+
+
     }
 
     public class Feedback
@@ -195,8 +209,14 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
         public Guid Id { get; set; } // Real ID (GUID), not shown in UI
         public string Type { get; set; }
         public string Title { get; set; }
+        public string Description { get; set; }
         public DateTime Date { get; set; }
         public bool Completed {  get; set; }
+
+        public string Answer {  get; set; }
+        public DateTime AnswerDate {  get; set; }
+
+        public string Respondent {  get; set; }
     }
 }
 

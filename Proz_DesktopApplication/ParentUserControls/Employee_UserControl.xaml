@@ -32,8 +32,11 @@
                 <sub_usercontrols:MyPersonalData/>
             </TabItem>
 
-        
-           
+
+
+            <TabItem Header="Job Section">
+                <sub_usercontrols:JobSection/>
+            </TabItem>
 
             <TabItem Header="My Login History">
                 <sub_usercontrols:MyLoginHistory/>

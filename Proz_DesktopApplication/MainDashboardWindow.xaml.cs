@@ -42,8 +42,9 @@ namespace Proz_DesktopApplication
         private void BuildRoleTabs()
         {
             // Suppose the logged‑in user has both roles:
-            AddRoleTab("As User", new Employee_UserControl());
-            AddRoleTab("As User", new Employee_UserControl());
+            AddRoleTab("Employee", new Employee_UserControl());
+            AddRoleTab("Department Manager", new DepartmentManager_UserControl());
+            AddRoleTab("HR Manager", new HRManager_UserControl());
             //AddRoleTab("As Admin", new Employee_UserControl());
         }
 

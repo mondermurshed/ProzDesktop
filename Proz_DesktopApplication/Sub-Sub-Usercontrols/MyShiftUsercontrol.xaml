@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Proz_DesktopApplication.Sub_Sub_Usercontrols.MyShiftInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid with Break Times -->
+        <DataGrid x:Name="BreaksDataGrid"
+                  Grid.Row="0"
+                  Margin="20,30,20,10"
+                  AutoGenerateColumns="False"
+                  AlternationCount="1000000"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  FocusVisualStyle="{x:Null}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="#" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Break Start" Binding="{Binding BreakStart}" />
+                <DataGridTextColumn Header="Break End" Binding="{Binding BreakEnd}" />
+                <DataGridTextColumn Header="Break Type" Binding="{Binding BreakType}" />
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- General Shift Info -->
+        <Grid Grid.Row="1" Margin="20,10,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                <TextBlock Text="Shift Start Time" Style="{StaticResource MyTextBlockStyle}" FontWeight="ExtraBold"/>
+                <TextBox x:Name="ShiftStartTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontSize="13" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Total Working Hours" Style="{StaticResource MyTextBlockStyle}" FontWeight="ExtraBold"/>
+                <TextBox x:Name="TotalHoursTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontSize="13"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock Text="Shift End Time" Style="{StaticResource MyTextBlockStyle}" FontWeight="ExtraBold"/>
+                <TextBox x:Name="ShiftEndTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontSize="13" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Shift Type" Style="{StaticResource MyTextBlockStyle}" FontWeight="ExtraBold"/>
+                <TextBox x:Name="ShiftTypeTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontSize="13"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

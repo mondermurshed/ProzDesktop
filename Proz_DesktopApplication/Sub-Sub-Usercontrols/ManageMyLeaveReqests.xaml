@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_Sub_Usercontrols"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
@@ -38,51 +39,50 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                   
                     <DataGridTextColumn Header="Requested From" Binding="{Binding Start}" />
                     <DataGridTextColumn Header="Requested Till" Binding="{Binding End}" />
                     <DataGridTextColumn Header="Date/Time Creation" Binding="{Binding CreatedAt}" />
-                   
+                    <DataGridTextColumn Header="Leave Request Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Department Manager Status" Binding="{Binding DepartmentManagerStatus}" />
+                    <DataGridTextColumn Header="Final Status" Binding="{Binding FinalStatus}" />
+
+
 
                 </DataGrid.Columns>
 
             </DataGrid>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,20,0">
-                <Button Style="{StaticResource MyButtonStyle}" Content="Get"  Margin="0,0,10,0"  />
-                <Button Style="{StaticResource MyButtonStyle}" Content="Delete"/>
+                
+                <Button Style="{StaticResource MyButtonStyle}" Content="Delete" x:Name="DeleteButton"/>
 
             </StackPanel>
         </Grid>
         <Grid Margin="20,30,20,20" Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel Margin="0,0,10,0">
-                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="ID"  FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
-                    <TextBox Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                 
-                      
-                        <StackPanel Margin="0,0,10,20">
-                           
-                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="From" Margin="0,0,0,5" FontWeight="ExtraBold" FontSize="13"/>
-                            <TextBox Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13"/>
+                    
+               
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                    <TextBox x:Name="ReasonTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
 
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Department Manager Message" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                    <TextBox x:Name="DepartmentManagerMessageTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
 
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Margin="10,0,0,20">
-                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Till" Margin="0,0,0,5" FontWeight="ExtraBold" FontSize="13"/>
-                            <TextBox Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13"/>
-                        </StackPanel>
-                    </Grid>
-                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13"/>
-                    <TextBox Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Final Message" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                    <TextBox x:Name="FinalMessageTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                    <mah:ToggleSwitch Content="I Understand And I Agree." Visibility="Collapsed" Margin="0,0,0,20" x:Name="Toggle"/>
+                    
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Viewer Department Manager Name" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                    <TextBox x:Name="DepartmentManagerNameTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
 
-
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Viewer HR Manager Name" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                    <TextBox x:Name="HRManagerNameTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                    
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Right">
-                        <Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" Content="Clear" Padding="30,0" />
-                       
+                        <Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" Content="Clear" x:Name="ClearButton" Padding="30,0" Click="Button_Click" />
+                        <Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" x:Name="SendFinalResult" Content="Send The Last decision" Margin="10,0,0,0" Click="SendFinalResult_Click"/>
+
                     </StackPanel>
 
                 </StackPanel>

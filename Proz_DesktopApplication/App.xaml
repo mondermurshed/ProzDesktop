@@ -50,6 +50,23 @@
                 <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
                 
             </Style>
+            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}">
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+            </Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource MahApps.Styles.DataGrid}">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Border}"/>
+            </Style>
+
+            <Style x:Key="MySlider" TargetType="Slider" BasedOn="{StaticResource MahApps.Styles.Slider}">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Border}"/>
+            </Style>
+
+
+            <Style x:Key="MyCheckBpx" TargetType="CheckBox" BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+             
+            </Style>
 
         </ResourceDictionary>
    

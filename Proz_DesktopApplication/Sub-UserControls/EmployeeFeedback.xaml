@@ -20,9 +20,7 @@
                 <sub_subUsercontrols:ManageMyFeedbacks/>
             </TabItem>
             
-            <TabItem Header="Feedbacks Answers">
-                <sub_subUsercontrols:SeeFeedbackAnswers/>
-            </TabItem>
+           
 
         </mah:MetroAnimatedTabControl>
     </Border>

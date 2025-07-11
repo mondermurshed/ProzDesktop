@@ -19,8 +19,8 @@
             <TabItem Header="Manage My Leave Requests">
                 <sub_subUsercontrols:ManageMyLeaveReqests/>
             </TabItem>
-            <TabItem Header="Get Answers About My Requests">
-                <sub_subUsercontrols:AnswersToMyLeaveRequests/>
+            <TabItem Header="List Of My Completed Requests">
+                <sub_subUsercontrols:CompletedLeaveRequestList/>
             </TabItem>
 
 

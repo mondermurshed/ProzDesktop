@@ -10,10 +10,37 @@
     <Compile Update="MainDashboardWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ParentUserControls\DepartmentManager_UserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ParentUserControls\Employee_UserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ParentUserControls\HRManager_UserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="RegisterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\AnsweredFeedbacksRequestsByTheManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrolManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\TrackCurrentPayment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\TrackCurrentPaymentManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesFeedbackRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Usercontrols\AddaALeaveRequest.xaml.cs">
@@ -22,7 +49,25 @@
     <Compile Update="Sub-Sub-Usercontrols\AddAFeedback.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Sub-Sub-Usercontrols\AnswersToMyLeaveRequests.xaml.cs">
+    <Compile Update="Sub-Sub-Usercontrols\AttendanceUsercontrol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\AttendanceUsercontrolManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\CompletedLeaveRequestList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\CompletedLeaveRequestListManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\EmployeeRatingUsercontol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\EmployeesFeedbacksManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml.cs">
@@ -31,7 +76,22 @@
     <Compile Update="Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Sub-Sub-Usercontrols\SeeFeedbackAnswers.xaml.cs">
+    <Compile Update="Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\MyShiftUsercontrol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\PaymentUsercontol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\PaymentUsercontolManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\PerformanceUsercontrol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-UserControls\EmployeeFeedback.xaml.cs">
@@ -43,10 +103,25 @@
     <Compile Update="Sub-UserControls\EmployeeSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-UserControls\JobSection.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\JobSectionHRManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\JobSectionManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\ManagerLeaveRequest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-UserControls\MyLoginHistory.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-UserControls\MyPersonalData.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\NotificationsUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -54,7 +129,13 @@
     <Page Update="MainDashboardWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ParentUserControls\DepartmentManager_UserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ParentUserControls\Employee_UserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ParentUserControls\HRManager_UserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="RegisterWindow.xaml">
@@ -63,13 +144,52 @@
     <Page Update="SigninWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\AnsweredFeedbacksRequestsByTheManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrolManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\TrackCurrentPayment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\TrackCurrentPaymentManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesFeedbackRequests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-Sub-Usercontrols\AddaALeaveRequest.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Usercontrols\AddAFeedback.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Sub-Sub-Usercontrols\AnswersToMyLeaveRequests.xaml">
+    <Page Update="Sub-Sub-Usercontrols\AttendanceUsercontrol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\AttendanceUsercontrolManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\CompletedLeaveRequestList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\CompletedLeaveRequestListManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\EmployeeRatingUsercontol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\EmployeesFeedbacksManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml">
@@ -78,7 +198,22 @@
     <Page Update="Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Sub-Sub-Usercontrols\SeeFeedbackAnswers.xaml">
+    <Page Update="Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\MyShiftUsercontrol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\PaymentUsercontol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\PaymentUsercontolManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\PerformanceUsercontrol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\EmployeeFeedback.xaml">
@@ -90,10 +225,25 @@
     <Page Update="Sub-UserControls\EmployeeSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-UserControls\JobSection.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\JobSectionHRManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\JobSectionManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\ManagerLeaveRequest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-UserControls\MyLoginHistory.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\MyPersonalData.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\NotificationsUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -211,6 +211,33 @@ namespace Proz_DesktopApplication.Sub_UserControls
                 e.Handled = true;
             }
         }
+
+        private void Passwordtextbox2_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            char inputChar = e.Text[0];
+            //if (e.Text.Any(char.IsUpper))
+            //{
+            //    e.Handled = true;
+            //}
+
+            var passwordBox = (TextBox)sender;
+            int currentLength = passwordBox.Text.Length;
+
+
+            if (currentLength == 0 && !char.IsLetter(inputChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsLetterOrDigit(inputChar) &&
+            !char.IsPunctuation(inputChar) &&
+            !char.IsSymbol(inputChar))
+            // Allows backspace, enter, etc.
+            {
+                e.Handled = true;
+            }
+        }
         private void Passwordtextbox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)

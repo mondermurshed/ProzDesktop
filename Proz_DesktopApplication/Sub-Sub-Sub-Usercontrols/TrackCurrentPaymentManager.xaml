@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols.TrackCurrentPaymentManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- ComboBox row -->
+            <RowDefinition Height="*"/>
+            <!-- Scrollable content -->
+        </Grid.RowDefinitions>
+
+        <!-- Sub-department Selector -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20" Grid.Row="0">
+            <TextBlock Text="Sub-Department:"
+                   Style="{StaticResource MyTextBlockStyle}"
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0"/>
+            <ComboBox x:Name="SubDepartmentComboBox"
+                  Width="200"
+                  Margin="0,0,10,0"/>
+            <Button Content="Get"
+                Style="{StaticResource MyButtonStyle}"
+                Width="80"
+                Click="SubDepartments_Click"/>
+        </StackPanel>
+
+        <!-- Scrollable Payment Details -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="0,10,10,10">
+
+                <!-- Title -->
+                <TextBlock Text="Current Payment Overview"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Margin="0,0,0,20"
+                       Style="{StaticResource MyTextBlockStyle}" />
+
+                <!-- Salary Period -->
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Payment Period Start" Style="{StaticResource MyTextBlockStyle}" />
+                        <TextBox x:Name="PeriodStartTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="Payment Period End" Style="{StaticResource MyTextBlockStyle}" />
+                        <TextBox x:Name="PeriodEndTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Salary Details -->
+                <TextBlock Text="Salary Details" FontWeight="Bold" Style="{StaticResource MyTextBlockStyle}" Margin="0,10,0,10"/>
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Base Salary" Style="{StaticResource MyTextBlockStyle}" />
+                        <TextBox x:Name="BaseSalaryTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="Company Bonus" Style="{StaticResource MyTextBlockStyle}" />
+                        <TextBox x:Name="CompanyBonusTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Adjustments -->
+                <TextBlock Text="Adjustments" FontWeight="Bold" Style="{StaticResource MyTextBlockStyle}" Margin="0,10,0,10"/>
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Performance Bonus" Style="{StaticResource MyTextBlockStyle}" />
+                        <TextBox x:Name="PerformanceBonusTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="Deductions" Style="{StaticResource MyTextBlockStyle}" />
+                        <TextBox x:Name="DeductionsTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Final Amount -->
+                <TextBlock Text="Final Amount" FontWeight="Bold" Style="{StaticResource MyTextBlockStyle}" Margin="0,10,0,5"/>
+                <TextBox x:Name="FinalAmountTextBox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" Margin="0,0,0,20"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

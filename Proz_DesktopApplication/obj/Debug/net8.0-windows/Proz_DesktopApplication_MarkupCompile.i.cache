@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\App.xaml
-15-1824014534
+40901050462
 1-1451052090
-22257450962
+471887706447
 244-854928277
-MainDashboardWindow.xaml;ParentUserControls\Employee_UserControl.xaml;RegisterWindow.xaml;SigninWindow.xaml;Sub-Sub-Usercontrols\AddaALeaveRequest.xaml;Sub-Sub-Usercontrols\AddAFeedback.xaml;Sub-Sub-Usercontrols\AnswersToMyLeaveRequests.xaml;Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml;Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml;Sub-Sub-Usercontrols\SeeFeedbackAnswers.xaml;Sub-UserControls\EmployeeFeedback.xaml;Sub-UserControls\EmployeeLeaveRequest.xaml;Sub-UserControls\EmployeeSettings.xaml;Sub-UserControls\MyLoginHistory.xaml;Sub-UserControls\MyPersonalData.xaml;
+MainDashboardWindow.xaml;ParentUserControls\DepartmentManager_UserControl.xaml;ParentUserControls\Employee_UserControl.xaml;ParentUserControls\HRManager_UserControl.xaml;RegisterWindow.xaml;SigninWindow.xaml;Sub-Sub-Sub-Usercontrols\AnsweredFeedbacksRequestsByTheManager.xaml;Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheManager.xaml;Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrol.xaml;Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrolManager.xaml;Sub-Sub-Sub-Usercontrols\TrackCurrentPayment.xaml;Sub-Sub-Sub-Usercontrols\TrackCurrentPaymentManager.xaml;Sub-Sub-Sub-Usercontrols\ViewEmpoyeesFeedbackRequests.xaml;Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml;Sub-Sub-Usercontrols\AddaALeaveRequest.xaml;Sub-Sub-Usercontrols\AddAFeedback.xaml;Sub-Sub-Usercontrols\AttendanceUsercontrol.xaml;Sub-Sub-Usercontrols\AttendanceUsercontrolManager.xaml;Sub-Sub-Usercontrols\CompletedLeaveRequestList.xaml;Sub-Sub-Usercontrols\CompletedLeaveRequestListManager.xaml;Sub-Sub-Usercontrols\EmployeeRatingUsercontol.xaml;Sub-Sub-Usercontrols\EmployeesFeedbacksManager.xaml;Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml;Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml;Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml;Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml;Sub-Sub-Usercontrols\MyShiftUsercontrol.xaml;Sub-Sub-Usercontrols\PaymentUsercontol.xaml;Sub-Sub-Usercontrols\PaymentUsercontolManager.xaml;Sub-Sub-Usercontrols\PerformanceUsercontrol.xaml;Sub-UserControls\EmployeeFeedback.xaml;Sub-UserControls\EmployeeLeaveRequest.xaml;Sub-UserControls\EmployeeSettings.xaml;Sub-UserControls\JobSection.xaml;Sub-UserControls\JobSectionHRManager.xaml;Sub-UserControls\JobSectionManager.xaml;Sub-UserControls\ManagerLeaveRequest.xaml;Sub-UserControls\MyLoginHistory.xaml;Sub-UserControls\MyPersonalData.xaml;Sub-UserControls\NotificationsUserControl.xaml;
 
-True
+False
 

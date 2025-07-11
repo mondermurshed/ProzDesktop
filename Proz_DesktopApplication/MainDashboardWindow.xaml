@@ -14,7 +14,7 @@
   
     </mah:MetroWindow.Resources>
    
-    <Grid>
+    <Grid Margin="5,5,0,0">
         <TabControl x:Name="TabController">
 
         </TabControl>
