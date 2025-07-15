@@ -13,8 +13,8 @@
 
         
             <!-- TAB 1 -->
-            <TabItem Header="Account Info" >
-                <sub_usercontrols:UserSettings/>
+            <TabItem Header="Account" >
+                <sub_usercontrols:settings/>
             </TabItem>
 
             <!-- TAB 2 -->
@@ -28,10 +28,7 @@
 
           
             
-            <TabItem Header="Profile">
-                <sub_usercontrols:MyPersonalData/>
-            </TabItem>
-
+   
 
 
             <TabItem Header="Job Section">

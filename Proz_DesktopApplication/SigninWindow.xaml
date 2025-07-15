@@ -7,24 +7,25 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:Proz_DesktopApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600" WindowStartupLocation="CenterScreen" TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow"
+        Title="Main Window" Height="400" Width="600" WindowStartupLocation="CenterScreen" TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" TitleAlignment="Center"
               
                
         Opacity="1" Loaded="MetroWindow_Loaded">
 
-    <Border BorderThickness="2"  Margin="30" Padding="10">
+    <Border BorderThickness="2"  Margin="30,30,30,15" Padding="10">
       
 
         <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             
             <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Email address" Margin="0,0,0,15"/>
-                <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" x:Name="emailTextbox" TextWrapping="Wrap" MaxLength="254" PreviewKeyDown="EmailTextbox_PreviewKeyDown" PreviewTextInput="EmailTextbox_PreviewTextInput" FontFamily="Segoe UI"/>
-                <TextBlock Style="{StaticResource MyTextBlockStyle}" x:Name="email_textblock" Margin="0,0,0,30"/>
+                <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" x:Name="emailTextbox" TextWrapping="Wrap" MaxLength="254" PreviewKeyDown="EmailTextbox_PreviewKeyDown" PreviewTextInput="EmailTextbox_PreviewTextInput" FontFamily="Segoe UI" Margin="0,0,0,30"/>
+               
                 <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Password" Margin="0,0,0,15"/>
 
                
@@ -56,14 +57,12 @@
 
 
 
-                <TextBlock Style="{StaticResource MyTextBlockStyle}" x:Name="passwordtextblock" Margin="0,0,0,20"/>
                
 
 
 
-
             </StackPanel>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,15,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
@@ -81,6 +80,17 @@
                     </StackPanel>
                 </Button>
         </Grid>
+            <StackPanel Grid.Row="2" Margin="0,15,0,0">
+
+                <CheckBox Style="{StaticResource MyCheckBpx}" x:Name="remembermecheckbox" Margin="0,0,0,15" Content="Remember me" FontSize="13" FontFamily="Segoe UI"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Did you forgot your password ? " />
+                    <TextBlock  >
+           <Hyperlink x:Name="hyperlinkforgotpassword" Foreground="IndianRed" Click="Hyperlink_Click">Change it from here!</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+         
            
         </Grid>
     </Border>

@@ -8,5 +8,8 @@
     <Setting Name="UserThemeColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Blue</Value>
     </Setting>
+    <Setting Name="RememberMe" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

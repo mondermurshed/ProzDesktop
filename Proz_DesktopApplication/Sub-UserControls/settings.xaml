@@ -1,0 +1,42 @@
+﻿<base:BaseUserControlMain x:Class="Proz_DesktopApplication.Sub_UserControls.settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:base="clr-namespace:Proz_DesktopApplication"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             
+             xmlns:subUsercontrols ="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
+             xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Margin="20,30,20,20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+           
+            <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"  Grid.Row="0" >
+            <!-- TAB 1 -->
+            <TabItem Header="Account Settings">
+                <subUsercontrols:UserSettings/>
+            </TabItem>
+            <TabItem Header="Additional Information">
+                <subUsercontrols:MyPersonalData/>
+            </TabItem>
+
+
+
+        </mah:MetroAnimatedTabControl>
+
+            <Button Grid.Row="1" Style="{StaticResource MyButtonStyle}" x:Name="LogOutButton" Margin="0,0,0,20" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Padding="105,15,20,15" BorderThickness="1.5" BorderBrush="#FF8C2A23" Click="LogOutButton_Click"  >
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconLucide Kind="LogOut" Width="16" Height="16" Margin="0,0,5,0" />
+                    <TextBlock Text="Log Out"  VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Border>
+</base:BaseUserControlMain>

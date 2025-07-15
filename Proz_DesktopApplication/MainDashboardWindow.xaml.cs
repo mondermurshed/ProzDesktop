@@ -13,6 +13,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using Microsoft.Extensions.DependencyInjection;
+using Proz_DesktopApplication.API;
 using Proz_DesktopApplication.ParentUserControls;
 using static MaterialDesignThemes.Wpf.Theme;
 
@@ -23,10 +25,13 @@ namespace Proz_DesktopApplication
     /// </summary>
     public partial class MainDashboardWindow : MetroWindow
     {
-        public MainDashboardWindow()
+        public IServiceProvider Services { get; }
+        public  IAuthAPI AuthApi { get; }
+        public MainDashboardWindow(IServiceProvider services, IAuthAPI authApi)
         {
             InitializeComponent();
-          
+            Services = services;
+            AuthApi = authApi;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -35,27 +40,11 @@ namespace Proz_DesktopApplication
             this.Opacity = 0.0;
             var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(750));
             this.BeginAnimation(Window.OpacityProperty, fadeIn);
-            BuildRoleTabs();
+         
             TabController.SelectedIndex = 0;
+
         }
 
-        private void BuildRoleTabs()
-        {
-            // Suppose the logged‑in user has both roles:
-            AddRoleTab("Employee", new Employee_UserControl());
-            AddRoleTab("Department Manager", new DepartmentManager_UserControl());
-            AddRoleTab("HR Manager", new HRManager_UserControl());
-            //AddRoleTab("As Admin", new Employee_UserControl());
-        }
-
-        private void AddRoleTab(string header, UserControl view)
-        {
-            var tab = new TabItem
-            {
-                Header = header,
-                Content = view
-            };
-            TabController.Items.Add(tab);
-        }
+  
     }
 }

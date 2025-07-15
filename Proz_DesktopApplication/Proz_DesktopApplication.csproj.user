@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="ForgotPasswordWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MainDashboardWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,7 +25,13 @@
     <Compile Update="RegisterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\AnsweredDepartmentManagersLeaveRequestsByTheHRManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-Sub-Sub-Usercontrols\AnsweredFeedbacksRequestsByTheManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheHRManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheManager.xaml.cs">
@@ -41,6 +50,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesFeedbackRequests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequestsHRManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Sub-Usercontrols\ViewManagersLeaveRequestsHRManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Usercontrols\AddaALeaveRequest.xaml.cs">
@@ -67,7 +82,13 @@
     <Compile Update="Sub-Sub-Usercontrols\EmployeesFeedbacksManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsHRManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\ManageDepartmentsInformationHRManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml.cs">
@@ -77,6 +98,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\ManagerLeaveRequestsHRManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-Sub-Usercontrols\MyShiftUsercontrol.xaml.cs">
@@ -124,8 +148,14 @@
     <Compile Update="Sub-UserControls\NotificationsUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-UserControls\settings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="ForgotPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainDashboardWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -144,7 +174,13 @@
     <Page Update="SigninWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\AnsweredDepartmentManagersLeaveRequestsByTheHRManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-Sub-Sub-Usercontrols\AnsweredFeedbacksRequestsByTheManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheHRManager.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Sub-Usercontrols\AnsweredLeaveRequestsByTheManager.xaml">
@@ -163,6 +199,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesFeedbackRequests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequestsHRManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Sub-Usercontrols\ViewManagersLeaveRequestsHRManager.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Usercontrols\AddaALeaveRequest.xaml">
@@ -189,7 +231,13 @@
     <Page Update="Sub-Sub-Usercontrols\EmployeesFeedbacksManager.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsHRManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\ManageDepartmentsInformationHRManager.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml">
@@ -199,6 +247,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-Sub-Usercontrols\ManagerLeaveRequestsHRManager.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Usercontrols\MyShiftUsercontrol.xaml">
@@ -244,6 +295,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\NotificationsUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\settings.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

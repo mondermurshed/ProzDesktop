@@ -13,20 +13,14 @@
 
 
             <!-- TAB 1 -->
-            <TabItem Header="Account Info" >
-                <sub_usercontrols:UserSettings/>
+            <TabItem Header="Account" >
+                <sub_usercontrols:settings/>
             </TabItem>
 
-     
+
 
             <TabItem Header="Leave Request">
                 <sub_usercontrols:ManagerLeaveRequest/>
-            </TabItem>
-
-
-
-            <TabItem Header="Profile">
-                <sub_usercontrols:MyPersonalData/>
             </TabItem>
 
 

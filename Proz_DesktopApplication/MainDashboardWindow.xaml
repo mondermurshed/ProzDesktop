@@ -6,6 +6,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         xmlns:materialDesignControls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:ParentUserControls="clr-namespace:Proz_DesktopApplication.ParentUserControls"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proz_DesktopApplication"
         mc:Ignorable="d"
@@ -15,9 +16,25 @@
     </mah:MetroWindow.Resources>
    
     <Grid Margin="5,5,0,0">
-        <TabControl x:Name="TabController">
+        <mah:MetroAnimatedTabControl Margin="10" x:Name="TabController" mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
+            <!-- TAB 1 -->
+            <TabItem Header="Employee">
+                <ParentUserControls:Employee_UserControl/>
+            </TabItem>
+            <TabItem Header="Department Manager">
+                <ParentUserControls:DepartmentManager_UserControl/>
+            </TabItem>
+            <TabItem Header="HR Manager">
+                <ParentUserControls:HRManager_UserControl/>
+            </TabItem>
 
-        </TabControl>
+
+
+
+
+
+
+        </mah:MetroAnimatedTabControl>
     </Grid>
 
   

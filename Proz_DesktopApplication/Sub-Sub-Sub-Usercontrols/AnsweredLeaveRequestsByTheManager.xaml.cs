@@ -38,7 +38,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols
                     Start = new DateOnly(2025, 6, 1),
                     End = new DateOnly(2025, 6, 3),
                     Reason = "Doctor Appointment",
-                    Status = "Approved",
+                  
                     DepartmentManagerMessage = "Approved for medical reasons.",
                     SubDepartment = "IT"
                 },
@@ -49,7 +49,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols
                     Start = new DateOnly(2025, 6, 10),
                     End = new DateOnly(2025, 6, 15),
                     Reason = "Vacation",
-                    Status = "Rejected",
+                  
                     DepartmentManagerMessage = "Too many employees already on leave.",
                     SubDepartment = "Finance"
                 },
@@ -60,7 +60,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols
                     Start = new DateOnly(2025, 6, 20),
                     End = new DateOnly(2025, 6, 22),
                     Reason = "Family Event",
-                    Status = "Approved",
+                 
                     DepartmentManagerMessage = "Approved after project delivery.",
                     SubDepartment = "IT"
                 }
@@ -69,15 +69,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols
 
         private void FilterAndShow()
         {
-            string selectedSubDept = SubDepartmentComboBox.SelectedItem as string;
-            if (string.IsNullOrEmpty(selectedSubDept)) return;
 
-            filteredCompletedRequests = allRequests
-                .Where(r => r.SubDepartment == selectedSubDept && (r.Status == "Approved" || r.Status == "Rejected"))
-                .ToList();
-
-            CompletedRequestsDataGrid.ItemsSource = filteredCompletedRequests;
-            CompletedRequestsDataGrid.Items.Refresh();
         }
 
         private void GetButton_Click(object sender, RoutedEventArgs e)
@@ -105,7 +97,6 @@ namespace Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols
         public DateOnly End { get; set; }
         public string Reason { get; set; }
         public string DepartmentManagerMessage { get; set; }
-        public string Status { get; set; }
         public string SubDepartment { get; set; }
     }
 }

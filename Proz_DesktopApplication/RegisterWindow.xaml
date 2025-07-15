@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proz_DesktopApplication"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="550" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"  TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
+        Title="Register Window" Height="550" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"  TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" TitleAlignment="Center">
     <Border BorderThickness="2"  Margin="20,20,20,10" Padding="10" >
     <Grid>
             <Grid.RowDefinitions>

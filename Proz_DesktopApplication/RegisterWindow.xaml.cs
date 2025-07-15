@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,19 +17,23 @@ using System.Windows.Shapes;
 using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 using MahApps.Metro.IconPacks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Primitives;
 using ModernMessageBoxLib;
+using Proz_DesktopApplication.API;
 
 namespace Proz_DesktopApplication
 {
 
     public partial class RegisterWindow : MetroWindow
     {
-      
-    public RegisterWindow()
+        private readonly IAuthAPI _authApi;
+        private readonly IServiceProvider _Services;
+        public RegisterWindow(IAuthAPI authApi,IServiceProvider services)
         {
             InitializeComponent();
-           
-           
+            _authApi = authApi;
+            _Services = services;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -347,8 +352,8 @@ namespace Proz_DesktopApplication
 
             this.Hide();
 
-            var ob = new SigninWindow();
-            ob.Show();
+            var SignInWindowOB = _Services.GetRequiredService<SigninWindow>();
+            SignInWindowOB.Show();
         }
 
         bool IsValidEmail(string email)
@@ -364,6 +369,9 @@ namespace Proz_DesktopApplication
         }
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
+
+
+
             bool pass = true;
             RegisterErrorTextBlock.Inlines.Clear(); // Clear previous messages
             if(Passwordtextbox.Visibility==Visibility.Collapsed)
@@ -372,10 +380,11 @@ namespace Proz_DesktopApplication
                 Passwordtextbox2.Visibility = Visibility.Collapsed;
                 Passwordtextbox.Visibility = Visibility.Visible;
                 ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+                
             }
              if (ConfirmPasswordTextbox.Visibility==Visibility.Collapsed)
             {
-                MessageBox.Show("g");
+              
                 ConfirmPasswordTextbox.Password = ConfirmPasswordTextbox2.Text;
                 ConfirmPasswordTextbox2.Visibility = Visibility.Collapsed;
                 ConfirmPasswordTextbox.Visibility = Visibility.Visible;
@@ -471,13 +480,290 @@ namespace Proz_DesktopApplication
             }
             else
             {
-                //call endpoint here...
-                this.IsEnabled = false;
-                //var win = new IndeterminateProgressWindow("Please wait while we are creating your account. . .");
-                //win.Show();
-                //await Task.Delay(5000);
-                //win.Close();
-                this.IsEnabled=true;
+
+                var request = new UserRegisterationRequest { Username = Usernametextbox.Text, Email = EmailTextbox.Text, Password = Passwordtextbox.Password };
+
+                try
+                {
+
+                    var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                    win.Show();
+                    var response = await _authApi.RegisterStageOne(request);
+                    win.Message = "Done!!!";
+                    win.Close();
+                    if (response.IsSuccessStatusCode && response.Content?.Message?.Any() == true)
+                    {
+                        bool success = false;
+
+
+                        if (QModernMessageBox.Show(
+                                $"Your data was successfully accepted! The password's strength is {response.Content.Strength} and with score of {response.Content.Score} out of 0. \n {string.Join("\n", response.Content.Message)} ",
+                                "Operation Information",
+                                QModernMessageBox.QModernMessageBoxButtons.OkCancel,
+                                ModernMessageboxIcons.Done
+                            ) == ModernMessageboxResult.Button1)
+                        {
+                            do
+                            {
+                                var msgBox = new ModernMessageBox(
+                                    "Enter the code we sent to your email into the textbox:",
+                                    "Email Verification",
+                                    ModernMessageboxIcons.Info,
+                                    "Confirm",
+                                    "Reload Code")
+                                {
+                                    TextBoxText = "",
+                                    TextBoxVisibility = Visibility.Visible,
+                                    Button1Key = Key.Enter,
+                                    Button2Key = Key.R
+                                };
+
+                                msgBox.ShowDialog();
+
+                                if (msgBox.Result == ModernMessageboxResult.Button1)
+                                {
+                                    string Usercode = msgBox.TextBoxText.Trim();
+
+                                    if (Usercode.Length != 6 || !Usercode.All(char.IsDigit))
+                                    {
+                                        QModernMessageBox.Error("Please enter a valid 6-digit code.", "Operation Failed");
+                                    }
+                                    else  //here when registration stage two begins!!
+                                    {
+
+
+                                        var requestFinalRegister = new UserRegisterationStageTwoRequest { Email = EmailTextbox.Text, Code = Usercode };
+
+                                        try
+                                        {
+                                            var win2 = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                                            win2.Show();
+                                            var responseFinalRegister = await _authApi.RegisterStageTwo(requestFinalRegister);
+                                            win2.Message = "Done!!!";
+                                            win2.Close();
+                                            if (responseFinalRegister.IsSuccessStatusCode && responseFinalRegister.Content?.Message?.Any() == true)
+                                            {
+                                                success = true;
+
+                                                QModernMessageBox.Show($"Message : {string.Join("\n", responseFinalRegister.Content.Message)}",
+                                                  "Operation Information",
+                                                  QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                  ModernMessageboxIcons.Done);
+                                            }
+                                            else
+                                            {
+
+                                                // When server returns 400, Refit puts the error JSON as a string here
+                                                var rawError = responseFinalRegister.Error?.Content;
+
+                                                if (!string.IsNullOrWhiteSpace(rawError))
+                                                {
+                                                    var errorResponse = JsonSerializer.Deserialize<UserRegisterationStageTwoResponse>(rawError, new JsonSerializerOptions
+                                                    {
+                                                        PropertyNameCaseInsensitive = true
+                                                    });
+
+
+
+                                                    if (errorResponse?.Message?.Any() == true)
+                                                    {
+                                                        QModernMessageBox.Show($"Message : {string.Join("\n", errorResponse.Message)} \n Error : {string.Join("\n", errorResponse.Error)}",
+                                                        "Operation Information",
+                                                        QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                        ModernMessageboxIcons.Error);
+                                                    }
+
+                                                    else if (errorResponse?.Error?.Any() == true)
+                                                    {
+                                                        QModernMessageBox.Show($"Error : {string.Join("\n", errorResponse.Error)}",
+                                                       "Operation Information",
+                                                       QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                       ModernMessageboxIcons.Error);
+                                                    }
+                                                    else
+                                                    {
+                                                        QModernMessageBox.Show($"Something went wrong!",
+                                                       "Operation Information",
+                                                       QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                       ModernMessageboxIcons.Error);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    QModernMessageBox.Show($"Something went wrong!",
+                                                     "Operation Information",
+                                                     QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                     ModernMessageboxIcons.Error);
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show("Network error or app bug: " + ex.Message);
+                                        }
+
+
+
+                                    } //here where registration stage two ends!!
+                                }
+                                else if (msgBox.Result == ModernMessageboxResult.Button2)
+                                {
+
+                                    // Add resend logic here
+
+                                    var requestResend = new ReSendRegistrationCode { Email = EmailTextbox.Text.Trim() };
+
+                                    try
+                                    {
+                                        var win3 = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                                        win3.Show();
+                                        var responseResend = await _authApi.ResendRegistrationCodeAgain(requestResend);
+                                        win3.Message = "Done!!!";
+                                        win3.Close();
+                                        if (responseResend.IsSuccessStatusCode && responseResend.Content?.Message?.Any() == true)
+                                        {
+                                            QModernMessageBox.Show($"{string.Join("\n", responseResend.Content.Message)}",
+                                             "Operation Information",
+                                             QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                             ModernMessageboxIcons.Done);
+
+                                        }
+                                        else
+                                        {
+                                            // When server returns 400, Refit puts the error JSON as a string here
+                                            var rawError = responseResend.Error?.Content;
+
+                                            if (!string.IsNullOrWhiteSpace(rawError))
+                                            {
+                                                var errorResponse = JsonSerializer.Deserialize<ReSendRegistrationCodeResponse>(rawError, new JsonSerializerOptions
+                                                {
+                                                    PropertyNameCaseInsensitive = true
+                                                });
+
+
+
+                                                if (errorResponse?.Message?.Any() == true)
+                                                {
+                                                    QModernMessageBox.Show($"Message : {string.Join("\n", errorResponse.Message)}\n Error : {string.Join("\n", errorResponse.Error)}",
+                                                   "Operation Information",
+                                                   QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                   ModernMessageboxIcons.Error);
+
+                                                }
+
+                                                else if (errorResponse?.Error?.Any() == true)
+                                                {
+                                                    QModernMessageBox.Show($"Error : {string.Join("\n", errorResponse.Error)}",
+                                              "Operation Information",
+                                              QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                              ModernMessageboxIcons.Error);
+                                                }
+                                                else
+                                                {
+                                                    QModernMessageBox.Show($"Something went wrong!",
+                                                        "Operation Information",
+                                                        QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                        ModernMessageboxIcons.Error);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                QModernMessageBox.Show($"Something went wrong!",
+                                                    "Operation Information",
+                                                    QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                                    ModernMessageboxIcons.Error);
+                                            }
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("Network error or app bug: " + ex.Message);
+                                    }
+
+                                }
+                                else
+                                {
+                                    // User closed the messagebox
+                                    break;
+                                }
+                            }
+                            while (!success);
+                        }
+
+                    }
+                    else
+                    {
+                        // When server returns 400, Refit puts the error JSON as a string here
+                        var rawError = response.Error?.Content;
+                        UserRegisterationResponse errorResponse = null;
+                        ValidationErrorResponse errorResponse2 = null;
+
+                        if (!string.IsNullOrWhiteSpace(rawError))
+                        {
+                            try
+                            {
+                                errorResponse = JsonSerializer.Deserialize<UserRegisterationResponse>(rawError, new JsonSerializerOptions
+                                {
+                                    PropertyNameCaseInsensitive = true
+                                });
+                            }
+                            catch
+                            {
+                                // Fallback to FluentValidation-style error
+                                errorResponse2 = JsonSerializer.Deserialize<ValidationErrorResponse>(rawError, new JsonSerializerOptions
+                                {
+                                    PropertyNameCaseInsensitive = true
+                                });
+
+                                // Flatten dictionary errors
+                                var flatErrors = errorResponse2.Errors
+                                    .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
+
+                                QModernMessageBox.Show($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                                    "Validation Error",
+                                    QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                    ModernMessageboxIcons.Error);
+
+                                return;
+                            }
+
+
+
+
+
+
+                            if (errorResponse?.Message?.Any() == true && errorResponse?.PasswordCause == true && errorResponse?.Message?[0] == "Password contains banned words")
+                            {
+                                QModernMessageBox.Show($"{string.Join("\n", errorResponse.Message)}\n Suggestions are {string.Join("\n", errorResponse.Suggestions)} ", "Password is not acceptable!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+
+                            }
+                            else if (errorResponse?.Message?.Any() == true && errorResponse?.PasswordCause == true)
+                            {
+                                QModernMessageBox.Show($"{string.Join("\n", errorResponse.Message)} \n Your password strength is {errorResponse.Strength} and the score of the password is {errorResponse.Score} out of 0 \n it will need {errorResponse.CrackTime} \n Suggestions are {string.Join("\n", errorResponse.Suggestions)} ", "Password is not acceptable!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+
+                            }
+
+                            else if (errorResponse?.Error?.Any() == true)
+                            {
+                                if (errorResponse?.Message?.Any() == true)
+                                    QModernMessageBox.Show($"Message : {string.Join("\n", errorResponse.Message)} \n  Error : {string.Join("\n", errorResponse.Error)}", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                                else
+                                    QModernMessageBox.Show($"Error : {string.Join("\n", errorResponse.Error)}", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                            }
+
+                            else
+                            {
+                                QModernMessageBox.Show($"Something went wrong!", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                            }
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+
+                    QModernMessageBox.Show($"Something went wrong!", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                }
             }
        
         }

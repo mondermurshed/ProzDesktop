@@ -14,6 +14,11 @@ using MaterialDesignThemes.Wpf;
 using MahApps.Metro.IconPacks;
 using System.Windows.Media.Animation;
 using ModernMessageBoxLib;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+using Proz_DesktopApplication.API;
+using System.Text.Json;
 namespace Proz_DesktopApplication
 {
     /// <summary>
@@ -21,16 +26,26 @@ namespace Proz_DesktopApplication
     /// </summary>
     public partial class SigninWindow : MetroWindow
     {
+        private readonly IServiceProvider _Services;
+        private readonly IAuthAPI _authApi;
+
         public SigninWindow()
         {
+            
             InitializeComponent();
 
+            //TokenStorage.DeleteTokens();
 
 
-   
         }
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        public SigninWindow(IServiceProvider Services, IAuthAPI authApi) : this()
+        {
+            _Services = Services;
+            _authApi = authApi;
+        }
+
+        private async void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
@@ -55,21 +70,24 @@ namespace Proz_DesktopApplication
             };
             QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.Black) { Opacity = 0.8 };
             QModernMessageBox.GlobalForeground = Brushes.White;
-          
-            
-            string baseTheme = Properties.Settings.Default.UserTheme;        // Light or Dark
-            string color = Properties.Settings.Default.UserThemeColor;       // Blue, Red, Lime, etc.
 
-            if (!string.IsNullOrWhiteSpace(baseTheme) && !string.IsNullOrWhiteSpace(color))
-            {
-                string fullTheme = $"{baseTheme}.{color}"; // e.g. Light.Blue or Dark.Red
-                ControlzEx.Theming.ThemeManager.Current.ChangeTheme(Application.Current, fullTheme);
 
-            }
-            else
-            {
-                ControlzEx.Theming.ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Blue");
-            }
+            //string baseTheme = Properties.Settings.Default.UserTheme;        // Light or Dark
+            //string color = Properties.Settings.Default.UserThemeColor;       // Blue, Red, Lime, etc.
+
+            //if (!string.IsNullOrWhiteSpace(baseTheme) && !string.IsNullOrWhiteSpace(color))
+            //{
+            //    string fullTheme = $"{baseTheme}.{color}"; // e.g. Light.Blue or Dark.Red
+            //    ControlzEx.Theming.ThemeManager.Current.ChangeTheme(Application.Current, fullTheme);
+
+            //}
+            //else
+            //{
+            //    ControlzEx.Theming.ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Blue");
+            //}
+
+
+
         }
 
         public async Task ShakeControl(UIElement control)
@@ -90,11 +108,21 @@ namespace Proz_DesktopApplication
 
         private void EmailTextbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+
+
+
+
+
+
+
+
+
             char inputChar = e.Text[0];
             if (e.Text.Any(char.IsUpper))
             {
                 e.Handled = true;
             }
+
 
             var textbox = (TextBox)sender;
             int currentLength = textbox.Text.Length;
@@ -106,12 +134,12 @@ namespace Proz_DesktopApplication
                 return;
             }
 
-            // Allow letters, digits, and underscore
-            if (char.IsLetterOrDigit(inputChar) || inputChar == '_')
+            if (char.IsLetterOrDigit(inputChar) || "@._-+".Contains(inputChar))
                 return;
 
-            // Block everything else
+            // Block everything else (including space)
             e.Handled = true;
+
         }
 
         private void EmailTextbox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -203,32 +231,168 @@ namespace Proz_DesktopApplication
         }
         private async void loginbutton_Click(object sender, RoutedEventArgs e)
         {
+
             //await ShakeControl(loginbutton);
+
+            //this.IsEnabled = false;
+            //loginbutton.IsEnabled = false; //if it was wrong then do this 
+            //var win = new IndeterminateProgressWindow("Please wait while we are load your data. . .");
+            //win.Show();
+            //await Task.Delay(500);
+            //win.Message = "Done!!!";
+            //win.Close();
+
+
+
+
+            //this.Hide();
+            //var MainWindowOB = _Services.GetRequiredService<MainDashboardWindow>();
+            //MainWindowOB.Show();
             this.IsEnabled = false;
-            loginbutton.IsEnabled = false; //if it was wrong then do this 
-            var win = new IndeterminateProgressWindow("Please wait while we are load your data. . .");
-            win.Show();
-            await Task.Delay(500);
-            win.Message = "Done!!!";
-            win.Close();
+            if (passwordbox.Visibility == Visibility.Collapsed)
+            {
+                passwordbox.Password = passwordbox2.Text;
+                passwordbox.Visibility = Visibility.Visible;
+                passwordbox2.Visibility = Visibility.Collapsed;
+                ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
+
+            }
+            if (emailTextbox.Text == "" || passwordbox.Password=="")
+            {
+                QModernMessageBox.Show($"Please fill all your fields to log in!",
+                    "Operation Information",
+                    QModernMessageBox.QModernMessageBoxButtons.Ok,
+                    ModernMessageboxIcons.Error);
+                await ShakeControl(loginbutton);
+                this.IsEnabled = true;
+                return;
+
+            }
+                try
+            {
+              
+                var request = new LoginRequest { Username = emailTextbox.Text.Trim(), Password=passwordbox.Password};
+                var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                win.Show();
+                var response = await _authApi.Login(request);
+                win.Message = "Done!!!";
+                win.Close();
 
 
+                if (response.IsSuccessStatusCode && (response.Content?.Token!=null && response.Content?.RefreshToken!=null))
+                {
+                  
+                    if(remembermecheckbox.IsChecked == true)
+                    {
+                        Properties.Settings.Default.RememberMe = true;
+                  
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.RememberMe = false;
+                     
+                    }
+                    Properties.Settings.Default.Save();
+                    TokenStorage.SaveTokens(response.Content.Token, response.Content.RefreshToken);
+                    var MainWindow = _Services.GetRequiredService<MainDashboardWindow>();
+                    Application.Current.MainWindow = MainWindow;
 
-            this.Opacity = 1.0;
+                    this.Opacity = 1.0;
 
-            var fadeOut = new DoubleAnimation(1, 0.2, TimeSpan.FromMilliseconds(250));
-            var tcs = new TaskCompletionSource<bool>();
+                    var fadeOut = new DoubleAnimation(1, 0.2, TimeSpan.FromMilliseconds(250));
+                    var tcs = new TaskCompletionSource<bool>();
 
-            fadeOut.Completed += (s, ev) => tcs.SetResult(true);
+                    fadeOut.Completed += (s, ev) => tcs.SetResult(true);
 
-            this.BeginAnimation(Window.OpacityProperty, fadeOut);
+                    this.BeginAnimation(Window.OpacityProperty, fadeOut);
 
-            
-            await tcs.Task;
-          
-            this.Hide();
-            MainDashboardWindow ob = new MainDashboardWindow();
-            ob.Show();
+
+                    await tcs.Task;
+                    MainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    // When server returns 400, Refit puts the error JSON as a string here
+                    var rawError = response.Error?.Content;
+                    LoginResponse errorResponse = null;
+                    ValidationErrorResponse errorResponse2 = null;
+                    if (!string.IsNullOrWhiteSpace(rawError))
+                    {
+
+                        try
+                        {
+                            errorResponse = JsonSerializer.Deserialize<LoginResponse>(rawError, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+                            this.IsEnabled = true;
+                        }
+                        catch
+                        {
+                            // Fallback to FluentValidation-style error
+                            errorResponse2 = JsonSerializer.Deserialize<ValidationErrorResponse>(rawError, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+
+                            // Flatten dictionary errors
+                            var flatErrors = errorResponse2.Errors
+                                .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
+
+                            QModernMessageBox.Show($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                                "Validation Error",
+                                QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                ModernMessageboxIcons.Error);
+                            this.IsEnabled = true;
+                            return;
+                        }
+
+                      
+                      
+                        if (errorResponse?.Errors?.Any() == true)
+                        {
+                            QModernMessageBox.Show($"Error :{string.Join("\n", errorResponse.Errors)}",
+                                     "Operation Information",
+                                     QModernMessageBox.QModernMessageBoxButtons.Ok,
+                                     ModernMessageboxIcons.Error);
+                            this.IsEnabled = true;
+                        }
+                        
+                        else
+                        {
+                          
+                            if (errorResponse?.Errors==null)
+                            
+                            QModernMessageBox.Show($"Something went wrong!",
+                        "Operation Information",
+                        QModernMessageBox.QModernMessageBoxButtons.Ok,
+                        ModernMessageboxIcons.Error);
+                            this.IsEnabled = true;
+                        }
+                    
+                    }
+                    else
+                    {
+             
+                        QModernMessageBox.Show($"Something went wrong!",
+                   "Operation Information",
+                    QModernMessageBox.QModernMessageBoxButtons.Ok,
+                    ModernMessageboxIcons.Error);
+                        this.IsEnabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+             
+                QModernMessageBox.Show($"Network error or app bug: {ex.Message}",
+              "Operation Information",
+              QModernMessageBox.QModernMessageBoxButtons.Ok,
+              ModernMessageboxIcons.Error);
+                this.IsEnabled = true;
+
+            }
         }
 
         private async void registerbutton_Click(object sender, RoutedEventArgs e)
@@ -248,8 +412,8 @@ namespace Proz_DesktopApplication
 
             this.Hide();
 
-            var ob = new RegisterWindow();
-            ob.Show();
+            var forgotWindow = _Services.GetRequiredService<RegisterWindow>();
+            forgotWindow.Show();
         }
 
         private void ShowPassword_Click(object sender, RoutedEventArgs e)
@@ -269,6 +433,27 @@ namespace Proz_DesktopApplication
 
                 ShowPasswordIcon.Kind = PackIconFontAwesomeKind.EyeSlashRegular;
             }
+        }
+
+        private async void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            hyperlinkforgotpassword.IsEnabled = false;
+            this.Opacity = 1.0;
+
+            var fadeOut = new DoubleAnimation(1, 0.2, TimeSpan.FromMilliseconds(250));
+            var tcs = new TaskCompletionSource<bool>();
+
+            fadeOut.Completed += (s, ev) => tcs.SetResult(true);
+
+            this.BeginAnimation(Window.OpacityProperty, fadeOut);
+
+            // Wait for animation to finish
+            await tcs.Task;
+
+            this.Hide();
+
+            var forgotWindow = _Services.GetRequiredService<ForgotPasswordWindow>();
+            forgotWindow.Show();
         }
     }
 }

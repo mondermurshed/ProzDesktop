@@ -49,7 +49,7 @@
                 <DataGridTextColumn Header="Employee Name" Binding="{Binding EmployeeName}" />
                 <DataGridTextColumn Header="Start" Binding="{Binding Start}" />
                 <DataGridTextColumn Header="End" Binding="{Binding End}" />
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                <DataGridTextColumn Header="Department" Binding="{Binding SubDepartment}" />
             </DataGrid.Columns>
         </DataGrid>
 

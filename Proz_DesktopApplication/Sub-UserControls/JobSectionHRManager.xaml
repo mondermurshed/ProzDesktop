@@ -23,7 +23,16 @@
                 <sub_subUsercontrols:PaymentUsercontol/>
             </TabItem>
 
-
+            <TabItem Header="Manage Employees Leave Requests">
+                <sub_subUsercontrols:EmployeesLeaveRequestsHRManager/>
+            </TabItem>
+            
+            <TabItem Header="Manage Managers Leave Requests">
+                <sub_subUsercontrols:ManagerLeaveRequestsHRManager/>
+            </TabItem>
+            <TabItem Header="Manage New Departments Info">
+                <sub_subUsercontrols:ManageDepartmentsInformationHRManager/>
+            </TabItem>
 
         </mah:MetroAnimatedTabControl>
     </Border>

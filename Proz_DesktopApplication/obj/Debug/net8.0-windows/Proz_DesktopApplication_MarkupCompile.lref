@@ -1,5 +1,6 @@
 ﻿
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\App.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\ForgotPasswordWindow.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\MainDashboardWindow.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\ParentUserControls\DepartmentManager_UserControl.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\ParentUserControls\Employee_UserControl.xaml;;
@@ -15,10 +16,13 @@ FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\CompletedLeaveRequestListManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeeRatingUsercontol.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeesFeedbacksManager.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeesLeaveRequestsHRManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageDepartmentsInformationHRManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManagerLeaveRequestsHRManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\PaymentUsercontol.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\PaymentUsercontolManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\EmployeeFeedback.xaml;;
@@ -30,4 +34,5 @@ FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-User
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\ManagerLeaveRequest.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\MyLoginHistory.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\MyPersonalData.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\settings.xaml;;
 

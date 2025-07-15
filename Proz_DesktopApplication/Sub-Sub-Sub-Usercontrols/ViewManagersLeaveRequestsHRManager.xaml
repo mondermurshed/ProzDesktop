@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols.ViewManagersLeaveRequestsHRManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid Section -->
+        <DataGrid x:Name="ManagersRequestsDataGrid"
+                  Grid.Row="0"
+                  Margin="0,0,0,20"
+                  AutoGenerateColumns="False"
+                  AlternationCount="1000000"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionChanged="ManagersRequestsDataGrid_SelectionChanged"
+                  FocusVisualStyle="{x:Null}">
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="#" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Manager Name" Binding="{Binding ManagerName}" />
+                <DataGridTextColumn Header="Start" Binding="{Binding Start}" />
+                <DataGridTextColumn Header="End" Binding="{Binding End}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- HR Actions -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0,0,10,0">
+                <TextBlock Text="Reason" Style="{StaticResource MyTextBlockStyle}" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBox x:Name="ReasonTextbox" 
+                         Style="{StaticResource MyTextBoxStyle}" 
+                         IsReadOnly="True"
+                         FontSize="13"
+                         Margin="0,0,0,20"/>
+
+                <TextBlock Text="HR Final Message" Style="{StaticResource MyTextBlockStyle}" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBox x:Name="HRMessageTextbox" 
+                         Style="{StaticResource MyTextBoxStyle}" 
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"
+                         Margin="0,0,0,20"/>
+                <CheckBox Content="Needed Approval" IsChecked="False" x:Name="NeedsApprovalCheckbox"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Approve" Style="{StaticResource MyButtonStyle}" Width="120" Click="ApproveButton_Click"/>
+                    <Button Content="Reject" Style="{StaticResource MyButtonStyle}" Width="120" Margin="10,0,0,0" Click="RejectButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
