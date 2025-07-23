@@ -1,0 +1,136 @@
+﻿<base:BaseUserControlMain x:Class="Proz_DesktopApplication.Sub_UserControls.ManageEmployeesRolesAndPowers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:base="clr-namespace:Proz_DesktopApplication"
+             xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Margin="20">
+        <TabControl>
+            <!-- 🧑‍💼 TAB 1: Manage Roles -->
+            <TabItem Header="Manage People Roles">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Search box -->
+                        <RowDefinition Height="*"/>
+                        <!-- DataGrid -->
+                    </Grid.RowDefinitions>
+
+                    <!-- 🔍 Search Bar -->
+                    <TextBox x:Name="SearchUsersTextBox" VerticalAlignment="Center"
+                             Width="250"
+                             Margin="0,15,0,5"
+                           
+                          
+                             TextChanged="SearchUsersTextBox_TextChanged"/>
+                    <Button Content="Refresh Data" HorizontalAlignment="Right" Margin="0,15,5,5" Style="{StaticResource MyButtonStyle}" Click="Button_Click">
+                        
+                    </Button>
+                    <!-- 📋 Users DataGrid -->
+                    <DataGrid x:Name="UsersRolesDataGrid"
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="False"
+                              CanUserAddRows="False"
+                              Margin="0,10,0,0"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="2*"/>
+
+                            <!-- 👥 Role Checkboxes -->
+                            <DataGridTemplateColumn Header="Is User?">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <RadioButton Tag="User" IsChecked="{Binding IsUser}" x:Name="UserRadio" Click="ChangeRoleEventHandler"  Background="Transparent" GroupName="{Binding FullName}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Is Employee?">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <RadioButton  Tag="Employee" IsChecked="{Binding IsEmployee}" Click="ChangeRoleEventHandler" x:Name="EmployeeRadio"  Background="Transparent" GroupName="{Binding FullName}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Is Department Manager?">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <RadioButton Tag="Department Manager" IsChecked="{Binding IsDepartmentManager}" Click="ChangeRoleEventHandler"  x:Name="DeptManagerRadio" Background="Transparent" GroupName="{Binding FullName}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Is HR Manager?">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <RadioButton Tag="HR Manager" IsChecked="{Binding IsHRManager}" Click="ChangeRoleEventHandler" x:Name="HRManagerRadio" Background="Transparent" GroupName="{Binding FullName}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Is Admin?">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <RadioButton Tag="Admin" x:Name="AdminRadio" IsChecked="{Binding IsAdmin}" Click="ChangeRoleEventHandler"  Background="Transparent" GroupName="{Binding FullName}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- ❌ Delete Button -->
+                            <DataGridTemplateColumn Header="Action" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Click="DeleteUserButton_Click" Background="#FFA80000" Foreground="White"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Limit/Unlimit Power from HR Managers">
+               <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- 🔍 Optional: Filter box (you can remove this if not needed) -->
+    <TextBox x:Name="SearchHRManagersTextBox"
+             Width="250"
+             Margin="0,0,0,10"
+             VerticalAlignment="Top"
+             
+             TextChanged="SearchHRManagersTextBox_TextChanged"/>
+
+    <!-- 🧑‍⚖️ DataGrid to limit HR manager powers -->
+    <DataGrid x:Name="HRManagersGrid"
+              Grid.Row="1"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              IsReadOnly="False"
+              Margin="0,10,0,0">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Full Name"
+                                Binding="{Binding FullName}"
+                                Width="2*"/>
+
+            <DataGridCheckBoxColumn Header="Has Full Power?"
+                                    Binding="{Binding HasFullPower, Mode=TwoWay}"
+                                    Width="*"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</Grid>
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</base:BaseUserControlMain>

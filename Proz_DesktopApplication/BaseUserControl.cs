@@ -23,5 +23,23 @@ namespace Proz_DesktopApplication
                 return window?.AuthApi;
             }
         }
+
+        protected GeneralAPICalling? GeneralAPICalling1
+        {
+            get
+            {
+                var window = Window.GetWindow(this) as MainDashboardWindow;
+                return window?.GeneralAPICalling;
+            }
+        }
+
+        protected AdminAPIEndpointsDefinitions? _AdminAPIEndpointsDefinitions1
+        {
+            get
+            {
+                var window = Window.GetWindow(this) as MainDashboardWindow;
+                return window?._AdminAPIEndpointsDefinitions;
+            }
+        }
     }
 }

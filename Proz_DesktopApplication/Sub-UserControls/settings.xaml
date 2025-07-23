@@ -30,13 +30,20 @@
 
 
         </mah:MetroAnimatedTabControl>
-
-            <Button Grid.Row="1" Style="{StaticResource MyButtonStyle}" x:Name="LogOutButton" Margin="0,0,0,20" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Padding="105,15,20,15" BorderThickness="1.5" BorderBrush="#FF8C2A23" Click="LogOutButton_Click"  >
+            <Grid  Grid.Row="1" Margin="0,0,0,20" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>      
+         
+            <Button Style="{StaticResource MyButtonStyle}" x:Name="LogOutButton"  HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Padding="105,15,20,15" BorderThickness="1.5" BorderBrush="#FF8C2A23" Click="LogOutButton_Click"  >
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconLucide Kind="LogOut" Width="16" Height="16" Margin="0,0,5,0" />
                     <TextBlock Text="Log Out"  VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
+                <TextBlock Style="{StaticResource MyTextBlockStyle}"  FontSize="20"   Text="Microfoft inc (technology)" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" FontFamily="Arial Black"/>
+            </Grid>
         </Grid>
     </Border>
 </base:BaseUserControlMain>

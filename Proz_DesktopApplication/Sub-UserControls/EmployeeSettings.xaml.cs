@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using MaterialDesignThemes.Wpf;     
+using MaterialDesignThemes.Wpf;
+using ModernMessageBoxLib;
+using Proz_DesktopApplication.API;
 
 
 
@@ -23,13 +26,17 @@ namespace Proz_DesktopApplication.Sub_UserControls
     /// <summary>
     /// Interaction logic for UserSettings.xaml
     /// </summary>
-    public partial class UserSettings : UserControl
+    public partial class UserSettings : BaseUserControlMain
     {
+        //public IServiceProvider _services;
+        //public IAuthAPI _authApi;
+        public GeneralAPICalling _generalAPICalling;
         public UserSettings()
         {
             InitializeComponent();
 
-          
+            Loaded += UserControl_Loaded;
+
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -37,10 +44,14 @@ namespace Proz_DesktopApplication.Sub_UserControls
             {
                 NewUsernameUsernameSection.ContextMenu = null;
                 CurrentPasswordUsernameSection.ContextMenu = null;
+                CurrentPasswordUsernameSection2.ContextMenu = null;
+
                 CurrentPasswordPasswordSection.ContextMenu = null;
+                CurrentPasswordPasswordSection2.ContextMenu = null;
                 NewPasswordPasswordSection.ContextMenu = null;
-                NewPasswordTextboxPasswordSection.ContextMenu = null;
+                NewPasswordPasswordSection2.ContextMenu = null;
                 ConfirmNewPasswordPasswordSection.ContextMenu = null;
+     
 
                 string baseTheme = Properties.Settings.Default.UserTheme;        // Light or Dark
                     // Blue, Red, Lime, etc.
@@ -62,6 +73,8 @@ namespace Proz_DesktopApplication.Sub_UserControls
                 }
 
             }, System.Windows.Threading.DispatcherPriority.ContextIdle); // ← KEY POINT
+            _generalAPICalling = GeneralAPICalling1 ?? throw new InvalidOperationException("Services1 is null");
+          
         }
      
 
@@ -113,29 +126,317 @@ namespace Proz_DesktopApplication.Sub_UserControls
 
         }
 
+        private void NewPasswordShowerButtonUsernamesection_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentPasswordUsernameSection2.Visibility == Visibility.Visible)
+            {
+                CurrentPasswordUsernameSection.Password = CurrentPasswordUsernameSection2.Text;
+                CurrentPasswordUsernameSection2.Visibility = Visibility.Collapsed;
+                CurrentPasswordUsernameSection.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CurrentPasswordUsernameSection2.Text = CurrentPasswordUsernameSection.Password;
+                CurrentPasswordUsernameSection2.Visibility = Visibility.Visible;
+                CurrentPasswordUsernameSection.Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void NewPasswordShowerButton_Click(object sender, RoutedEventArgs e)
         {
-            if(NewPasswordTextboxPasswordSection.Visibility==Visibility.Visible)
+            if(NewPasswordPasswordSection2.Visibility==Visibility.Visible)
             {
-                NewPasswordPasswordSection.Password = NewPasswordTextboxPasswordSection.Text;
-                NewPasswordTextboxPasswordSection.Visibility = Visibility.Collapsed;
+                NewPasswordPasswordSection.Password = NewPasswordPasswordSection2.Text;
+                NewPasswordPasswordSection2.Visibility = Visibility.Collapsed;
                 NewPasswordPasswordSection.Visibility = Visibility.Visible;
             }
             else
             {
-                NewPasswordTextboxPasswordSection.Text = NewPasswordPasswordSection.Password;
-                NewPasswordTextboxPasswordSection.Visibility = Visibility.Visible;
+                NewPasswordPasswordSection2.Text = NewPasswordPasswordSection.Password;
+                NewPasswordPasswordSection2.Visibility = Visibility.Visible;
                 NewPasswordPasswordSection.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void SetNewPasswordButton_Click(object sender, RoutedEventArgs e)
-        {
 
+
+        private void NewPasswordcurrentShowerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentPasswordPasswordSection2.Visibility == Visibility.Visible)
+            {
+                CurrentPasswordPasswordSection.Password = CurrentPasswordPasswordSection2.Text;
+                CurrentPasswordPasswordSection2.Visibility = Visibility.Collapsed;
+                CurrentPasswordPasswordSection.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CurrentPasswordPasswordSection2.Text = CurrentPasswordPasswordSection.Password;
+                CurrentPasswordPasswordSection2.Visibility = Visibility.Visible;
+                CurrentPasswordPasswordSection.Visibility = Visibility.Collapsed;
+            }
         }
 
-        private void SetNewUserNameButton_Click(object sender, RoutedEventArgs e)
+        private async void SetNewPasswordButton_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentPasswordPasswordSection2.Visibility == Visibility.Visible)
+            {
+                CurrentPasswordPasswordSection.Password = CurrentPasswordPasswordSection2.Text;
+                CurrentPasswordPasswordSection2.Visibility = Visibility.Collapsed;
+                CurrentPasswordPasswordSection.Visibility = Visibility.Visible;
+            }
+
+            if (NewPasswordPasswordSection2.Visibility == Visibility.Visible)
+            {
+                NewPasswordPasswordSection.Password = NewPasswordPasswordSection2.Text;
+                NewPasswordPasswordSection2.Visibility = Visibility.Collapsed;
+                NewPasswordPasswordSection.Visibility = Visibility.Visible;
+            }
+
+            if (CurrentPasswordPasswordSection.Password == "" || NewPasswordPasswordSection.Password == "" || ConfirmNewPasswordPasswordSection.Password =="")
+            {
+
+                var msg = new ModernMessageBox($"Please fill all your fields",
+                                                         "Operation Information",
+                                                         ModernMessageboxIcons.Error,
+                                                         "OK");
+                msg.ShowDialog();
+                return;
+            }
+            if(NewPasswordPasswordSection.Password!=ConfirmNewPasswordPasswordSection.Password)
+            {
+                var msg = new ModernMessageBox($"Please make sure that your confirm password field is the same as your new entered password",
+                                               "Operation Information",
+                                               ModernMessageboxIcons.Error,
+                                               "OK");
+                msg.ShowDialog();
+                return;
+            }
+
+
+
+            try
+            {
+                this.IsEnabled = false;
+                var request = new ChangePasswordRequest { NewPassword = NewPasswordPasswordSection.Password, CurrentPassword = CurrentPasswordPasswordSection.Password };
+                var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                win.Show();
+                var response = await _generalAPICalling.ChangeMyPassword(request);
+                win.Message = "Done!!!";
+                win.Close();
+
+
+                if (response.IsSuccessStatusCode && response.Content?.Message?.Any() == true)
+                {
+                    this.IsEnabled = true;
+                    var msg = new ModernMessageBox($"Message : {string.Join("\n", response.Content.Message)}",
+                                                             "Operation Information",
+                                                             ModernMessageboxIcons.Done,
+                                                             "OK!");
+                    msg.ShowDialog();
+
+                    return;
+                }
+                else
+                {
+                    // When server returns 400, Refit puts the error JSON as a string here
+                    var rawError = response.Error?.Content;
+
+                    if (!string.IsNullOrWhiteSpace(rawError))
+                    {
+
+                        ChangePasswordResponse errorResponse = new ChangePasswordResponse();
+                        ValidationErrorResponse errorResponse2 = new ValidationErrorResponse();
+
+                        try
+                        {
+                            errorResponse = JsonSerializer.Deserialize<ChangePasswordResponse>(rawError, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+
+                        }
+                        catch
+                        {
+                            // Fallback to FluentValidation-style error
+                            errorResponse2 = JsonSerializer.Deserialize<ValidationErrorResponse>(rawError, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+
+                            // Flatten dictionary errors
+                            var flatErrors = errorResponse2.Errors
+                                .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
+
+                            var msg = new ModernMessageBox($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                                "Validation Error",
+                                ModernMessageboxIcons.Error,
+                                "Ok");
+                            msg.ShowDialog();
+                            this.IsEnabled = true;
+                            return;
+                        }
+
+
+
+
+                        if (errorResponse?.Errors?.Any() == true)
+                        {
+                            this.IsEnabled = true;
+                            var msg = new ModernMessageBox($"Error : {string.Join("\n", errorResponse.Errors)} \n Nothing was done here after this operation.",
+                                                          "Operation Information",
+                                                          ModernMessageboxIcons.Error,
+                                                          "OK");
+                            msg.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+
+                        this.IsEnabled = true;
+                        var msg = new ModernMessageBox($"Something went wrong.",
+                                                        "Operation Information",
+                                                        ModernMessageboxIcons.Error,
+                                                         "OK");
+                        msg.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                this.IsEnabled = true;
+                var msg = new ModernMessageBox($"Something went wrong. \n {ex.Message}",
+                                          "Operation Information",
+                                          ModernMessageboxIcons.Error,
+                                          "OK");
+                msg.ShowDialog();
+            }
+        }
+        //end
+        private async void SetNewUserNameButton_Click(object sender, RoutedEventArgs e)
+        {
+     
+
+            if (CurrentPasswordUsernameSection2.Visibility == Visibility.Visible)
+            {
+                CurrentPasswordUsernameSection.Password = CurrentPasswordUsernameSection2.Text;
+                CurrentPasswordUsernameSection2.Visibility = Visibility.Collapsed;
+                CurrentPasswordUsernameSection.Visibility = Visibility.Visible;
+            }
+
+            if (CurrentPasswordUsernameSection.Password=="" || NewUsernameUsernameSection.Text=="")
+            {
+                //QModernMessageBox.Show($"Message : {string.Join("\n", responseFinalRegister.Content.Message)}",
+                //                                         "Operation Information",
+                //                                         QModernMessageBox.QModernMessageBoxButtons.Ok,
+                //                                         ModernMessageboxIcons.Done);
+                var msg = new ModernMessageBox($"Please fill all your fields",
+                                                         "Operation Information",
+                                                         ModernMessageboxIcons.Error,
+                                                         "OK");
+                msg.ShowDialog();
+                return;
+            }
+
+
+
+            try
+            {
+                this.IsEnabled = false;
+                var request = new ChangeUsernameRequest { NewUsername= NewUsernameUsernameSection.Text, CurrentPassword = CurrentPasswordUsernameSection.Password };
+                var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                win.Show();
+                var response = await _generalAPICalling.ChangeMyUsername(request);
+                win.Message = "Done!!!";
+                win.Close();
+
+
+                if (response.IsSuccessStatusCode && response.Content?.Message?.Any() == true)
+                {
+                    this.IsEnabled = true;
+                    var msg = new ModernMessageBox($"Message : {string.Join("\n", response.Content.Message)}",
+                                                             "Operation Information",
+                                                             ModernMessageboxIcons.Done,
+                                                             "OK!");
+                    msg.ShowDialog();
+               
+                    return;
+                }
+                else
+                {
+                    // When server returns 400, Refit puts the error JSON as a string here
+                    var rawError = response.Error?.Content;
+             
+                    if (!string.IsNullOrWhiteSpace(rawError))
+                    {
+              
+                        ChangeUsernameResponse errorResponse = new ChangeUsernameResponse();
+                        ValidationErrorResponse errorResponse2 = new ValidationErrorResponse();
+              
+                        try
+                        {
+                             errorResponse = JsonSerializer.Deserialize<ChangeUsernameResponse>(rawError, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+                           
+                        }
+                        catch
+                        {
+                            // Fallback to FluentValidation-style error
+                            errorResponse2 = JsonSerializer.Deserialize<ValidationErrorResponse>(rawError, new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
+
+                            // Flatten dictionary errors
+                            var flatErrors = errorResponse2.Errors
+                                .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
+
+                            var msg = new ModernMessageBox($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                                "Validation Error",
+                                ModernMessageboxIcons.Error,
+                                "Ok");
+                            msg.ShowDialog();
+                            this.IsEnabled = true;
+                            return;
+                        }
+
+
+
+
+                        if (errorResponse?.Errors?.Any() == true)
+                        {
+                            this.IsEnabled = true;
+                            var msg = new ModernMessageBox($"Error : {string.Join("\n", errorResponse.Errors)} \n Nothing was done here after this operation.",
+                                                          "Operation Information",
+                                                          ModernMessageboxIcons.Error,
+                                                          "OK");
+                            msg.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                       
+                        this.IsEnabled = true;
+                        var msg = new ModernMessageBox($"Something went wrong.",
+                                                        "Operation Information",
+                                                        ModernMessageboxIcons.Error,
+                                                         "OK");
+                        msg.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+             
+                this.IsEnabled = true;
+               var msg= new ModernMessageBox($"Something went wrong. \n {ex.Message}",
+                                         "Operation Information",
+                                         ModernMessageboxIcons.Error,
+                                         "OK");
+                msg.ShowDialog();
+            }
 
         }
 
@@ -255,6 +556,6 @@ namespace Proz_DesktopApplication.Sub_UserControls
             }
         }
 
-      
+        
     }
 }

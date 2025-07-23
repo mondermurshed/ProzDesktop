@@ -1,9 +1,10 @@
-﻿<UserControl
+﻿<base:BaseUserControlMain
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:base="clr-namespace:Proz_DesktopApplication"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Proz_DesktopApplication.Sub_UserControls.UserSettings"
              xmlns:materialDesignControls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
@@ -46,8 +47,14 @@
                 </Expander.Header>
 
                 <!-- Content -->
-                <StackPanel Margin="20">
-                    <TextBlock FontSize="15" TextWrapping="Wrap" Margin="0,0,0,5">
+                <StackPanel Margin="20" >
+                            <StackPanel >
+                                <TextBlock FontSize="15" Text="Company Name :" Margin="0,0,0,5"/>
+                                <TextBox Style="{StaticResource MyTextBoxStyle}" TextWrapping="Wrap" MaxLength="100"/>
+                                <Button  Content="Change Company Name" Margin="0,10,0,20" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                           
+                            <TextBlock FontSize="15" TextWrapping="Wrap" Margin="0,0,0,5">
                     <Run Text="Role : "/>
                     <Span x:Name="AccountRole"><Run Text="Employee"/></Span>
                        <Border x:Name="AccountRoleColor" Background="Blue" Width="50" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
@@ -159,7 +166,30 @@
                         </Expander.HeaderTemplate>
                         <StackPanel Orientation="Vertical" Margin="10,20,0,0" >
                             <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your current password" Margin="0,0,0,10"/>
-                            <PasswordBox Margin="0,0,0,30" x:Name="CurrentPasswordUsernameSection" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"  />
+                                    <Grid Margin="0,0,0,10">
+                                        <!-- PasswordBox -->
+                                        <PasswordBox x:Name="CurrentPasswordUsernameSection" MaxLength="50" 
+                                         Margin="0,0,30,0" 
+                                         Visibility="Visible" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
+                                         
+                                         
+                                                                             <!-- TextBox for visible password -->
+                                        <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="CurrentPasswordUsernameSection2" MaxLength="50" 
+                                          Margin="0,0,30,0" 
+                                          Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
+                                         
+                                         
+                                                                             <!-- Eye Button -->
+                                        <Button  x:Name="NewPasswordShowerButtonUsernamesection" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                         Height="30"
+                                         Width="30"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,0,0" Click="NewPasswordShowerButtonUsernamesection_Click" >
+                                          <iconPacks:MaterialDesign Kind="RemoveRedEyeRound" />
+                                        </Button>
+                                    </Grid>
+                                  
                             <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your New Username" Margin="0,0,0,10"/>
                             <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,30" x:Name="NewUsernameUsernameSection" MaxLength="30" PreviewTextInput="Usernametextbox_PreviewTextInput" PreviewKeyDown="Usernametextbox_PreviewKeyDown" />
                             <Button Style="{StaticResource MyButtonStyle}" x:Name="SetNewUserNameButton" Content="Set Username" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2" Click="SetNewUserNameButton_Click"/>
@@ -178,28 +208,52 @@
                         </Expander.HeaderTemplate>
                         <StackPanel Orientation="Vertical" Margin="10,0,0,0" >
                             <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your current password" Margin="0,0,0,5"/>
-                            <PasswordBox Margin="0,0,0,10" x:Name="CurrentPasswordPasswordSection" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
+                                    <Grid Margin="0,0,0,10">
+                                        <!-- PasswordBox -->
+                                        <PasswordBox x:Name="CurrentPasswordPasswordSection" MaxLength="50"  
+                                         Margin="0,0,30,0" 
+                                         Visibility="Visible" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
+                                     
+                                     
+                                                                  <!-- TextBox for visible password -->
+                                        <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="CurrentPasswordPasswordSection2" MaxLength="50" 
+                                           Margin="0,0,30,0" 
+                                           Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
+                                     
+                                     
+                                                                  <!-- Eye Button -->
+                                                                  <Button  x:Name="NewPasswordcurrentShowerButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                         Height="30"
+                                         Width="30"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,0,0" Click="NewPasswordcurrentShowerButton_Click" >
+                                            <iconPacks:MaterialDesign Kind="RemoveRedEyeRound" />
+                                        </Button>
+                                    </Grid>
+                               
                             <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your New Password" Margin="0,0,0,5"/>
                             <Grid Margin="0,0,0,10">
                                 <!-- PasswordBox -->
                                 <PasswordBox x:Name="NewPasswordPasswordSection" MaxLength="50"
                                 Margin="0,0,30,0" 
                                 Visibility="Visible" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
-                                
 
-                                <!-- TextBox for visible password -->
-                                <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="NewPasswordTextboxPasswordSection" MaxLength="50"
-                                 Margin="0,0,30,0" 
-                                 Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
-                                
 
-                                <!-- Eye Button -->
-                                <Button Style="{StaticResource MyButtonStyle}" x:Name="NewPasswordShowerButton"
-                                 Width="24" Height="24"
+                                        <!-- TextBox for visible password -->
+                                 <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="NewPasswordPasswordSection2" MaxLength="50" 
+                                  Margin="0,0,30,0" 
+                                  Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
+
+
+                                        <!-- Eye Button -->
+                                <Button  x:Name="NewPasswordShowerButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                Height="30"
+                                Width="30"
                                  HorizontalAlignment="Right"
                                  VerticalAlignment="Center"
-                                 Margin="0,0,2,0" Click="NewPasswordShowerButton_Click" >
-                                 <iconPacks:FontAwesome Kind="JarSolid" />
+                                 Margin="0,0,0,0" Click="NewPasswordShowerButton_Click" >
+                                 <iconPacks:MaterialDesign Kind="RemoveRedEyeRound" />
                                 </Button>
                             </Grid>
                             <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Confirm your new Password" Margin="0,0,0,5"/>
@@ -220,4 +274,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</UserControl>
+</base:BaseUserControlMain>

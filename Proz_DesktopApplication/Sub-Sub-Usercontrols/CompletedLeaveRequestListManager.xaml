@@ -51,7 +51,7 @@
             </DataGrid>
         </Grid>
 
-        <Grid Margin="20,30,20,20" Grid.Row="1">
+        <Grid Margin="20,30,20,10" Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel Margin="0,0,10,0">
                     <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>

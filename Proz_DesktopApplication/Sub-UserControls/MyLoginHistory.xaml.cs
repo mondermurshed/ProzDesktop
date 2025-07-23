@@ -137,8 +137,13 @@ namespace Proz_DesktopApplication.Sub_UserControls
             }
             else
             {
-                
-                QModernMessageBox.Show("No different IP address was found.", "The result of the searching operation", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Info);
+                var msgBox1 = new ModernMessageBox($"No different IP address was found.", "The result of the searching operation",
+                 
+                  ModernMessageboxIcons.None,
+                  "OK");
+                msgBox1.ShowDialog();
+
+               
             }
         }
         public class LoginHistory

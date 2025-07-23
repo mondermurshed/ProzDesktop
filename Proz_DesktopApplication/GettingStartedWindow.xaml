@@ -1,0 +1,256 @@
+﻿<mah:MetroWindow x:Class="Proz_DesktopApplication.GettingStartedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"    
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proz_DesktopApplication"
+        mc:Ignorable="d"
+          Title="Getting Started!" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"  TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" TitleAlignment="Center" Height="900" Width="600">
+    <Border BorderThickness="2"  Margin="20,20,20,10" Padding="10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="120"/>
+
+            </Grid.RowDefinitions>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
+
+                <StackPanel Grid.Row="0" Margin="10">
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Username (Required)"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <!-- TextBox takes the main space -->
+                        <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13"  Grid.Column="0" x:Name="Usernametextbox" MaxLength="30" PreviewKeyDown="Usernametextbox_PreviewKeyDown" PreviewTextInput="Usernametextbox_PreviewTextInput" />
+
+                        <!-- Button with icon -->
+                        <Button Grid.Column="1" x:Name="Usernamebutton" Style="{StaticResource MyButtonStyle}"
+                          Width="30" Height="30"
+                          Padding="0"
+                          Margin="5,0,0,0"
+                          BorderThickness="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center" Click="HelperButton_Click" >
+
+                            <iconPacks:PackIconFontAwesome
+                          Kind="QuestionSolid"
+                          Width="18" Height="18"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center" />
+                        </Button>
+                    </Grid>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="UsernameTextBlock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Email (Required)"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- TextBox takes the main space -->
+                        <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" Grid.Column="0" x:Name="EmailTextbox" TextWrapping="Wrap" MaxLength="254" PreviewKeyDown="EmailTextbox_PreviewKeyDown" PreviewTextInput="EmailTextbox_PreviewTextInput"/>
+
+                        <!-- Button with icon -->
+                        <Button Grid.Column="1" x:Name="Emailbutton" Style="{StaticResource MyButtonStyle}"
+         Width="30" Height="30"
+         Padding="0"
+         Margin="5,0,0,0"
+         BorderThickness="0"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center" Click="HelperButton_Click" >
+
+                            <iconPacks:PackIconFontAwesome
+         Kind="QuestionSolid"
+         Width="18" Height="18"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center" />
+                        </Button>
+                    </Grid>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="EmailTextBlock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Password (Required)"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- TextBox takes the main space -->
+                        <Grid Grid.Column="0">
+                            <PasswordBox  Padding="5,8,0,8" FontSize="13"  x:Name="Passwordtextbox" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Visibility="Collapsed" Padding="5,8,0,8"  FontSize="13"  x:Name="Passwordtextbox2" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"/>
+                        </Grid>
+
+
+                        <!-- Button with icon -->
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
+                            <Button  x:Name="ShowPassword"  Style="{StaticResource MyButtonStyle}"
+                             Width="30" Height="30"
+                             Padding="0"
+                             Margin="7,0,5,0"
+                             BorderThickness="0"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center" Click="ShowPassword_Click">
+
+                                <iconPacks:PackIconFontAwesome x:Name="ShowPasswordIcon"
+                              Kind="EyeSlashRegular"
+                              Width="18" Height="18"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+                            </Button>
+                            <Button  x:Name="PasswordButton"  Style="{StaticResource MyButtonStyle}"
+                              Width="30" Height="30"
+                              Padding="0"
+                              Margin="5,0,0,0"
+                              BorderThickness="0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" Click="HelperButton_Click" >
+
+                                <iconPacks:PackIconFontAwesome
+                              Kind="QuestionSolid"
+                              Width="18" Height="18"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="PasswordTextBlock" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Confirm Password (Required)"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- TextBox takes the main space -->
+                        <Grid Grid.Column="0">
+                            <PasswordBox Padding="5,8,0,8" FontSize="13"  x:Name="ConfirmPasswordTextbox" MaxLength="50" PreviewKeyDown="ConfirmPasswordTextbox_PreviewKeyDown" PreviewTextInput="ConfirmPasswordTextbox_PreviewTextInput"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Visibility="Collapsed" Padding="5,8,0,8" FontSize="13"  x:Name="ConfirmPasswordTextbox2" MaxLength="50" PreviewKeyDown="ConfirmPasswordTextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"/>
+                        </Grid>
+                       
+
+                        <!-- Button with icon -->
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
+
+
+                            <Button  x:Name="ShowConfirmPassword"  Style="{StaticResource MyButtonStyle}"
+   Width="30" Height="30"
+   Padding="0"
+   Margin="7,0,5,0"
+   BorderThickness="0"
+   HorizontalAlignment="Center"
+   VerticalAlignment="Center" Click="ShowConfirmPassword_Click">
+
+                                <iconPacks:PackIconFontAwesome x:Name="ShowConfirmPasswordIcon"
+    Kind="EyeSlashRegular"
+    Width="18" Height="18"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center" />
+                            </Button>
+                            <Button Grid.Column="1" x:Name="ConfirmPasswordButton"  Style="{StaticResource MyButtonStyle}"
+  Width="30" Height="30"
+  Padding="0"
+  Margin="5,0,0,0"
+  BorderThickness="0"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center" Click="HelperButton_Click" >
+
+                                <iconPacks:PackIconFontAwesome
+  Kind="QuestionSolid"
+  Width="18" Height="18"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,20" x:Name="ConfirmPasswordTextblock" TextWrapping="Wrap"/>
+
+
+                    <StackPanel x:Name="BottomPart">
+
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Full Name (Required)" />
+                        <TextBox x:Name="Firstnametextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" TextWrapping="Wrap" MaxLength="100"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Age (Required)" />
+                        <TextBox HorizontalAlignment="Left" Width="100" x:Name="AgeTextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" TextWrapping="Wrap" MaxLength="2"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Born Date (Required)" />
+                        <DatePicker x:Name="DateOfBirthTextbox" Margin="0,0,0,20"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Gender (Required)" />
+                        <Grid>
+                           
+                    
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                            <RadioButton IsChecked="True" GroupName="gender" Content="Male" x:Name="malecheckbox"  Margin="0,0,0,20"/>
+                            <RadioButton GroupName="gender" Content="Female" Grid.Column="1"  x:Name="femalecheckbox"  Margin="0,0,0,20"/>
+                        </Grid>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Nationality" />
+                        <TextBox x:Name="Nationalitytextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" TextWrapping="Wrap" MaxLength="30"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Are you living in your primary place ? (Required)" />
+                        <CheckBox x:Name="primaryplacecheckbox" Style="{StaticResource MyCheckBpx}" Margin="0,0,0,20"/>
+
+                       
+
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Company/Organization Name" TextWrapping="Wrap"/>
+                    <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" x:Name="CompanyNameTextbox" TextWrapping="Wrap" MaxLength="100"/>
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="System's Currency Type (Required)" TextWrapping="Wrap"/>
+                    <ComboBox  Margin="0,0,0,20" x:Name="CurrencyTypeComboBox"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </ScrollViewer>
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Button  Style="{StaticResource MyButtonStyle}" Padding="15,8" x:Name="GoToSigninWindowButton" VerticalAlignment="Stretch" Margin="0,15,0,5" Grid.Column="0" Click="GoToSigninWindowButton_Click">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <iconPacks:PackIconFontAwesome Kind="ArrowLeftSolid" Width="16" Height="16" Margin="0,0,5,0" />
+                        <TextBlock Text="GOT AN &#x0a; ACCOUNT ?" VerticalAlignment="Center" FontSize="10"/>
+                    </StackPanel>
+                </Button>
+                <Button  Style="{StaticResource MyButtonStyle}" Padding="0,15" x:Name="RegisterButton" VerticalAlignment="Stretch" Margin="15,15,0,5" Grid.Column="1" Click="RegisterButton_Click" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <iconPacks:PackIconMaterial Kind="AccountArrowUp" Width="16" Height="16" Margin="0,0,5,0" />
+                        <TextBlock Text="REGISTER" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Grid Grid.Column="1" Grid.Row="1" Margin="15,0,0,0">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
+
+
+
+                        <StackPanel Grid.Row="0" Margin="10">
+                            <TextBlock  x:Name="RegisterErrorTextBlock" TextWrapping="Wrap" Foreground="IndianRed"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+    </Border>
+</mah:MetroWindow>

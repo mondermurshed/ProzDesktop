@@ -38,8 +38,8 @@ namespace Proz_DesktopApplication
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            double screenWidth = SystemParameters.PrimaryScreenWidth;
-            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            double screenWidth = SystemParameters.PrimaryScreenWidth+100;
+            double screenHeight = SystemParameters.PrimaryScreenHeight+100;
             this.Width = screenWidth / 2;
             this.Height = screenHeight / 2;
             this.Left = (screenWidth - this.Width) / 2;
@@ -353,6 +353,7 @@ namespace Proz_DesktopApplication
             this.Hide();
 
             var SignInWindowOB = _Services.GetRequiredService<SigninWindow>();
+            Application.Current.MainWindow = SignInWindowOB;
             SignInWindowOB.Show();
         }
 
@@ -392,7 +393,7 @@ namespace Proz_DesktopApplication
             }
           
             if (string.IsNullOrEmpty(Usernametextbox.Text) || string.IsNullOrEmpty(EmailTextbox.Text)
-                || string.IsNullOrEmpty(Passwordtextbox.Password) || string.IsNullOrEmpty(ConfirmPasswordTextbox.Password))
+                || string.IsNullOrEmpty(Passwordtextbox.Password) || string.IsNullOrEmpty(ConfirmPasswordTextbox.Password) || string.IsNullOrEmpty(FullNameTextbox.Text))
             {
                 pass = false;
                 RegisterErrorTextBlock.Inlines.Add(new Run("-Please fill all your fields.\n")
@@ -494,14 +495,15 @@ namespace Proz_DesktopApplication
                     if (response.IsSuccessStatusCode && response.Content?.Message?.Any() == true)
                     {
                         bool success = false;
-
-
-                        if (QModernMessageBox.Show(
-                                $"Your data was successfully accepted! The password's strength is {response.Content.Strength} and with score of {response.Content.Score} out of 0. \n {string.Join("\n", response.Content.Message)} ",
-                                "Operation Information",
-                                QModernMessageBox.QModernMessageBoxButtons.OkCancel,
-                                ModernMessageboxIcons.Done
-                            ) == ModernMessageboxResult.Button1)
+                        var msg = new ModernMessageBox($"Your data was successfully accepted! The password's strength is {response.Content.Strength} and with score of {response.Content.Score} out of 0. \n {string.Join("\n", response.Content.Message)} ",
+                              "Operation Information",
+                       ModernMessageboxIcons.Done,"OK!", "Cancel")
+                        {
+                            Button1Key = Key.Enter,
+                            Button2Key = Key.Escape
+                        };
+                        msg.ShowDialog();
+                        if (msg.Result == ModernMessageboxResult.Button1)
                         {
                             do
                             {
@@ -526,13 +528,15 @@ namespace Proz_DesktopApplication
 
                                     if (Usercode.Length != 6 || !Usercode.All(char.IsDigit))
                                     {
-                                        QModernMessageBox.Error("Please enter a valid 6-digit code.", "Operation Failed");
+                                        var msgBox1 = new ModernMessageBox("Please enter a valid 6-digit code.", "Operation Failed",ModernMessageboxIcons.Error,"OK");
+                                        msgBox1.ShowDialog();
+
                                     }
                                     else  //here when registration stage two begins!!
                                     {
 
 
-                                        var requestFinalRegister = new UserRegisterationStageTwoRequest { Email = EmailTextbox.Text, Code = Usercode };
+                                        var requestFinalRegister = new UserRegisterationStageTwoRequest { Email = EmailTextbox.Text, Code = Usercode, FullName=FullNameTextbox.Text };
 
                                         try
                                         {
@@ -545,10 +549,11 @@ namespace Proz_DesktopApplication
                                             {
                                                 success = true;
 
-                                                QModernMessageBox.Show($"Message : {string.Join("\n", responseFinalRegister.Content.Message)}",
+                                                var msgBox1 = new ModernMessageBox($"Message : {string.Join("\n", responseFinalRegister.Content.Message)}",
                                                   "Operation Information",
-                                                  QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                  ModernMessageboxIcons.Done);
+                                                  ModernMessageboxIcons.Done,
+                                                  "OK!");
+                                                msgBox1.ShowDialog();
                                             }
                                             else
                                             {
@@ -567,39 +572,45 @@ namespace Proz_DesktopApplication
 
                                                     if (errorResponse?.Message?.Any() == true)
                                                     {
-                                                        QModernMessageBox.Show($"Message : {string.Join("\n", errorResponse.Message)} \n Error : {string.Join("\n", errorResponse.Error)}",
+                                                        var msgBox1 = new ModernMessageBox($"Message : {string.Join("\n", errorResponse.Message)} \n Error : {string.Join("\n", errorResponse.Error)}",
                                                         "Operation Information",
-                                                        QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                        ModernMessageboxIcons.Error);
+                                                        ModernMessageboxIcons.Error,
+                                                        "OK");
+                                                        msgBox1.ShowDialog();
                                                     }
 
                                                     else if (errorResponse?.Error?.Any() == true)
                                                     {
-                                                        QModernMessageBox.Show($"Error : {string.Join("\n", errorResponse.Error)}",
+                                                        var msgBox1 = new ModernMessageBox($"Error : {string.Join("\n", errorResponse.Error)}",
                                                        "Operation Information",
-                                                       QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                       ModernMessageboxIcons.Error);
+                                                       ModernMessageboxIcons.Error,
+                                                       "OK");
+                                                        msgBox1.ShowDialog();
                                                     }
                                                     else
                                                     {
-                                                        QModernMessageBox.Show($"Something went wrong!",
+                                                        var msgBox1 = new ModernMessageBox($"Something went wrong!",
                                                        "Operation Information",
-                                                       QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                       ModernMessageboxIcons.Error);
+                                                       ModernMessageboxIcons.Error,
+                                                       "OK");
+                                                        msgBox1.ShowDialog();
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    QModernMessageBox.Show($"Something went wrong!",
+                                                    var msgBox1 = new ModernMessageBox($"Something went wrong!",
                                                      "Operation Information",
-                                                     QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                     ModernMessageboxIcons.Error);
+                                                     ModernMessageboxIcons.Error,
+                                                     "OK");
+                                                    msgBox1.ShowDialog();
                                                 }
                                             }
                                         }
                                         catch (Exception ex)
                                         {
-                                            MessageBox.Show("Network error or app bug: " + ex.Message);
+                                            var msgBox1 = new ModernMessageBox("Network error or app bug: " + ex.Message, "Operation Information" ,ModernMessageboxIcons.Error,"OK");
+                                            msgBox1.ShowDialog();
+                                 
                                         }
 
 
@@ -622,11 +633,11 @@ namespace Proz_DesktopApplication
                                         win3.Close();
                                         if (responseResend.IsSuccessStatusCode && responseResend.Content?.Message?.Any() == true)
                                         {
-                                            QModernMessageBox.Show($"{string.Join("\n", responseResend.Content.Message)}",
+                                            var msgBox1 = new ModernMessageBox($"{string.Join("\n", responseResend.Content.Message)}",
                                              "Operation Information",
-                                             QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                             ModernMessageboxIcons.Done);
-
+                                             ModernMessageboxIcons.Done,
+                                             "OK!");
+                                            msgBox1.ShowDialog();
                                         }
                                         else
                                         {
@@ -644,40 +655,44 @@ namespace Proz_DesktopApplication
 
                                                 if (errorResponse?.Message?.Any() == true)
                                                 {
-                                                    QModernMessageBox.Show($"Message : {string.Join("\n", errorResponse.Message)}\n Error : {string.Join("\n", errorResponse.Error)}",
+                                                    var msgBox1 = new ModernMessageBox($"Message : {string.Join("\n", errorResponse.Message)}\n Error : {string.Join("\n", errorResponse.Error)}",
                                                    "Operation Information",
-                                                   QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                   ModernMessageboxIcons.Error);
-
+                                                  ModernMessageboxIcons.Error,
+                                                   "OK");
+                                                    msgBox1.ShowDialog();
                                                 }
 
                                                 else if (errorResponse?.Error?.Any() == true)
                                                 {
-                                                    QModernMessageBox.Show($"Error : {string.Join("\n", errorResponse.Error)}",
+                                                    var msgBox1 = new ModernMessageBox($"Error : {string.Join("\n", errorResponse.Error)}",
                                               "Operation Information",
-                                              QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                              ModernMessageboxIcons.Error);
+                                             ModernMessageboxIcons.Error,
+                                              "OK");
+                                                    msgBox1.ShowDialog();
                                                 }
                                                 else
                                                 {
-                                                    QModernMessageBox.Show($"Something went wrong!",
+                                                    var msgBox1 = new ModernMessageBox($"Something went wrong!",
                                                         "Operation Information",
-                                                        QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                        ModernMessageboxIcons.Error);
+                                                        ModernMessageboxIcons.Error,
+                                                        "OK");
+                                                    msgBox1.ShowDialog();
                                                 }
                                             }
                                             else
                                             {
-                                                QModernMessageBox.Show($"Something went wrong!",
+                                                var msgBox1 = new ModernMessageBox($"Something went wrong!",
                                                     "Operation Information",
-                                                    QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                                    ModernMessageboxIcons.Error);
+                                                    ModernMessageboxIcons.Error,
+                                                    "OK");
+                                                msgBox1.ShowDialog();
                                             }
                                         }
                                     }
                                     catch (Exception ex)
                                     {
-                                        MessageBox.Show("Network error or app bug: " + ex.Message);
+                                        var msgBox1 = new ModernMessageBox("Network error or app bug: " + ex.Message ,"Operation Information",ModernMessageboxIcons.Error,"OK");
+                                        msgBox1.ShowDialog();
                                     }
 
                                 }
@@ -719,11 +734,11 @@ namespace Proz_DesktopApplication
                                 var flatErrors = errorResponse2.Errors
                                     .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
 
-                                QModernMessageBox.Show($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                                var msgBox1 = new ModernMessageBox($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
                                     "Validation Error",
-                                    QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                    ModernMessageboxIcons.Error);
-
+                                   ModernMessageboxIcons.Error,
+                                    "OK");
+                                msgBox1.ShowDialog();
                                 return;
                             }
 
@@ -734,26 +749,33 @@ namespace Proz_DesktopApplication
 
                             if (errorResponse?.Message?.Any() == true && errorResponse?.PasswordCause == true && errorResponse?.Message?[0] == "Password contains banned words")
                             {
-                                QModernMessageBox.Show($"{string.Join("\n", errorResponse.Message)}\n Suggestions are {string.Join("\n", errorResponse.Suggestions)} ", "Password is not acceptable!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
-
+                                var msgBox1 = new ModernMessageBox($"{string.Join("\n", errorResponse.Message)}\n Suggestions are {string.Join("\n", errorResponse.Suggestions)} ", "Password is not acceptable!", ModernMessageboxIcons.Error, "OK");
+                                msgBox1.ShowDialog();
                             }
                             else if (errorResponse?.Message?.Any() == true && errorResponse?.PasswordCause == true)
                             {
-                                QModernMessageBox.Show($"{string.Join("\n", errorResponse.Message)} \n Your password strength is {errorResponse.Strength} and the score of the password is {errorResponse.Score} out of 0 \n it will need {errorResponse.CrackTime} \n Suggestions are {string.Join("\n", errorResponse.Suggestions)} ", "Password is not acceptable!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
-
+                                var msgBox1 = new ModernMessageBox($"{string.Join("\n", errorResponse.Message)} \n Your password strength is {errorResponse.Strength} and the score of the password is {errorResponse.Score} out of 0 \n it will need {errorResponse.CrackTime} \n Suggestions are {string.Join("\n", errorResponse.Suggestions)} ", "Password is not acceptable!", ModernMessageboxIcons.Error, "OK");
+                                msgBox1.ShowDialog();
                             }
 
                             else if (errorResponse?.Error?.Any() == true)
                             {
                                 if (errorResponse?.Message?.Any() == true)
-                                    QModernMessageBox.Show($"Message : {string.Join("\n", errorResponse.Message)} \n  Error : {string.Join("\n", errorResponse.Error)}", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                                {
+                                    var msgBox1 = new ModernMessageBox($"Message : {string.Join("\n", errorResponse.Message)} \n  Error : {string.Join("\n", errorResponse.Error)}", "Operation failed!", ModernMessageboxIcons.Error, "OK");
+                                    msgBox1.ShowDialog();
+                                }
                                 else
-                                    QModernMessageBox.Show($"Error : {string.Join("\n", errorResponse.Error)}", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                                {
+                                    var msgBox1 = new ModernMessageBox($"Error : {string.Join("\n", errorResponse.Error)}", "Operation failed!",ModernMessageboxIcons.Error, "OK");
+                                    msgBox1.ShowDialog();
+                                }
                             }
 
                             else
                             {
-                                QModernMessageBox.Show($"Something went wrong!", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                                var msgBox1 = new ModernMessageBox($"Something went wrong!", "Operation failed!", ModernMessageboxIcons.Error, "OK");
+                                msgBox1.ShowDialog();
                             }
                         }
                     }
@@ -762,7 +784,8 @@ namespace Proz_DesktopApplication
                 catch (Exception ex)
                 {
 
-                    QModernMessageBox.Show($"Something went wrong!", "Operation failed!", QModernMessageBox.QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+                    var msgBox1 = new ModernMessageBox($"Something went wrong!", "Operation failed!", ModernMessageboxIcons.Error, "OK");
+                    msgBox1.ShowDialog();
                 }
             }
        

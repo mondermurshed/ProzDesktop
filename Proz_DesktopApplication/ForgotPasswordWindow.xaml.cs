@@ -151,7 +151,7 @@ namespace Proz_DesktopApplication
                 {
                     errortextblock.Foreground =Brushes.ForestGreen;
                     errortextblock.Text = "Message:\n" + string.Join("\n", response.Content.Message);
-                   
+                  
                 }
                 else
                 {
@@ -187,7 +187,9 @@ namespace Proz_DesktopApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Network error or app bug: " + ex.Message);
+                var msg = new ModernMessageBox($"Network error or app bug: {ex.Message} ", "Something went wrong!", ModernMessageboxIcons.Error, "OK");
+                msg.ShowDialog();
+            
             }
 
 
@@ -211,6 +213,7 @@ namespace Proz_DesktopApplication
 
             this.Hide();
             var SigninWindowOB = _Services.GetRequiredService<SigninWindow>();
+            Application.Current.MainWindow = SigninWindowOB;
             SigninWindowOB.Show();
         }
     }

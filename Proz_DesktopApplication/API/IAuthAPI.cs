@@ -27,36 +27,40 @@ namespace Proz_DesktopApplication.API
         [Post("/Auth/RefreshMyToken")]
         Task<ApiResponse<RefreshResponse>> RefreshMyAccessToken([Body] RefreshRequest model);
 
-        [Post("/Auth/ChangeUsername")]
-        Task<ApiResponse<ChangeUsernameResponse>> ChangeMyUsername([Body] ChangeUsernameRequest model);
+        [Post("/Admin/CheckGettingStatus")]
+        Task<ApiResponse<object>> CheckSystemGettingStartedStatus();
 
-        [Post("/Auth/ChangePassword")]
-        Task<ApiResponse<ChangePasswordResponse>> ChangeMyPassword([Body] ChangePasswordRequest model);
+        [Post("/Admin/GettingStatedFirstStage")]
+        Task<ApiResponse<UserRegisterationResponse>> RegisterStartingUpStageOne([Body] GettingStartingStageOneRequest model);
+
+        [Post("/Admin/GettingStatedSecondStage")]
+        Task<ApiResponse<UserRegisterationStageTwoResponse>> RegisterStartingUpStageTwo([Body] GettingStartingStageTwoRequest model);
+
+    }
+
+    public class GettingStartingStageTwoRequest
+    {
+        public string AdminEmail { get; set; }
+        public string Code { get; set; }
+
+       
+        public string CompanyName { get; set; }
+        public string Currency { get; set; }
+        public string FullName { get; set; }
+        public string Age { get; set; }
+        public DateOnly Date_Of_Birth { get; set; }
+        public string Gender { get; set; }
+        public string? Nationality { get; set; }
+        public bool Living_On_Primary_Place { get; set; } = true;
+
     }
 
 
-    public class ChangePasswordResponse
+    public class GettingStartingStageOneRequest
     {
-        public List<string>? Message { get; set; } = null;
-        public List<string>? Errors { get; set; } = null;
-    }
-
-    public class ChangePasswordRequest
-    {
-        public string CurrentPassowrd { get; set; }
-        public string NewPassword { get; set; }
-    }
-
-    public class ChangeUsernameResponse
-    {
-        public List<string>? Message { get; set; } = null;
-        public List<string>? Errors { get; set; } = null;
-    }
-
-    public class ChangeUsernameRequest
-    {
-        public string CurrentPassowrd { get; set; } 
-        public string NewUsername { get; set; }
+        public string AdminUsername { get; set; }
+        public string AdminEmail { get; set; }
+        public string AdminPassword { get; set; }
     }
 
     public class RefreshRequest
@@ -94,6 +98,7 @@ namespace Proz_DesktopApplication.API
     {
         public string Email { get; set; }
         public string Code { get; set; }
+        public string FullName { get; set; }
     }
 
     public class UserRegisterationStageTwoResponse
@@ -107,6 +112,7 @@ namespace Proz_DesktopApplication.API
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+   
     }
 
     public class UserRegisterationResponse

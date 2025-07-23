@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Proz_DesktopApplication.API;
 using System.Text.Json;
+using System.Drawing;
 namespace Proz_DesktopApplication
 {
     /// <summary>
@@ -29,30 +30,49 @@ namespace Proz_DesktopApplication
         private readonly IServiceProvider _Services;
         private readonly IAuthAPI _authApi;
 
-        public SigninWindow()
+     
+
+        public SigninWindow(IServiceProvider Services, IAuthAPI authApi) 
         {
-            
             InitializeComponent();
 
-            //TokenStorage.DeleteTokens();
-
-
-        }
-
-        public SigninWindow(IServiceProvider Services, IAuthAPI authApi) : this()
-        {
             _Services = Services;
             _authApi = authApi;
         }
 
         private async void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
+          
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
             this.Width = screenWidth / 2;
             this.Height = screenHeight / 2;
             this.Left = (screenWidth - this.Width) / 2;
             this.Top = (screenHeight - this.Height) / 2;
+            bool SystemStarted = Properties.Settings.Default.SystemStarted;
+          
+
+            if (SystemStarted==false)
+            {
+                loginbutton.Visibility = Visibility.Collapsed; // hide button 1
+                registerbutton.Visibility = Visibility.Visible;
+                Grid.SetColumn(registerbutton, 0); // start from column 0
+                Grid.SetColumnSpan(registerbutton, 2); // span across both columns
+                BottomPart.Visibility = Visibility.Hidden;
+                ContentOfRegisterButton.Text = "Getting Started";
+                ContentOfRegisterButton.FontSize = 13;
+            }
+            else
+            {
+                loginbutton.Visibility = Visibility.Visible;
+                Grid.SetColumn(registerbutton, 1); // back to column 1
+                Grid.SetColumnSpan(registerbutton, 1); // span only 1 column
+                BottomPart.Visibility = Visibility.Visible;
+                ContentOfRegisterButton.Text = "OR CREATE \n AN ACCOUNT."; //i want to rest this to what it was in xmal 
+                ContentOfRegisterButton.Style = (Style)FindResource("MyTextBlockStyle");
+            }
+    
+
             this.Opacity = 0.0;
             var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(750));
             this.BeginAnimation(Window.OpacityProperty, fadeIn);
@@ -231,6 +251,14 @@ namespace Proz_DesktopApplication
         }
         private async void loginbutton_Click(object sender, RoutedEventArgs e)
         {
+            //var MainWindow1 = _Services.GetRequiredService<MainDashboardWindow>();
+            //Application.Current.MainWindow = MainWindow1;
+
+            //MainWindow1.Show();
+            //this.Close();
+            //return;
+
+
 
             //await ShakeControl(loginbutton);
 
@@ -259,10 +287,11 @@ namespace Proz_DesktopApplication
             }
             if (emailTextbox.Text == "" || passwordbox.Password=="")
             {
-                QModernMessageBox.Show($"Please fill all your fields to log in!",
+                var msgBox1 = new ModernMessageBox($"Please fill all your fields to log in!",
                     "Operation Information",
-                    QModernMessageBox.QModernMessageBoxButtons.Ok,
-                    ModernMessageboxIcons.Error);
+                    ModernMessageboxIcons.Error,
+                    "OK");
+                msgBox1.ShowDialog();
                 await ShakeControl(loginbutton);
                 this.IsEnabled = true;
                 return;
@@ -293,10 +322,11 @@ namespace Proz_DesktopApplication
                      
                     }
                     Properties.Settings.Default.Save();
+                  
                     TokenStorage.SaveTokens(response.Content.Token, response.Content.RefreshToken);
                     var MainWindow = _Services.GetRequiredService<MainDashboardWindow>();
                     Application.Current.MainWindow = MainWindow;
-
+                   
                     this.Opacity = 1.0;
 
                     var fadeOut = new DoubleAnimation(1, 0.2, TimeSpan.FromMilliseconds(250));
@@ -340,56 +370,63 @@ namespace Proz_DesktopApplication
                             var flatErrors = errorResponse2.Errors
                                 .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
 
-                            QModernMessageBox.Show($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                            var msgBox1 = new ModernMessageBox($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
                                 "Validation Error",
-                                QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                ModernMessageboxIcons.Error);
+                               ModernMessageboxIcons.Error,
+                               "OK");
+                            msgBox1.ShowDialog();
                             this.IsEnabled = true;
                             return;
                         }
 
-                      
-                      
+
+
                         if (errorResponse?.Errors?.Any() == true)
                         {
-                            QModernMessageBox.Show($"Error :{string.Join("\n", errorResponse.Errors)}",
+                            var msgBox1 = new ModernMessageBox($"Error :{string.Join("\n", errorResponse.Errors)}",
                                      "Operation Information",
-                                     QModernMessageBox.QModernMessageBoxButtons.Ok,
-                                     ModernMessageboxIcons.Error);
+                                     ModernMessageboxIcons.Error,
+                                     "OK");
+                            msgBox1.ShowDialog();
                             this.IsEnabled = true;
                         }
-                        
+
                         else
                         {
+
+                            if (errorResponse?.Errors == null)
+                            {
+                                var msgBox1 = new ModernMessageBox($"Something went wrong!",
+                                                      "Operation Information",
+                                                      ModernMessageboxIcons.Error,
+                                                      "OK");
+                                msgBox1.ShowDialog();
+                                this.IsEnabled = true;
+                            }
+                              
                           
-                            if (errorResponse?.Errors==null)
-                            
-                            QModernMessageBox.Show($"Something went wrong!",
-                        "Operation Information",
-                        QModernMessageBox.QModernMessageBoxButtons.Ok,
-                        ModernMessageboxIcons.Error);
-                            this.IsEnabled = true;
                         }
                     
                     }
                     else
                     {
-             
-                        QModernMessageBox.Show($"Something went wrong!",
+
+                        var msgBox1 = new ModernMessageBox($"Something went wrong!",
                    "Operation Information",
-                    QModernMessageBox.QModernMessageBoxButtons.Ok,
-                    ModernMessageboxIcons.Error);
+                    ModernMessageboxIcons.Error,
+                    "OK");
+                        msgBox1.ShowDialog();
                         this.IsEnabled = true;
                     }
                 }
             }
             catch (Exception ex)
             {
-             
-                QModernMessageBox.Show($"Network error or app bug: {ex.Message}",
+
+                var msgBox1 = new ModernMessageBox($"Network error or app bug: {ex.Message}",
               "Operation Information",
-              QModernMessageBox.QModernMessageBoxButtons.Ok,
-              ModernMessageboxIcons.Error);
+              ModernMessageboxIcons.Error,
+              "OK");
                 this.IsEnabled = true;
 
             }
@@ -397,6 +434,33 @@ namespace Proz_DesktopApplication
 
         private async void registerbutton_Click(object sender, RoutedEventArgs e)
         {
+
+            bool SystemStarted = Properties.Settings.Default.SystemStarted;
+            if (!SystemStarted)
+            {
+                registerbutton.IsEnabled = false;
+                this.Opacity = 1.0;
+
+                var fadeOut = new DoubleAnimation(1, 0.2, TimeSpan.FromMilliseconds(250));
+                var tcs = new TaskCompletionSource<bool>();
+
+                fadeOut.Completed += (s, ev) => tcs.SetResult(true);
+
+                this.BeginAnimation(Window.OpacityProperty, fadeOut);
+
+                // Wait for animation to finish
+                await tcs.Task;
+
+                this.Hide();
+
+                var gettingstartedwindow = _Services.GetRequiredService<GettingStartedWindow>();
+                Application.Current.MainWindow = gettingstartedwindow;
+                gettingstartedwindow.Show();
+            }
+            else
+            {
+
+          
             registerbutton.IsEnabled = false;
             this.Opacity = 1.0;
 
@@ -413,7 +477,9 @@ namespace Proz_DesktopApplication
             this.Hide();
 
             var forgotWindow = _Services.GetRequiredService<RegisterWindow>();
-            forgotWindow.Show();
+                Application.Current.MainWindow = forgotWindow;
+                forgotWindow.Show();
+            }
         }
 
         private void ShowPassword_Click(object sender, RoutedEventArgs e)
@@ -453,6 +519,7 @@ namespace Proz_DesktopApplication
             this.Hide();
 
             var forgotWindow = _Services.GetRequiredService<ForgotPasswordWindow>();
+            Application.Current.MainWindow = forgotWindow;
             forgotWindow.Show();
         }
     }

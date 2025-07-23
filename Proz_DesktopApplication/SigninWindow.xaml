@@ -67,20 +67,21 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource MyButtonStyle}" x:Name="loginbutton" Margin="0,0,20,0" Click="loginbutton_Click" >
+                <Button Grid.Column="0" Style="{StaticResource MyButtonStyle}" x:Name="loginbutton" Margin="0,0,20,0" Click="loginbutton_Click" >
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <iconPacks:PackIconFontAwesome Kind="ArrowUpSolid" Width="16" Height="16" Margin="0,0,5,0" />
                         <TextBlock Text="Login" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource MyButtonStyle}" x:Name="registerbutton"  Grid.Column="1" Click="registerbutton_Click" FontFamily="Microsoft YaHei UI">
+                <Button Style="{StaticResource MyButtonStyle}" x:Name="registerbutton"  Grid.Column="1" Click="registerbutton_Click" FontFamily="Microsoft YaHei UI" >
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <iconPacks:PackIconFontAwesome Kind="ArrowRightSolid" Width="16" Height="16" Margin="0,0,5,0" />
-                        <TextBlock Text="OR CREATE &#x0a; AN ACCOUNT" VerticalAlignment="Center" FontSize="10"/>
+                        <TextBlock Text="OR CREATE &#x0a; AN ACCOUNT" VerticalAlignment="Center" FontSize="10" x:Name="ContentOfRegisterButton"/>
                     </StackPanel>
                 </Button>
-        </Grid>
-            <StackPanel Grid.Row="2" Margin="0,15,0,0">
+          
+            </Grid>
+            <StackPanel Grid.Row="2" Margin="0,15,0,0" x:Name="BottomPart">
 
                 <CheckBox Style="{StaticResource MyCheckBpx}" x:Name="remembermecheckbox" Margin="0,0,0,15" Content="Remember me" FontSize="13" FontFamily="Segoe UI"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">

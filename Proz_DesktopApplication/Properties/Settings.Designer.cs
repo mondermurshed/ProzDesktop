@@ -58,5 +58,17 @@ namespace Proz_DesktopApplication.Properties {
                 this["RememberMe"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SystemStarted {
+            get {
+                return ((bool)(this["SystemStarted"]));
+            }
+            set {
+                this["SystemStarted"] = value;
+            }
+        }
     }
 }

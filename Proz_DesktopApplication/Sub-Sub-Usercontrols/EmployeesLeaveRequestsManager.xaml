@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_Sub_Usercontrols"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border Margin="20,30,20,20">
+    <Border Margin="20,30,20,10">
         <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left">
             <!-- TAB 1 -->
             <TabItem Header="Manage My Employees Leave Requests">

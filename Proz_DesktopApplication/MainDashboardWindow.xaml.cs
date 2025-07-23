@@ -27,11 +27,15 @@ namespace Proz_DesktopApplication
     {
         public IServiceProvider Services { get; }
         public  IAuthAPI AuthApi { get; }
-        public MainDashboardWindow(IServiceProvider services, IAuthAPI authApi)
+        public GeneralAPICalling GeneralAPICalling { get; }
+        public AdminAPIEndpointsDefinitions _AdminAPIEndpointsDefinitions { get;}
+        public MainDashboardWindow(IServiceProvider services, IAuthAPI authApi, GeneralAPICalling generalAPICalling, AdminAPIEndpointsDefinitions adminAPIEndpointsDefinitions)
         {
             InitializeComponent();
             Services = services;
             AuthApi = authApi;
+            GeneralAPICalling = generalAPICalling;
+            _AdminAPIEndpointsDefinitions = adminAPIEndpointsDefinitions;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

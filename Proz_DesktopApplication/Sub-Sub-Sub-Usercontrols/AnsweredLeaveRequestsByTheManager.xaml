@@ -54,7 +54,7 @@
         </DataGrid>
 
         <!-- Details Section -->
-        <Grid Grid.Row="2" Margin="20,0,20,20">
+        <Grid Grid.Row="2" Margin="20,0,20,10">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="0,10,10,10">
                     <TextBlock Text="Reason" Style="{StaticResource MyTextBlockStyle}" FontWeight="Bold" Margin="0,0,0,5"/>

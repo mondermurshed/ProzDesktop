@@ -10,7 +10,13 @@
     <Compile Update="ForgotPasswordWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="GettingStartedWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MainDashboardWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ParentUserControls\Admin_UserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ParentUserControls\DepartmentManager_UserControl.xaml.cs">
@@ -20,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ParentUserControls\HRManager_UserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ParentUserControls\User_UserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="RegisterWindow.xaml.cs">
@@ -88,6 +97,9 @@
     <Compile Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-Sub-Usercontrols\HRPaymentManagement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-Sub-Usercontrols\ManageDepartmentsInformationHRManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -118,6 +130,15 @@
     <Compile Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-UserControls\AuditAdminHistory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\DepartmentCreationUsercontrol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\DepartmentsManagingShifts.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-UserControls\EmployeeFeedback.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -125,6 +146,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-UserControls\EmployeeSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\FeedbackTypes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-UserControls\JobSection.xaml.cs">
@@ -136,10 +160,16 @@
     <Compile Update="Sub-UserControls\JobSectionManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-UserControls\ManageEmployeesRolesAndPowers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-UserControls\ManagerLeaveRequest.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-UserControls\MyLoginHistory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sub-UserControls\MyLoginHistoryAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Sub-UserControls\MyPersonalData.xaml.cs">
@@ -151,12 +181,21 @@
     <Compile Update="Sub-UserControls\settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-UserControls\settingsUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ForgotPasswordWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="GettingStartedWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainDashboardWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ParentUserControls\Admin_UserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ParentUserControls\DepartmentManager_UserControl.xaml">
@@ -166,6 +205,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ParentUserControls\HRManager_UserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ParentUserControls\User_UserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="RegisterWindow.xaml">
@@ -237,6 +279,9 @@
     <Page Update="Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-Sub-Usercontrols\HRPaymentManagement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-Sub-Usercontrols\ManageDepartmentsInformationHRManager.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -267,6 +312,15 @@
     <Page Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-UserControls\AuditAdminHistory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\DepartmentCreationUsercontrol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\DepartmentsManagingShifts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-UserControls\EmployeeFeedback.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -274,6 +328,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\EmployeeSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\FeedbackTypes.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\JobSection.xaml">
@@ -285,10 +342,16 @@
     <Page Update="Sub-UserControls\JobSectionManager.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Sub-UserControls\ManageEmployeesRolesAndPowers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Sub-UserControls\ManagerLeaveRequest.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\MyLoginHistory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\MyLoginHistoryAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\MyPersonalData.xaml">
@@ -298,6 +361,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\settings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\settingsUser.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

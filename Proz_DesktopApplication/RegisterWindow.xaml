@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proz_DesktopApplication"
         mc:Ignorable="d"
-        Title="Register Window" Height="550" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"  TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" TitleAlignment="Center">
+        Title="Register Window" Height="600" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"  TitleBarHeight="60" GlowBrush="DeepSkyBlue" BorderThickness="1.5"    ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" TitleAlignment="Center">
     <Border BorderThickness="2"  Margin="20,20,20,10" Padding="10" >
     <Grid>
             <Grid.RowDefinitions>
@@ -19,7 +19,9 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
                    
                     <StackPanel Grid.Row="0" Margin="10">
-                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Username"/>
+                    <TextBlock Text="Your Full Name" Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="FullNameTextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" MaxLength="80" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Username" />
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -28,7 +30,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- TextBox takes the main space -->
-                            <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" Text="fasfsaf" Grid.Column="0" x:Name="Usernametextbox" MaxLength="30" PreviewKeyDown="Usernametextbox_PreviewKeyDown" PreviewTextInput="Usernametextbox_PreviewTextInput" />
+                            <TextBox Style="{StaticResource MyTextBoxStyle}" Padding="5,8,0,8" FontSize="13" Grid.Column="0" x:Name="Usernametextbox" MaxLength="30" PreviewKeyDown="Usernametextbox_PreviewKeyDown" PreviewTextInput="Usernametextbox_PreviewTextInput" />
 
                             <!-- Button with icon -->
                             <Button Grid.Column="1" x:Name="Usernamebutton" Style="{StaticResource MyButtonStyle}"

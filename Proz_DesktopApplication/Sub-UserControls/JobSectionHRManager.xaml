@@ -33,6 +33,9 @@
             <TabItem Header="Manage New Departments Info">
                 <sub_subUsercontrols:ManageDepartmentsInformationHRManager/>
             </TabItem>
+            <TabItem Header="Payment Manager">
+                <sub_subUsercontrols:HRPaymentManagement/>
+            </TabItem>
 
         </mah:MetroAnimatedTabControl>
     </Border>

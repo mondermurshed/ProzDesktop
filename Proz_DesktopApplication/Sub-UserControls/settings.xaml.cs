@@ -15,8 +15,6 @@ namespace Proz_DesktopApplication.Sub_UserControls
         {
             InitializeComponent();
 
-            _services = Services1;
-            _authApi = AuthApi1;
 
             this.Loaded += settings_Loaded;
         }
