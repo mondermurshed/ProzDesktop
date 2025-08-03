@@ -1,7 +1,8 @@
-﻿<UserControl x:Class="Proz_DesktopApplication.Sub_UserControls.FeedbackTypes"
+﻿<base:BaseUserControlMain x:Class="Proz_DesktopApplication.Sub_UserControls.FeedbackTypes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:base="clr-namespace:Proz_DesktopApplication"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
@@ -15,21 +16,38 @@
             <TabItem Header="Add Feedback Type">
                 <StackPanel Margin="20,30,20,20" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Feedback Type Name:" Margin="0,0,0,5"/>
-                    <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="FeedbackTypeTextBox" Margin="0,0,0,15" MaxLength="20"/>
+                    <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="FeedbackTypeTextBox" Margin="0,0,0,15" MaxLength="30"/>
                     <Button Style="{StaticResource MyButtonStyle}" Content="Add Feedback Type" Width="200" Click="AddFeedbackTypeButton_Click"/>
                 </StackPanel>
             </TabItem>
 
             <!-- ✅ TAB 2: Remove Feedback Types -->
             <TabItem Header="Remove Feedback Type">
+              
                 <Grid Margin="20">
-                    <DataGrid x:Name="FeedbackTypesDataGrid"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                   
+                        <StackPanel Orientation="Horizontal"  Grid.Row="0" Margin="0,5,0,15">
+                            <TextBlock VerticalAlignment="Center" Margin="0,0,10,0" Style="{StaticResource MyTextBlockStyle}" Text="Replace it with :"/>
+                        <TextBox x:Name="ReplaceWithTextbox"  VerticalAlignment="Center" Width="300" MaxLength="30" Style="{StaticResource MyTextBoxStyle}" />
+
+                            <Button Padding="50,0"  Margin="100,0,0,0" HorizontalAlignment="Right" Content="Refresh" Style="{StaticResource MyButtonStyle}" Click="Button_Click"></Button>
+                        </StackPanel>
+                   
+                     
+                 
+                  
+
+                    <DataGrid Grid.Row="1" x:Name="FeedbackTypesDataGrid"
                               AutoGenerateColumns="False"
                               IsReadOnly="True"
                               SelectionMode="Single"
                               SelectionUnit="FullRow">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Feedback Type" Binding="{Binding FeedbackType}" Width="*"/>
+                            <DataGridTextColumn Header="Feedback Type" Binding="{Binding FeedbackTypeName}" Width="*"/>
                             <DataGridTemplateColumn Header="Actions" Width="120">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -37,6 +55,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+                          
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -44,4 +63,4 @@
 
         </mah:MetroAnimatedTabControl>
     </Border>
-</UserControl>
+</base:BaseUserControlMain>

@@ -299,8 +299,9 @@ namespace Proz_DesktopApplication
             }
                 try
             {
-              
-                var request = new LoginRequest { Username = emailTextbox.Text.Trim(), Password=passwordbox.Password};
+                string DeviceToken = TokenStorage.GetOrCreateDeviceToken();
+                string deviceName = $"{Environment.OSVersion.Platform} - {Environment.MachineName}";
+                var request = new LoginRequest { Username = emailTextbox.Text.Trim(), Password=passwordbox.Password,DeviceToken= DeviceToken, DeviceName= deviceName };
                 var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
                 win.Show();
                 var response = await _authApi.Login(request);

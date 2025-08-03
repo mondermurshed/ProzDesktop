@@ -52,8 +52,11 @@ namespace Proz_DesktopApplication
             Usernametextbox.ContextMenu = null;
             EmailTextbox.ContextMenu = null;
             List<string> Currencies = new List<string>() { "USD", "SAR", "YER" };
-
+            List<string> PaymentFrequncyTypes = new List<string>() { "Every Month", "Every 3 weeks" };
+            PaymentFrequencyComboBox.ItemsSource = PaymentFrequncyTypes;
             CurrencyTypeComboBox.ItemsSource = Currencies;
+            PaymentFrequencyComboBox.SelectedIndex = 0;
+            CurrencyTypeComboBox.SelectedIndex = 0;
 
         }
 
@@ -488,8 +491,29 @@ namespace Proz_DesktopApplication
             }
             else
             {
-
-                var request = new GettingStartingStageOneRequest { AdminUsername = Usernametextbox.Text, AdminEmail = EmailTextbox.Text, AdminPassword = Passwordtextbox.Password };
+                string gender = "Male";
+                if (malecheckbox.IsChecked == true)
+                    gender = "Male";
+                else if (femalecheckbox.IsChecked == true)
+                    gender = "Female";
+                int userage;
+                try
+                {
+                   userage= Convert.ToInt32(AgeTextbox.Text);
+                }
+                catch
+                {
+                    var msg = new ModernMessageBox($"Please enter your age.",
+                          "Operation Information",
+                   ModernMessageboxIcons.Error, "OK")
+                    {
+                        Button1Key = Key.Enter,
+                        Button2Key = Key.Escape
+                    };
+                    msg.ShowDialog();
+                    return;
+                }
+                var request = new GettingStartingStageOneRequest { AdminUsername = Usernametextbox.Text, AdminEmail = EmailTextbox.Text, AdminPassword = Passwordtextbox.Password,  CompanyName = CompanyNameTextbox.Text, Currency = CurrencyTypeComboBox.SelectedItem.ToString(), Date_Of_Birth = DateOnly.FromDateTime(DateOfBirthTextbox.SelectedDate.Value), FullName = Firstnametextbox.Text, Living_On_Primary_Place = primaryplacecheckbox.IsChecked.Value, Age = userage, Gender= gender,Nationality=Nationalitytextbox.Text,PaymentFrequency = PaymentFrequencyComboBox.SelectedItem.ToString() };
 
                 try
                 {
@@ -542,22 +566,15 @@ namespace Proz_DesktopApplication
                                     }
                                     else  //here when registration stage two begins!!
                                     {
-                                        string gender="Male";
-                                        if (malecheckbox.IsChecked==true)
-                                            gender = "Male";
-                                        else if (femalecheckbox.IsChecked == true)
-                                            gender = "Female";
-                                        var requestFinalRegister = new GettingStartingStageTwoRequest();
-                                        if (Nationalitytextbox.Text==null|| Nationalitytextbox.Text=="")
-                                         requestFinalRegister = new GettingStartingStageTwoRequest { AdminEmail = EmailTextbox.Text, Code = Usercode, CompanyName = CompanyNameTextbox.Text, Currency = CurrencyTypeComboBox.SelectedItem.ToString(), Age = AgeTextbox.Text , Date_Of_Birth= DateOnly.FromDateTime(DateOfBirthTextbox.SelectedDate.Value), FullName=Firstnametextbox.Text,Gender=gender ,Living_On_Primary_Place=primaryplacecheckbox.IsChecked.Value };
-                                        else
-                                          requestFinalRegister = new GettingStartingStageTwoRequest { AdminEmail = EmailTextbox.Text, Code = Usercode, CompanyName = CompanyNameTextbox.Text, Currency = CurrencyTypeComboBox.SelectedItem.ToString(), Age = AgeTextbox.Text , Date_Of_Birth= DateOnly.FromDateTime(DateOfBirthTextbox.SelectedDate.Value), FullName=Firstnametextbox.Text,Nationality=Nationalitytextbox.Text,Gender=gender ,Living_On_Primary_Place=primaryplacecheckbox.IsChecked.Value };
+                                     
+                                        GettingStartingStageTwoRequest requestFinalRegister = new GettingStartingStageTwoRequest { AdminEmail = EmailTextbox.Text, Code = Usercode};
+                                       
                                         try
                                         {
                                             var win2 = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
                                             win2.Show();
                                             var responseFinalRegister = await _authApi.RegisterStartingUpStageTwo(requestFinalRegister);
-                                            win2.Message = "Done!!!";
+                                            win2.Message = "Done!";
                                             win2.Close();
                                             if (responseFinalRegister.IsSuccessStatusCode && responseFinalRegister.Content?.Message?.Any() == true)
                                             {
@@ -673,8 +690,8 @@ namespace Proz_DesktopApplication
                                     {
                                         var win3 = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
                                         win3.Show();
-                                        var responseResend = await _authApi.ResendRegistrationCodeAgain(requestResend);
-                                        win3.Message = "Done!!!";
+                                        var responseResend = await _authApi.ResendRegistrationCodeAgainAdmin(requestResend);
+                                        win3.Message = "Done!";
                                         win3.Close();
                                         if (responseResend.IsSuccessStatusCode && responseResend.Content?.Message?.Any() == true)
                                         {

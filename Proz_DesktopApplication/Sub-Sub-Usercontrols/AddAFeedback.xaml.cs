@@ -19,7 +19,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
     /// <summary>
     /// Interaction logic for AddAFeedback.xaml
     /// </summary>
-    public partial class AddAFeedback : UserControl
+    public partial class AddAFeedback : BaseUserControlMain
     {
         public AddAFeedback()
         {

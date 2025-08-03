@@ -70,9 +70,10 @@ public class RefreshTokenHandler : DelegatingHandler
         try
         {
             var tokens = TokenStorage.LoadTokens();
+            string DeviceToken = TokenStorage.GetOrCreateDeviceToken();
             var request = new RefreshRequest
             {
-                AccessToken = tokens.Value.accessToken,
+                DeviceToken = DeviceToken,
                 RefreshToken = tokens.Value.refreshToken
 
             };

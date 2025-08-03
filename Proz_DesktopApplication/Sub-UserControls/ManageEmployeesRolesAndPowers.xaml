@@ -39,7 +39,7 @@
                               Margin="0,10,0,0"
                               SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="2*"/>
+                            <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="2*" IsReadOnly="True"/>
 
                             <!-- 👥 Role Checkboxes -->
                             <DataGridTemplateColumn Header="Is User?">

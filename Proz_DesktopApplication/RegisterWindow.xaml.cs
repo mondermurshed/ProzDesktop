@@ -393,7 +393,7 @@ namespace Proz_DesktopApplication
             }
           
             if (string.IsNullOrEmpty(Usernametextbox.Text) || string.IsNullOrEmpty(EmailTextbox.Text)
-                || string.IsNullOrEmpty(Passwordtextbox.Password) || string.IsNullOrEmpty(ConfirmPasswordTextbox.Password) || string.IsNullOrEmpty(FullNameTextbox.Text))
+                || string.IsNullOrEmpty(Passwordtextbox.Password) || string.IsNullOrEmpty(ConfirmPasswordTextbox.Password) || string.IsNullOrEmpty(Firstnametextbox.Text) || string.IsNullOrEmpty(AgeTextbox.Text) || string.IsNullOrEmpty(DateOfBirthTextbox.Text))
             {
                 pass = false;
                 RegisterErrorTextBlock.Inlines.Add(new Run("-Please fill all your fields.\n")
@@ -481,13 +481,19 @@ namespace Proz_DesktopApplication
             }
             else
             {
-
-                var request = new UserRegisterationRequest { Username = Usernametextbox.Text, Email = EmailTextbox.Text, Password = Passwordtextbox.Password };
+                string gender="Male";
+                if (malecheckbox.IsChecked == true)
+                    gender = "Male";
+                else if (femalecheckbox.IsChecked == true)
+                    gender = "Female";
+                int userage;
+        
+                var request = new UserRegisterationRequest { Username = Usernametextbox.Text, Email = EmailTextbox.Text, Password = Passwordtextbox.Password, FullName= Firstnametextbox.Text,Age= AgeTextbox.Text, Date_Of_Birth = DateOnly.FromDateTime(DateOfBirthTextbox.SelectedDate.Value), Gender = gender, Living_On_Primary_Place = primaryplacecheckbox.IsChecked.Value,Nationality= Nationalitytextbox.Text };
 
                 try
                 {
 
-                    var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
+                    var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response...");
                     win.Show();
                     var response = await _authApi.RegisterStageOne(request);
                     win.Message = "Done!!!";
@@ -536,7 +542,7 @@ namespace Proz_DesktopApplication
                                     {
 
 
-                                        var requestFinalRegister = new UserRegisterationStageTwoRequest { Email = EmailTextbox.Text, Code = Usercode, FullName=FullNameTextbox.Text };
+                                        var requestFinalRegister = new UserRegisterationStageTwoRequest { Email = EmailTextbox.Text, Code = Usercode};
 
                                         try
                                         {
@@ -561,12 +567,40 @@ namespace Proz_DesktopApplication
                                                 // When server returns 400, Refit puts the error JSON as a string here
                                                 var rawError = responseFinalRegister.Error?.Content;
 
+                                                UserRegisterationStageTwoResponse errorResponse = null;
+                                                ValidationErrorResponse errorResponse2 = null;
+
                                                 if (!string.IsNullOrWhiteSpace(rawError))
                                                 {
-                                                    var errorResponse = JsonSerializer.Deserialize<UserRegisterationStageTwoResponse>(rawError, new JsonSerializerOptions
+                                                    try
                                                     {
-                                                        PropertyNameCaseInsensitive = true
-                                                    });
+                                                        errorResponse = JsonSerializer.Deserialize<UserRegisterationStageTwoResponse>(rawError, new JsonSerializerOptions
+                                                        {
+                                                            PropertyNameCaseInsensitive = true
+                                                        });
+                                                    }
+                                                    catch
+                                                    {
+                                                        // Fallback to FluentValidation-style error
+                                                        errorResponse2 = JsonSerializer.Deserialize<ValidationErrorResponse>(rawError, new JsonSerializerOptions
+                                                        {
+                                                            PropertyNameCaseInsensitive = true
+                                                        });
+
+                                                        // Flatten dictionary errors
+                                                        var flatErrors = errorResponse2.Errors
+                                                            .SelectMany(kvp => kvp.Value.Select(msg => $"{kvp.Key}: {msg}"));
+
+                                                        var msgBox1 = new ModernMessageBox($"{errorResponse2.Message}\n\n{string.Join("\n", flatErrors)}",
+                                                            "Validation Error",
+                                                           ModernMessageboxIcons.Error,
+                                                            "OK");
+                                                        msgBox1.ShowDialog();
+                                                        return;
+                                                    }
+
+                                                    
+                                              
 
 
 

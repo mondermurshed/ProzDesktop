@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\sub-usercontrols\\manageemployeesrolesandpowers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\sub-usercontrols\\manageemployeesrolesandpowers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\api\\adminapiendpointsdefinitions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\api\\adminapiendpointsdefinitions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\sub-usercontrols\\manageemployeesrolesandpowers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\sub-usercontrols\\manageemployeesrolesandpowers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\sub-usercontrols\\auditadminhistory.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\sub-usercontrols\\auditadminhistory.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\parentusercontrols\\admin_usercontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\parentusercontrols\\admin_usercontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\sub-usercontrols\\addemployeestodepartmentsusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\sub-usercontrols\\addemployeestodepartmentsusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\signinwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\signinwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\sub-usercontrols\\addemployeestodepartmentsusercontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\sub-usercontrols\\addemployeestodepartmentsusercontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\proz_desktopapplication\\proz_desktopapplication\\sub-usercontrols\\auditadminhistory.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\sub-usercontrols\\auditadminhistory.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,54 +54,70 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SigninWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\SigninWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Proz_DesktopApplication\\SigninWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\SigninWindow.xaml.cs",
-              "RelativeToolTip": "Proz_DesktopApplication\\SigninWindow.xaml.cs",
-              "ViewState": "AgIAACkBAAAAAAAAAAAIwDgBAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T20:23:37.157Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ManageEmployeesRolesAndPowers.xaml",
-              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml",
-              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml",
-              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml",
-              "RelativeToolTip": "Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-22T19:11:29.478Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Admin_UserControl.xaml",
-              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\ParentUserControls\\Admin_UserControl.xaml",
-              "RelativeDocumentMoniker": "Proz_DesktopApplication\\ParentUserControls\\Admin_UserControl.xaml",
-              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\ParentUserControls\\Admin_UserControl.xaml",
-              "RelativeToolTip": "Proz_DesktopApplication\\ParentUserControls\\Admin_UserControl.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-22T18:47:16.895Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ManageEmployeesRolesAndPowers.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml.cs",
-              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml.cs",
-              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml.cs",
-              "RelativeToolTip": "Proz_DesktopApplication\\Sub-UserControls\\ManageEmployeesRolesAndPowers.xaml.cs",
-              "ViewState": "AgIAAOgAAAAAAAAAAAAAAPkAAAAAAAAAAAAAAA==",
+              "Title": "AdminAPIEndpointsDefinitions.cs",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\API\\AdminAPIEndpointsDefinitions.cs",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\API\\AdminAPIEndpointsDefinitions.cs",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\API\\AdminAPIEndpointsDefinitions.cs",
+              "RelativeToolTip": "Proz_DesktopApplication\\API\\AdminAPIEndpointsDefinitions.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswEYAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T18:39:51.215Z",
+              "WhenOpened": "2025-08-03T05:35:27.666Z",
               "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuditAdminHistory.xaml",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml",
+              "RelativeToolTip": "Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-03T04:40:59.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuditAdminHistory.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml.cs",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml.cs",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml.cs",
+              "RelativeToolTip": "Proz_DesktopApplication\\Sub-UserControls\\AuditAdminHistory.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:53:01.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddEmployeesToDepartmentsUsercontrol.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml.cs",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml.cs",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml.cs",
+              "RelativeToolTip": "Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAABcAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:50:56.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddEmployeesToDepartmentsUsercontrol.xaml",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml",
+              "RelativeToolTip": "Proz_DesktopApplication\\Sub-UserControls\\AddEmployeesToDepartmentsUsercontrol.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-03T04:40:40.783Z",
+              "EditorCaption": ""
             }
           ]
         }

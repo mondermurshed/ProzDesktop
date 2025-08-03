@@ -27,6 +27,9 @@ namespace Proz_DesktopApplication.API
         [Post("/Auth/RefreshMyToken")]
         Task<ApiResponse<RefreshResponse>> RefreshMyAccessToken([Body] RefreshRequest model);
 
+        [Post("/Auth/Logout")]
+        Task<ApiResponse<object>> Logout([Body] LogoutRequest model);
+
         [Post("/Admin/CheckGettingStatus")]
         Task<ApiResponse<object>> CheckSystemGettingStartedStatus();
 
@@ -36,18 +39,39 @@ namespace Proz_DesktopApplication.API
         [Post("/Admin/GettingStatedSecondStage")]
         Task<ApiResponse<UserRegisterationStageTwoResponse>> RegisterStartingUpStageTwo([Body] GettingStartingStageTwoRequest model);
 
+        [Post("/Admin/ResendCodeAdmin")]
+        Task<ApiResponse<ReSendRegistrationCodeResponse>> ResendRegistrationCodeAgainAdmin([Body] ReSendRegistrationCode model);
+        
     }
+
+    public class LogoutRequest
+    {
+        public string RefreshToken { get; set; }
+        public string DeviceToken { get; set; }
+    }
+
 
     public class GettingStartingStageTwoRequest
     {
         public string AdminEmail { get; set; }
         public string Code { get; set; }
 
-       
+
+
+
+
+    }
+    public class GettingStartingStageOneRequest
+    {
+        public string AdminUsername { get; set; }
+        public string AdminEmail { get; set; }
+        public string AdminPassword { get; set; }
+
         public string CompanyName { get; set; }
         public string Currency { get; set; }
+        public string PaymentFrequency { get; set; } = "Every Month";
         public string FullName { get; set; }
-        public string Age { get; set; }
+        public int Age { get; set; }
         public DateOnly Date_Of_Birth { get; set; }
         public string Gender { get; set; }
         public string? Nationality { get; set; }
@@ -55,18 +79,10 @@ namespace Proz_DesktopApplication.API
 
     }
 
-
-    public class GettingStartingStageOneRequest
-    {
-        public string AdminUsername { get; set; }
-        public string AdminEmail { get; set; }
-        public string AdminPassword { get; set; }
-    }
-
     public class RefreshRequest
     {
-        public string AccessToken { get; set; }
-        public string RefreshToken { get; set; }
+        public string RefreshToken { get; set; } = string.Empty;
+        public string DeviceToken { get; set; } = string.Empty;
     }
 
 
@@ -92,13 +108,14 @@ namespace Proz_DesktopApplication.API
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public string DeviceToken { get; set; }
+        public string DeviceName { get; set; }
     }
   
     public class UserRegisterationStageTwoRequest
     {
         public string Email { get; set; }
         public string Code { get; set; }
-        public string FullName { get; set; }
     }
 
     public class UserRegisterationStageTwoResponse
@@ -112,7 +129,15 @@ namespace Proz_DesktopApplication.API
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-   
+
+        public string FullName { get; set; }
+
+        public string Age { get; set; }
+        public DateOnly Date_Of_Birth { get; set; }
+        public string Gender { get; set; }
+        public string? Nationality { get; set; }
+        public bool Living_On_Primary_Place { get; set; } = true;
+
     }
 
     public class UserRegisterationResponse

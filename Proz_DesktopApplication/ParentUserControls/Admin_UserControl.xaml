@@ -34,9 +34,9 @@
                 <sub_usercontrols:FeedbackTypes/>
             </TabItem>
 
-            <TabItem Header="Manage Departments">
+            <!--<TabItem Header="Manage Departments">
                 <sub_usercontrols:DepartmentsManagingShifts/>
-            </TabItem>
+            </TabItem>-->
             <TabItem Header="Roles And Powers">
                 <sub_usercontrols:ManageEmployeesRolesAndPowers/>
             </TabItem>

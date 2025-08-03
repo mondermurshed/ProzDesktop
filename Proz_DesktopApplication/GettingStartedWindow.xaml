@@ -211,6 +211,8 @@
                     <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" x:Name="CompanyNameTextbox" TextWrapping="Wrap" MaxLength="100"/>
                         <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="System's Currency Type (Required)" TextWrapping="Wrap"/>
                     <ComboBox  Margin="0,0,0,20" x:Name="CurrencyTypeComboBox"/>
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Payment Frequency (Required)" TextWrapping="Wrap"/>
+                        <ComboBox  Margin="0,0,0,20" x:Name="PaymentFrequencyComboBox"/>
                     </StackPanel>
                 </StackPanel>
 

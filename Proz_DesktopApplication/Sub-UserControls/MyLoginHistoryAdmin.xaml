@@ -1,17 +1,18 @@
-﻿<UserControl x:Class="Proz_DesktopApplication.Sub_UserControls.MyLoginHistoryAdmin"
+﻿<base:BaseUserControlMain x:Class="Proz_DesktopApplication.Sub_UserControls.MyLoginHistoryAdmin"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                 xmlns:base="clr-namespace:Proz_DesktopApplication"
               xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
+    <!--<base:BaseUserControlMain.Resources>
         <Style TargetType="DataGridCell">
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         </Style>
-    </UserControl.Resources>
+    </base:BaseUserControlMain.Resources>-->
     <Border Margin="20,30,20,20">
 
 
@@ -26,11 +27,12 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                        <Button Content="Refresh Data" Style="{StaticResource MyButtonStyle}" Margin="0,0,5,0" Click="refreshdataMyself"/>
                         <ComboBox x:Name="YearComboBox"  Margin="5" SelectionChanged="YearComboBox_SelectionChanged"/>
                         <ComboBox x:Name="MonthComboBox" Margin="5" SelectionChanged="MonthComboBox_SelectionChanged"/>
                         <ComboBox x:Name="SortOrderComboBox"  Margin="5" SelectionChanged="SortOrderComboBox_SelectionChanged">
-                            <ComboBoxItem Content="Show from newest to oldest" IsSelected="True"/>
-                            <ComboBoxItem Content="Show from oldest to newest"/>
+                            <ComboBoxItem Content="Show from newest to oldest" Tag="True"  IsSelected="True"/>
+                            <ComboBoxItem Content="Show from oldest to newest" Tag="False"/>
                         </ComboBox>
                     </StackPanel>
 
@@ -50,12 +52,13 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Date/Time Logged" Binding="{Binding WhenLogged}" Width="*" />
-                            <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" Width="*" />
+                            <DataGridTextColumn Header="Date/Time Logged" Binding="{Binding LoggedOnLocal}" Width="*" />
+                            <DataGridTextColumn Header="Device ID" Binding="{Binding DeviceTokenHashed}" Width="*" />
+                            <DataGridTextColumn Header="Device Name" Binding="{Binding DeviceName}" Width="*" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" >
-                        <Button Style="{StaticResource MyButtonStyle}" Content="Find A Record With Different IP address" Click="Button_Click"/>
+                        <Button Style="{StaticResource MyButtonStyle}" Content="Find A Record With Different IP address" Click="FindDifferentRecordFirstTAB"/>
 
                     </StackPanel>
                 </Grid>
@@ -68,20 +71,19 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10" Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- LEFT SIDE: Department + Employee -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,10,0">
-                            <ComboBox x:Name="DepartmentComboBox" Width="150" Margin="5" SelectionChanged="DepartmentComboBox_SelectionChanged" />
-                            <ComboBox x:Name="EmployeeComboBox" Width="150" Margin="5" SelectionChanged="EmployeeComboBox_SelectionChanged" />
-                        </StackPanel>
+                      
+                      
 
                         <!-- RIGHT SIDE: Year, Month, Sort -->
+                        <Button Content="Refresh Managers" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Click="RefreshManagersSecondTab"/>
                         <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                            <Button Content="Refresh" Style="{StaticResource MyButtonStyle}" Margin="0,0,5,0" Click="RefreshDataSecondTab"/>
                             <ComboBox x:Name="YearComboBoxEmployees"  Margin="5" SelectionChanged="YearComboBoxEmployees_SelectionChanged"/>
                             <ComboBox x:Name="MonthComboBoxEmployees" Margin="5" SelectionChanged="MonthComboBoxEmployees_SelectionChanged"/>
                             <ComboBox x:Name="SortOrderComboBoxEmployees"  Margin="5" SelectionChanged="SortOrderComboBoxEmployees_SelectionChanged">
@@ -90,9 +92,31 @@
                             </ComboBox>
                         </StackPanel>
                     </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <DataGrid x:Name="AdminLoginDataGridEmployees"
-  Grid.Row="1"
+                        <DataGrid x:Name="ManagerShowingDatagrid" Grid.Column="0" 
+Grid.Row="1"
+AutoGenerateColumns="False"
+IsReadOnly="True"
+AlternationCount="1000000"
+SelectionMode="Single"
+SelectionUnit="FullRow"
+FocusVisualStyle="{x:Null}">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="Manager Name" Binding="{Binding FullName}"/>
+                              
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+
+
+                        <DataGrid x:Name="AdminLoginDataGridEmployees" Grid.Column="1" Margin="10,0,0,0"
+  
   AutoGenerateColumns="False"
   IsReadOnly="True"
   AlternationCount="1000000"
@@ -107,10 +131,12 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Date/Time Logged" Binding="{Binding WhenLogged}" Width="*" />
-                            <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" Width="*" />
+                                <DataGridTextColumn Header="Date/Time Logged" Binding="{Binding LoggedOn}" Width="*" />
+                                <DataGridTextColumn Header="Device ID" Binding="{Binding DeviceTokenHashed}" Width="2*" />
+                                <DataGridTextColumn Header="Device Name" Binding="{Binding DeviceName}" Width="*" />
                         </DataGrid.Columns>
                     </DataGrid>
+                    </Grid>
                     <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" >
                         <Button Style="{StaticResource MyButtonStyle}" Content="Find A Record With Different IP address" Click="Button_Click_Employees"/>
 
@@ -119,4 +145,4 @@
             </TabItem>
         </mah:MetroAnimatedTabControl>
     </Border>
-</UserControl>
+</base:BaseUserControlMain>

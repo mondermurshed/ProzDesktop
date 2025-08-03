@@ -1,36 +1,54 @@
-﻿<UserControl x:Class="Proz_DesktopApplication.Sub_UserControls.AuditAdminHistory"
+﻿<base:BaseUserControlMain  x:Class="Proz_DesktopApplication.Sub_UserControls.AuditAdminHistory"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:base="clr-namespace:Proz_DesktopApplication"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.Resources>
+    <!--<base:BaseUserControlMain.Resources>
         <Style TargetType="DataGridCell">
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         </Style>
-    </UserControl.Resources>
+    </base:BaseUserControlMain.Resources>-->
 
     <Border Margin="20,30,20,20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
+            <Grid Margin="0,5,0,0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                  
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+         
+            <DataGrid x:Name="ManagerAndAdminsShowingDatagrid" Grid.Column="0" Margin="0,0,3,0" 
+Grid.Row="0" 
+AutoGenerateColumns="False"
+IsReadOnly="True"
+AlternationCount="1000000"
+SelectionMode="Single"
+SelectionUnit="FullRow"
+FocusVisualStyle="{x:Null}" SelectionChanged="ManagerAndAdminsShowingDatagrid_SelectionChanged">
+                <DataGrid.Columns>
 
-            <!-- Top Filters -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
-                <TextBlock Text="Filter by Manager:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <ComboBox x:Name="ManagerComboBox"
-                          Width="200"
-                          SelectionChanged="ManagerComboBox_SelectionChanged"/>
-            </StackPanel>
+                    <DataGridTextColumn Header="Admin/Manager Name" Binding="{Binding FullName}" Width="2*"/>
+                        <DataGridTextColumn Header="Role Type" Binding="{Binding RoleName}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+                <Button Style="{StaticResource MyButtonStyle}" Grid.Column="1" Content="R" Click="RefreshManagersAndAdmins"/>
+            </Grid>
 
-            <!-- DataGrid -->
-            <DataGrid x:Name="AuditAdminDataGrid"
+
+
+             
+            <DataGrid x:Name="AuditAdminDataGrid" Margin="0,10,0,0"
                       Grid.Row="1"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
@@ -48,12 +66,12 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="Action Type" Binding="{Binding ActionType}" Width="*" />
-                    <DataGridTextColumn Header="Performed At" Binding="{Binding PerformedAt}" Width="*" />
+                    <DataGridTextColumn Header="Performed At" Binding="{Binding Performed_At}" Width="2*" />
                     <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="3*" />
-                    <DataGridTextColumn Header="Targeted" Binding="{Binding PerformerAccountId}" Width="2*" />
-                    <DataGridTextColumn Header="Target Entity" Binding="{Binding TargetEntityId}" Width="*" />
+                    <DataGridTextColumn Header="Targeted" Binding="{Binding Targeted}" Width="2*" />
+                 
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
     </Border>
-</UserControl>
+</base:BaseUserControlMain>

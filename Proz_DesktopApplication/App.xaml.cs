@@ -70,14 +70,14 @@ namespace Proz_DesktopApplication
             if (Proz_DesktopApplication.Properties.Settings.Default.RememberMe)
             {
                 var tokens = TokenStorage.LoadTokens();
-
+                string DeviceToken= TokenStorage.GetOrCreateDeviceToken(); 
                 if (tokens is not null && !string.IsNullOrWhiteSpace(tokens.Value.refreshToken))
                 {
                     try
                     {
                         var request = new RefreshRequest
                         {
-                            AccessToken = tokens.Value.accessToken,
+                            DeviceToken = DeviceToken,
                             RefreshToken = tokens.Value.refreshToken
 
                         };

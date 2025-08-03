@@ -19,8 +19,7 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
                    
                     <StackPanel Grid.Row="0" Margin="10">
-                    <TextBlock Text="Your Full Name" Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5"/>
-                    <TextBox x:Name="FullNameTextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" MaxLength="80" TextWrapping="Wrap"/>
+                  
                     <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Username" />
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -173,9 +172,51 @@
                             </StackPanel>
                         </Grid>
                     <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,50" x:Name="ConfirmPasswordTextblock" TextWrapping="Wrap"/>
+
+
+
+                    <StackPanel x:Name="BottomPart">
+
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Full Name (Required)" />
+                        <TextBox x:Name="Firstnametextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" TextWrapping="Wrap" MaxLength="100"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Age (Required)" />
+                        <TextBox HorizontalAlignment="Left" Width="100" x:Name="AgeTextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" TextWrapping="Wrap" MaxLength="2"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Born Date (Required)" />
+                        <DatePicker x:Name="DateOfBirthTextbox" Margin="0,0,0,20"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Gender (Required)" />
+                        <Grid>
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton IsChecked="True" GroupName="gender" Content="Male" x:Name="malecheckbox"  Margin="0,0,0,20"/>
+                            <RadioButton GroupName="gender" Content="Female" Grid.Column="1"  x:Name="femalecheckbox"  Margin="0,0,0,20"/>
+                        </Grid>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Your Nationality" />
+                        <TextBox x:Name="Nationalitytextbox" Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,20" TextWrapping="Wrap" MaxLength="30"/>
+
+                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Margin="0,0,0,5" Text="Are you living in your primary place ? (Required)" />
+                        <CheckBox x:Name="primaryplacecheckbox" Style="{StaticResource MyCheckBpx}" Margin="0,0,0,20"/>
+
+
+
+
+
                     </StackPanel>
-               
-                </ScrollViewer>
+
+                </StackPanel>
+
+                
+
+            </ScrollViewer>
            
            
             <Grid Grid.Row="1">

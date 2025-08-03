@@ -130,6 +130,9 @@
     <Compile Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Sub-UserControls\AddEmployeesToDepartmentsUsercontrol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Sub-UserControls\AuditAdminHistory.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -310,6 +313,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-Sub-Sub-Usercontrols\ViewEmpoyeesLeaveRequests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sub-UserControls\AddEmployeesToDepartmentsUsercontrol.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sub-UserControls\AuditAdminHistory.xaml">

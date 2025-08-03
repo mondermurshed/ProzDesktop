@@ -11,7 +11,7 @@ public static class TokenStorage
 
     public static void SaveTokens(string accessToken, string refreshToken)
     {
-        // Combine the tokens into one string (we’ll split later)
+        // Combine all tokens into one string (we’ll split later)
         string combined = $"{accessToken}|||{refreshToken}";
         byte[] plainBytes = Encoding.UTF8.GetBytes(combined);
 
@@ -49,10 +49,29 @@ public static class TokenStorage
             return null;
         }
     }
-
     public static void DeleteTokens()
     {
         if (File.Exists(TokenFilePath))
             File.Delete(TokenFilePath);
     }
+
+    private static readonly string DeviceTokenPath = Path.Combine(
+      Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+      "ProzApp", "device_id.dat");
+
+    public static string GetOrCreateDeviceToken()
+    {
+        if (File.Exists(DeviceTokenPath))
+        {
+            return File.ReadAllText(DeviceTokenPath);
+        }
+
+        string newDeviceToken = Guid.NewGuid().ToString();
+        Directory.CreateDirectory(Path.GetDirectoryName(DeviceTokenPath));
+        File.WriteAllText(DeviceTokenPath, newDeviceToken);
+        return newDeviceToken;
+    }
+
+
+
 }
