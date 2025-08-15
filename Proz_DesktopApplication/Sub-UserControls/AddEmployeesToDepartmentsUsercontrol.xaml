@@ -28,12 +28,20 @@ IsReadOnly="True"
 AlternationCount="1000000"
 SelectionMode="Single"
 SelectionUnit="FullRow"
-FocusVisualStyle="{x:Null}" SelectionChanged="ManagerAndAdminsShowingDatagrid_SelectionChanged">
+FocusVisualStyle="{x:Null}" >
                     <DataGrid.Columns>
 
-                        <DataGridTextColumn Header="Admin/Manager Name" Binding="{Binding FullName}" Width="2*"/>
-                        <DataGridTextColumn Header="Role Type" Binding="{Binding RoleName}" Width="*"/>
+                        <DataGridTextColumn Header="Employee Name" Binding="{Binding FullName}" Width="2*"/>
+                        <DataGridTemplateColumn Header="Action" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Unassign From Department" Click="UnassignFromDepartment" Foreground="IndianRed"/>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
+                    
                 </DataGrid>
                 <Button Style="{StaticResource MyButtonStyle}" Grid.Column="1" Content="R" Click="RefreshEmployeeList" Margin="0,10,5,10" VerticalAlignment="Stretch"/>
             </Grid>
@@ -55,11 +63,11 @@ IsReadOnly="True"
 AlternationCount="1000000"
 SelectionMode="Single"
 SelectionUnit="FullRow"
-FocusVisualStyle="{x:Null}" SelectionChanged="ManagerAndAdminsShowingDatagrid_SelectionChanged">
+FocusVisualStyle="{x:Null}" >
                     <DataGrid.Columns>
 
-                        <DataGridTextColumn Header="Admin/Manager Name" Binding="{Binding FullName}" Width="2*"/>
-                        <DataGridTextColumn Header="Role Type" Binding="{Binding RoleName}" Width="*"/>
+                        <DataGridTextColumn Header="Department Name" Binding="{Binding DepartmentName}" Width="*"/>
+                        <DataGridTextColumn Header="Department's Manager Name" Binding="{Binding DepartmentManager}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button Style="{StaticResource MyButtonStyle}" Grid.Column="1" Content="R" Click="RefreshDepartmentList" Margin="0,10,5,10" VerticalAlignment="Stretch"/>

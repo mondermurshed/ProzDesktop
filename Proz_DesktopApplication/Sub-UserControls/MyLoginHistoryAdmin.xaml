@@ -131,7 +131,7 @@ FocusVisualStyle="{x:Null}">
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Date/Time Logged" Binding="{Binding LoggedOn}" Width="*" />
+                                <DataGridTextColumn Header="Date/Time Logged" Binding="{Binding LoggedOnLocal}" Width="*" />
                                 <DataGridTextColumn Header="Device ID" Binding="{Binding DeviceTokenHashed}" Width="2*" />
                                 <DataGridTextColumn Header="Device Name" Binding="{Binding DeviceName}" Width="*" />
                         </DataGrid.Columns>

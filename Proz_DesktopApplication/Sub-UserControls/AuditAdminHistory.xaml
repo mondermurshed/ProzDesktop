@@ -57,7 +57,7 @@ FocusVisualStyle="{x:Null}" SelectionChanged="ManagerAndAdminsShowingDatagrid_Se
                       SelectionUnit="FullRow"
                       FocusVisualStyle="{x:Null}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="#" Width="40">
+                    <DataGridTemplateColumn Header="#" Width="60">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex}" />
@@ -65,9 +65,9 @@ FocusVisualStyle="{x:Null}" SelectionChanged="ManagerAndAdminsShowingDatagrid_Se
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Action Type" Binding="{Binding ActionType}" Width="*" />
-                    <DataGridTextColumn Header="Performed At" Binding="{Binding Performed_At}" Width="2*" />
-                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="3*" />
+                    <DataGridTextColumn Header="Action Type" Binding="{Binding ActionType}" Width="1.5*" />
+                    <DataGridTextColumn Header="Performed At" Binding="{Binding LoggedOnLocal}" Width="1.5*" />
+                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="4*" />
                     <DataGridTextColumn Header="Targeted" Binding="{Binding Targeted}" Width="2*" />
                  
                 </DataGrid.Columns>

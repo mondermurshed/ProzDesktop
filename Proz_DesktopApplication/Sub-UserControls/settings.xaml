@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:base="clr-namespace:Proz_DesktopApplication"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:materialDesignControls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+           
+        
              
              xmlns:subUsercontrols ="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
@@ -21,11 +24,316 @@
             <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"  Grid.Row="0" >
             <!-- TAB 1 -->
             <TabItem Header="Account Settings">
-                <subUsercontrols:UserSettings/>
-            </TabItem>
+                    <Grid Margin="20,30,20,20">
+
+                        <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="30">
+
+
+                            <StackPanel>
+
+
+                                <Grid Margin="50,50,50,50">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Expander   Grid.Row="0"
+          Background="{DynamicResource ResourceKey=MaterialDesignDarkSeparatorBackground}"
+          BorderThickness="2"
+          BorderBrush="#00b2ff"
+          HorizontalContentAlignment="Center"
+         materialDesignControls:ExpanderAssist.HeaderBackground="{DynamicResource MaterialDesignLightSeparatorBackground}"  
+          Margin="10">
+
+                                        <Expander.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="Account information"
+                       FontSize="20"
+                       Margin="0,0,10,0"
+                       VerticalAlignment="Center"/>
+                                                <iconPacks:PackIconBoxIcons Width="30" Height="30" VerticalAlignment="Center" Kind="RegularInfoSquare"/>
+
+                                            </StackPanel>
+                                        </Expander.Header>
+
+                                        <!-- Content -->
+                                        <StackPanel Margin="20" >
+
+
+                                            <TextBlock FontSize="15" TextWrapping="Wrap" Margin="0,0,0,5">
+                                           <Run Text="Role : "/>
+                                           <Span><Run x:Name="AccountRole"/></Span>
+                                              <Border x:Name="AccountRoleColor" Background="Transparent" Width="50" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                            </TextBlock>
+
+                                            <TextBlock FontSize="15" TextWrapping="Wrap" Margin="0,0,0,5">
+                                            <Run Text="Account Status : "/>
+                                            <Span><Run x:Name="AccountStatus" /></Span>
+                                            </TextBlock>
+                                            
+                                               <TextBlock FontSize="15" TextWrapping="Wrap" Margin="0,0,0,5">
+                                            <Run Text="Account Creation Date : "/>
+                                            <Span ><Run x:Name="AccountDate"></Run></Span>
+                                                                                        </TextBlock>
+                                            
+                                             <TextBlock FontSize="15" TextWrapping="Wrap" Margin="0,0,0,5">
+                                            <Run Text="Account Age In Days : "/>
+                                            <Span ><Run x:Name="Accountage"/></Span>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Expander>
+
+                                    <!--Second oneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee -->
+
+                                    <Expander
+       Background="{DynamicResource ResourceKey=MaterialDesignDarkSeparatorBackground}" Grid.Row="1"
+       BorderThickness="2"
+       BorderBrush="#00b2ff"
+       HorizontalContentAlignment="Center"
+     
+       Margin="10" >
+
+                                        <Expander.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="Account Settings"
+                    FontSize="20"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"/>
+
+                                                <!-- Dynamic icon -->
+                                                <iconPacks:PackIconModern Width="30" Height="30" VerticalAlignment="Center">
+                                                    <iconPacks:PackIconModern.Style>
+                                                        <Style TargetType="iconPacks:PackIconModern">
+                                                            <Setter Property="Kind" Value="Settings" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsExpanded, ElementName=MyExpander}" Value="True">
+                                                                    <Setter Property="Kind" Value="Settings" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </iconPacks:PackIconModern.Style>
+                                                </iconPacks:PackIconModern>
+                                            </StackPanel>
+                                        </Expander.Header>
+
+                                        <!-- Content -->
+                                        <StackPanel Margin="20">
+                                            <mah:ToggleSwitch x:Name="LightMode" Content="Light Mode" Toggled="LightMode_Toggled" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,100">
+                                                <RadioButton Background="Transparent"  GroupName="Color" x:Name="BlueRadioButton" Content="Primary color is Blue"  Margin="0,0,15,0" Click="RadioButton_Click" />
+                                                <RadioButton Background="Transparent" GroupName="Color" x:Name="GreenRadioButton" Content="Primary color is Green"  Margin="0,0,15,0" Click="RadioButton_Click"/>
+                                                <RadioButton Background="Transparent" GroupName="Color" x:Name="RedRadioButton" Content="Primary color is Red"  Margin="0,0,15,0" Click="RadioButton_Click" Loaded="RedRadioButton_Loaded" />
+                                            </StackPanel>
+                                            <Button Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Right" x:Name="ApplySettingsButton" Click="ApplySettingsButton_Click">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <TextBlock Text="Apply Changes" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                                                    <iconPacks:PackIconFontAwesome Width="20" Height="20" VerticalAlignment="Center" Kind="CheckSolid" Visibility="Collapsed" x:Name="applychangesicon"/>
+                                                </StackPanel>
+                                            </Button>
+
+                                        </StackPanel>
+                                    </Expander>
+                                    <!--thirdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd-->
+                                    <Expander 
+     Background="{DynamicResource ResourceKey=MaterialDesignDarkSeparatorBackground}" Grid.Row="2"
+     BorderThickness="2"
+     BorderBrush="#00b2ff"
+     
+    materialDesignControls:ExpanderAssist.HeaderBackground="{DynamicResource MaterialDesignLightSeparatorBackground}"  
+     Margin="10">
+
+                                        <Expander.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="Change Security Information"
+                  FontSize="20"
+                  Margin="0,0,10,0"
+                  VerticalAlignment="Center"/>
+
+
+                                                <iconPacks:PackIconMaterialDesign Width="30" Height="30" VerticalAlignment="Center" Kind="Security"/>
+
+
+                                            </StackPanel>
+                                        </Expander.Header>
+                                        <!-- Content -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Expander Header="I Forgot My Username" mah:HeaderedControlHelper.HeaderHorizontalContentAlignment="Center"  Background="{DynamicResource ResourceKey=MaterialDesignDarkSeparatorBackground}"  BorderThickness="2"  BorderBrush="#00b2ff" Margin="10" >
+                                                <Expander.HeaderTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding}" 
+                       HorizontalAlignment="Center" 
+                       FontWeight="Bold"/>
+                                                    </DataTemplate>
+                                                </Expander.HeaderTemplate>
+                                                <StackPanel Orientation="Vertical" Margin="10,20,0,0" >
+                                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your current password" Margin="0,0,0,10"/>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <!-- PasswordBox -->
+                                                        <PasswordBox x:Name="CurrentPasswordUsernameSection" MaxLength="50" 
+                                         Margin="0,0,30,0" 
+                                         Visibility="Visible" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
+
+
+                                                        <!-- TextBox for visible password -->
+                                                        <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="CurrentPasswordUsernameSection2" MaxLength="50" 
+                                          Margin="0,0,30,0" 
+                                          Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
+
+
+                                                        <!-- Eye Button -->
+                                                        <Button  x:Name="NewPasswordShowerButtonUsernamesection" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                         Height="30"
+                                         Width="30"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,0,0" Click="NewPasswordShowerButtonUsernamesection_Click" >
+                                                            <iconPacks:MaterialDesign Kind="RemoveRedEyeRound" />
+                                                        </Button>
+                                                    </Grid>
+
+                                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your New Username" Margin="0,0,0,10"/>
+                                                    <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="0,0,0,30" x:Name="NewUsernameUsernameSection" MaxLength="30" PreviewTextInput="Usernametextbox_PreviewTextInput" PreviewKeyDown="Usernametextbox_PreviewKeyDown" />
+                                                    <Button Style="{StaticResource MyButtonStyle}" x:Name="SetNewUserNameButton" Content="Set Username" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2" Click="SetNewUserNameButton_Click"/>
+                                                </StackPanel>
+
+
+
+                                            </Expander>
+                                            <Expander Grid.Column="1" Header="Change Current Password"  Background="{DynamicResource ResourceKey=MaterialDesignDarkSeparatorBackground}"  BorderThickness="2"  BorderBrush="#00b2ff" Margin="10" >
+                                                <Expander.HeaderTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding}" 
+                             HorizontalAlignment="Center" 
+                             FontWeight="Bold"/>
+                                                    </DataTemplate>
+                                                </Expander.HeaderTemplate>
+                                                <StackPanel Orientation="Vertical" Margin="10,0,0,0" >
+                                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your current password" Margin="0,0,0,5"/>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <!-- PasswordBox -->
+                                                        <PasswordBox x:Name="CurrentPasswordPasswordSection" MaxLength="50"  
+                                         Margin="0,0,30,0" 
+                                         Visibility="Visible" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
+
+
+                                                        <!-- TextBox for visible password -->
+                                                        <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="CurrentPasswordPasswordSection2" MaxLength="50" 
+                                           Margin="0,0,30,0" 
+                                           Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
+
+
+                                                        <!-- Eye Button -->
+                                                        <Button  x:Name="NewPasswordcurrentShowerButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                         Height="30"
+                                         Width="30"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,0,0" Click="NewPasswordcurrentShowerButton_Click" >
+                                                            <iconPacks:MaterialDesign Kind="RemoveRedEyeRound" />
+                                                        </Button>
+                                                    </Grid>
+
+                                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Enter your New Password" Margin="0,0,0,5"/>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <!-- PasswordBox -->
+                                                        <PasswordBox x:Name="NewPasswordPasswordSection" MaxLength="50"
+                                Margin="0,0,30,0" 
+                                Visibility="Visible" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput" />
+
+
+                                                        <!-- TextBox for visible password -->
+                                                        <TextBox Style="{StaticResource MyTextBoxStyle}" x:Name="NewPasswordPasswordSection2" MaxLength="50" 
+                                  Margin="0,0,30,0" 
+                                  Visibility="Collapsed" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox2_PreviewTextInput"  />
+
+
+                                                        <!-- Eye Button -->
+                                                        <Button  x:Name="NewPasswordShowerButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                Height="30"
+                                Width="30"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,0,0" Click="NewPasswordShowerButton_Click" >
+                                                            <iconPacks:MaterialDesign Kind="RemoveRedEyeRound" />
+                                                        </Button>
+                                                    </Grid>
+                                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Confirm your new Password" Margin="0,0,0,5"/>
+                                                    <PasswordBox Margin="0,0,0,10" x:Name="ConfirmNewPasswordPasswordSection" MaxLength="50" PreviewKeyDown="Passwordtextbox_PreviewKeyDown" PreviewTextInput="Passwordtextbox_PreviewTextInput"/>
+                                                    <Button Style="{StaticResource MyButtonStyle}" x:Name="SetNewPasswordButton" Content="Set Passoword" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,2,2" Click="SetNewPasswordButton_Click"/>
+                                                </StackPanel>
+
+
+
+
+                                            </Expander>
+                                        </Grid>
+
+
+                                    </Expander>
+
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
             <TabItem Header="Additional Information">
-                <subUsercontrols:MyPersonalData/>
-            </TabItem>
+                  
+                    <Border Margin="20,18,20,6">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+
+
+
+                            <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Basic Info" HorizontalAlignment="Center" FontSize="18" Margin="0,0,0,10"/>
+                            <Border BorderThickness="1" CornerRadius="25" Margin="10" Padding="40,20,40,20" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+
+                                    <StackPanel Margin="7">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" Text="Full Name :" Margin="0,0,5,0"/>
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" x:Name="fullnametextbox"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" Text="Age :" Margin="0,0,5,0"/>
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" x:Name="agetextbox"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" Text="Date of birth :" Margin="0,0,5,0"/>
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}"  x:Name="dateofbirthtextbox"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" Text="Gender :" Margin="0,0,5,0"/>
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" x:Name="gendertextbox"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" Text="Nationality :" Margin="0,0,5,0"/>
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}"  x:Name="Nationalitytextbox"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" Text="Living in Primary place :" Margin="0,0,5,0"/>
+                                            <TextBlock FontSize="16" Style="{StaticResource MyTextBlockStyle}" x:Name="primaryplacecheckbox"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </ScrollViewer>
+                            </Border>
+
+
+
+
+                        </StackPanel>
+
+                    </Border>
+                </TabItem>
 
 
 
@@ -42,7 +350,7 @@
                     <TextBlock Text="Log Out"  VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
-                <TextBlock Style="{StaticResource MyTextBlockStyle}"  FontSize="20"   Text="Microfoft inc (technology)" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" FontFamily="Arial Black"/>
+                <TextBlock x:Name="CompanyTitleTextbox" Style="{StaticResource MyTextBlockStyle}"  FontSize="20"   Text="Microfoft inc (technology)" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" FontFamily="Arial Black"/>
             </Grid>
         </Grid>
     </Border>

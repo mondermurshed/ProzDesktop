@@ -41,5 +41,23 @@ namespace Proz_DesktopApplication
                 return window?._AdminAPIEndpointsDefinitions;
             }
         }
+
+        protected EmployeeAPIEndpointsDefinitions? _EmployeeAPIEndpointsDefinitions1
+        {
+            get
+            {
+                var window = Window.GetWindow(this) as MainDashboardWindow;
+                return window?._EmployeeAPIEndpointsDefinitions;
+            }
+        }
+
+        protected DMAPIEndpointsDefinitions? _DMAPIEndpointsDefinitions1
+        {
+            get
+            {
+                var window = Window.GetWindow(this) as MainDashboardWindow;
+                return window?._DMAPIEndpointsDefinitions;
+            }
+        }
     }
 }

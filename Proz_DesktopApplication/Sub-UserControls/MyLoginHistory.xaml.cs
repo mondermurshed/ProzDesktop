@@ -13,131 +13,100 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModernMessageBoxLib;
+using Proz_DesktopApplication.API;
 
 namespace Proz_DesktopApplication.Sub_UserControls
 {
     /// <summary>
     /// Interaction logic for MyLoginHistory.xaml
     /// </summary>
-    public partial class MyLoginHistory : UserControl
+    public partial class MyLoginHistory : BaseUserControlMain
     {
+        public List<ReturnLoginHistory> GetLoginHistory { get; set; } = new();
+        public GeneralAPICalling _GeneralAPIEndpointsDefinitions;
+        public bool IsLoaded { get; set; } = false;
         public MyLoginHistory()
         {
             InitializeComponent();
-            LoadFakeData();
+       
+            GotFocus += OnCreatingThisUsercontrol;
         }
-        private void LoadFakeData()
+
+        private async void OnCreatingThisUsercontrol(object sender, RoutedEventArgs e)
         {
-            var LoginHistoryRecords = new List<LoginHistory>();
+            if(IsLoaded==true)
+                return;
+            IsLoaded = true;
 
-            // Create 3 fake rows with auto-increment ID
-            LoginHistoryRecords.Add(new LoginHistory
+            _GeneralAPIEndpointsDefinitions = GeneralAPICalling1 ?? throw new InvalidOperationException("GeneralAPIEndpointsDefinitions is null");
+
+            this.IsEnabled = false;
+            try
             {
 
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
 
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
 
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
+                var win = new IndeterminateProgressWindow("Fetching your login history...");
+                win.Show();
+                var response = await _GeneralAPIEndpointsDefinitions.GetUserLoginHistory();
+                win.Message = "Result is collected..";
+                win.Close();
 
-            });
-            LoginHistoryRecords.Add(new LoginHistory
+
+                if (response.IsSuccessStatusCode && response.Content != null && response.Content.Any())
+                {
+                    GetLoginHistory = response.Content;
+
+                    MyLoginHistoryDatagrid.ItemsSource = null;
+                    MyLoginHistoryDatagrid.ItemsSource = GetLoginHistory;
+
+                    this.IsEnabled = true;
+
+                }
+                else
+                {
+                    var msgBox2 = new ModernMessageBox($"No data was found or it didn't successfully connect to the server.",
+                                                                  "Operation Information",
+                                                                  ModernMessageboxIcons.Error,
+                                                                  "OK");
+                    msgBox2.ShowDialog();
+                    MyLoginHistoryDatagrid.ItemsSource = null;
+                    this.IsEnabled = true;
+                }
+
+            }
+            catch (Exception ex)
             {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
+                var msgBox2 = new ModernMessageBox($"Didn't successfully connect to the server.",
+                                                               "Operation Information",
+                                                               ModernMessageboxIcons.Error,
+                                                               "OK");
+                msgBox2.ShowDialog();
+                this.IsEnabled = true;
+            }
 
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
 
-            });
-            LoginHistoryRecords.Add(new LoginHistory
-            {
-                WhenLogged = new DateTime(2023, 12, 24, 4, 24, 5),
-                IPAddress = "192.168.1.1"
-
-            });
-    
-
-            // Assign to the DataGrid
-            LoginHistoryDatagrid.ItemsSource = LoginHistoryRecords;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var records = LoginHistoryDatagrid.ItemsSource as List<LoginHistory>;
+            var records = MyLoginHistoryDatagrid.ItemsSource as List<ReturnLoginHistory>;
 
             if (records == null || records.Count == 0)
                 return;
 
-            string firstIP = records[0].IPAddress;
+            string firstToken = records[0].DeviceTokenHashed;
 
-            var different = records.FirstOrDefault(x => x.IPAddress != firstIP);
+            var different = records.FirstOrDefault(x => x.DeviceTokenHashed != firstToken);
 
             if (different != null)
             {
-                LoginHistoryDatagrid.SelectedItem = different;
-                LoginHistoryDatagrid.ScrollIntoView(different); // Optional: Scroll to it
+                MyLoginHistoryDatagrid.SelectedItem = different;
+                MyLoginHistoryDatagrid.ScrollIntoView(different); // Optional: Scroll to it
             }
             else
             {
-                var msgBox1 = new ModernMessageBox($"No different IP address was found.", "The result of the searching operation",
+                var msgBox1 = new ModernMessageBox($"No different Device Token address was found.", "The result of the searching operation",
                  
                   ModernMessageboxIcons.None,
                   "OK");
@@ -146,11 +115,6 @@ namespace Proz_DesktopApplication.Sub_UserControls
                
             }
         }
-        public class LoginHistory
-        {
-
-            public DateTime WhenLogged { get; set; }
-            public string IPAddress { get; set; }
-        }
+       
     }
 }

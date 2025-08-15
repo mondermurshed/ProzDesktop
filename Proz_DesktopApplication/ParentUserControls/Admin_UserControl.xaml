@@ -14,7 +14,7 @@
 
             <!-- TAB 1 -->
             <TabItem Header="Account" >
-                <sub_usercontrols:settings/>
+                <sub_usercontrols:settingsAdmin/>
             </TabItem>
 
             <TabItem Header="My Login History">
@@ -39,6 +39,10 @@
             </TabItem>-->
             <TabItem Header="Roles And Powers">
                 <sub_usercontrols:ManageEmployeesRolesAndPowers/>
+            </TabItem>
+
+            <TabItem Header="Assign Employees To Departments">
+                <sub_usercontrols:AddEmployeesToDepartmentsUsercontrol/>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
     </Border>

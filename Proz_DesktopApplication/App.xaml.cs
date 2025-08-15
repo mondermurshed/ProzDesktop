@@ -49,6 +49,21 @@ namespace Proz_DesktopApplication
               
                   }).AddHttpMessageHandler<TokenAuthHandler>().AddHttpMessageHandler<RefreshTokenHandler>(); //everytthing works as pipstream like first when sending a request the process will go from RefreshTokenHandler to TokenAuthHandler and then to the internet, and when receiving a response it will go from the internet to TokenAuthHandler and finally to RefreshTokenHandler and after that your app will receive it.
 
+                  services.AddRefitClient<EmployeeAPIEndpointsDefinitions>()
+                 .ConfigureHttpClient(c =>
+                 {
+                     c.BaseAddress = new Uri("https://api.prozsupport.xyz");
+
+                 }).AddHttpMessageHandler<TokenAuthHandler>().AddHttpMessageHandler<RefreshTokenHandler>();
+
+                    services.AddRefitClient<DMAPIEndpointsDefinitions>()
+                 .ConfigureHttpClient(c =>
+                 {
+                     c.BaseAddress = new Uri("https://api.prozsupport.xyz");
+               
+                 }).AddHttpMessageHandler<TokenAuthHandler>().AddHttpMessageHandler<RefreshTokenHandler>();
+
+
                     services.AddTransient<SigninWindow>();
                     services.AddTransient<ForgotPasswordWindow>();
                     services.AddTransient<RegisterWindow>();

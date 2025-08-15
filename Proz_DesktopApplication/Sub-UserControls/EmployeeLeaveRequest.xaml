@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="Proz_DesktopApplication.Sub_UserControls.EmployeeLeaveRequest"
+﻿<base:BaseUserControlMain x:Class="Proz_DesktopApplication.Sub_UserControls.EmployeeLeaveRequest"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
               xmlns:sub_subUsercontrols ="clr-namespace:Proz_DesktopApplication.Sub_Sub_Usercontrols"
+              xmlns:base="clr-namespace:Proz_DesktopApplication"
                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Proz_DesktopApplication.Sub_UserControls"
@@ -12,18 +13,182 @@
         <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
             <!-- TAB 1 -->
             <TabItem Header="Request A New Leave Request">
-                <sub_subUsercontrols:AddaALeaveRequest/>
+                <Grid Margin="5,40,5,5">
+
+                    <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="30">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,10,20">
+                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="From" Margin="0,0,0,5" FontWeight="ExtraBold"/>
+                                    <DatePicker x:Name="FromDatePicker" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsTodayHighlighted="True"  Margin="0,0,0,20"  FontSize="14" DisplayDate="2025-07-05" SelectedDateFormat="Short" SelectedDateChanged="FromDatePicker_SelectedDateChanged"   />
+
+
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,20">
+                                    <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Till" Margin="0,0,0,5" FontWeight="ExtraBold"/>
+                                    <DatePicker x:Name="TillDatePicker" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsTodayHighlighted="True"  Margin="0,0,0,20"  FontSize="14" DisplayDate="2025-07-05" SelectedDateFormat="Short"   />
+                                </StackPanel>
+                            </Grid>
+
+
+
+
+                            <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}"  FontWeight="Medium" FontSize="13" x:Name="ReasonTextBox" 
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             MaxLength="500"
+             VerticalContentAlignment="Top"
+             HorizontalContentAlignment="Left"
+             VerticalAlignment="Top"
+             HorizontalAlignment="Stretch"
+             Margin="0,0,0,70"/>
+
+
+                            <Button Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Stretch" Content="Request The Leave Request" FontSize="13" FontWeight="Medium" Click="CreateANLeaveRequest" />
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
 
             <!-- TAB 2 -->
             <TabItem Header="Manage My Leave Requests">
-                <sub_subUsercontrols:ManageMyLeaveReqests/>
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Margin="0,5,0,0" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="25"/>
+                            </Grid.ColumnDefinitions>
+                            <DataGrid x:Name="LeaveRequestsDatagrid" Margin="20,40,20,20" AlternationCount="1000000" SelectionUnit="FullRow" FocusVisualStyle="{x:Null}" 
+    AutoGenerateColumns="False"
+           IsReadOnly="True"
+        
+           SelectionMode="Single" SelectionChanged="LeaveRequestsDatagrid_SelectionChanged"
+        >
+
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="#" Width="50">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                    <DataGridTextColumn Header="Date/Time Creation" Binding="{Binding SentAtLocal}" />
+                                    <DataGridTextColumn Header="Requested From" Binding="{Binding StartDate}" />
+                                    <DataGridTextColumn Header="Requested Till" Binding="{Binding EndDate}" />
+                                    <DataGridTextColumn Header="Leave Request Status" Binding="{Binding RequesterStatus}" />
+                                    <DataGridTextColumn Header="Department Manager Status" Binding="{Binding DMStatus}" />
+                                    <DataGridTextColumn Header="HR Manager Status" Binding="{Binding FinalStatus}" />
+                                    <DataGridTextColumn Header="Completed" Binding="{Binding CompletedDashboard}" />
+
+
+
+                                </DataGrid.Columns>
+
+                        </DataGrid>
+                            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="1" Content="R" Click="RefreshMyFeedbacks" Margin="0,10"/>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,20,0">
+
+                            <Button Style="{StaticResource MyButtonStyle}" Content="Delete" x:Name="DeleteButton" Click="DeleteLeaveRequest"/>
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="20,30,20,20" Grid.Row="1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <StackPanel Margin="0,0,10,0">
+
+
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                <TextBox x:Name="ReasonTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Department Manager Message" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                <TextBox x:Name="DepartmentManagerMessageTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+
+
+                                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Answered at" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                    <TextBox x:Name="DepartmentManagerAnsweredAtTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                                    </StackPanel>
+                                    <StackPanel  Grid.Column="1" Margin="7,0,0,0">
+
+
+                                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Answered By" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                        <TextBox x:Name="DepartmentManagerAnsweredByTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                                    </StackPanel>
+                                </Grid>
+                        
+
+                                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Final Message" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                <TextBox x:Name="FinalMessageTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                                <mah:ToggleSwitch Content="I Understand And I Agree." Visibility="Collapsed" Margin="0,0,0,20" x:Name="Toggle"/>
+
+
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+
+
+                                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Answered at" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                        <TextBox x:Name="HRManagerAnsweredAtTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                                    </StackPanel>
+                                    <StackPanel  Grid.Column="1" Margin="7,0,0,0">
+
+
+                                        <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Answered By" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                                        <TextBox x:Name="HRManagerAnsweredByTextbox" Style="{StaticResource MyTextBoxStyle}" IsReadOnly="True" FontWeight="Medium" FontSize="13" Margin="0,0,0,20"/>
+                                    </StackPanel>
+                                </Grid>
+
+
+
+                            
+
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Right">
+                                    <!--<Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" Content="Clear" x:Name="ClearButton" Padding="30,0" Click="Button_Click" />-->
+                                    <Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" x:Name="SendFinalResult" Content="Send The Last decision" Margin="10,0,0,0" Click="SendFinalResult_Click"/>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+
             </TabItem>
-            <TabItem Header="List Of My Completed Requests">
+            <!--<TabItem Header="List Of My Completed Requests">
                 <sub_subUsercontrols:CompletedLeaveRequestList/>
-            </TabItem>
+            </TabItem>-->
 
 
         </mah:MetroAnimatedTabControl>
     </Border>
-</UserControl>
+</base:BaseUserControlMain>

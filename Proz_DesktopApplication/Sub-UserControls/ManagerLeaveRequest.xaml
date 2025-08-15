@@ -12,7 +12,7 @@
         <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
             <!-- TAB 1 -->
             <TabItem Header="Request A New Leave Request">
-                <sub_subUsercontrols:AddaALeaveRequest/>
+                <!--<sub_subUsercontrols:AddaALeaveRequest/>-->
             </TabItem>
 
             <!-- TAB 2 -->

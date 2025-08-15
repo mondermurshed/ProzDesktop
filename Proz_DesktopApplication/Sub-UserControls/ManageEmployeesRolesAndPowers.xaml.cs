@@ -15,7 +15,8 @@ namespace Proz_DesktopApplication.Sub_UserControls
     public partial class ManageEmployeesRolesAndPowers : BaseUserControlMain
     {
        public List<GetAllUsersResponse> UsersList { get; set; } = new();
-        public List<GetAllUsersResponse> UsersList2 { get; set; } = new(); 
+        public List<GetAllUsersResponse> UsersList2 { get; set; } = new();
+        public List<ReturnSystemRoles> RolesColors { get; set; } = new();
         public AdminAPIEndpointsDefinitions adminAPIEndpointsDefinitions;
         public ManageEmployeesRolesAndPowers()
         {
@@ -62,22 +63,22 @@ namespace Proz_DesktopApplication.Sub_UserControls
             }
         }
 
-        private void SearchHRManagersTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //string filter = SearchHRManagersTextBox.Text.Trim().ToLower();
+        //private void SearchHRManagersTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    //string filter = SearchHRManagersTextBox.Text.Trim().ToLower();
 
-            //var filtered = UsersList
-            //    .Where(u => u.RoleName == "HR Manager" && u.FullName.ToLower().Contains(filter))
-            //    .Select(u => new HRPower
-            //    {
-            //        Id = u.Id,
-            //        FullName = u.FullName,
-            //        HasFullPower = true // You can adjust if needed
-            //    })
-            //    .ToList();
+        //    //var filtered = UsersList
+        //    //    .Where(u => u.RoleName == "HR Manager" && u.FullName.ToLower().Contains(filter))
+        //    //    .Select(u => new HRPower
+        //    //    {
+        //    //        Id = u.Id,
+        //    //        FullName = u.FullName,
+        //    //        HasFullPower = true // You can adjust if needed
+        //    //    })
+        //    //    .ToList();
 
-            //HRManagersGrid.ItemsSource = filtered;
-        }
+        //    //HRManagersGrid.ItemsSource = filtered;
+        //}
 
         private async void DeleteUserButton_Click(object sender, RoutedEventArgs e)
         {
@@ -365,6 +366,123 @@ namespace Proz_DesktopApplication.Sub_UserControls
             }
         }
 
+        private async void ApplyColor(object sender, RoutedEventArgs e)
+        {
+            if(RolesGrid.SelectedItems.Count==1)
+            {
+
+          
+            this.IsEnabled = false;
+            try
+            {
+
+                var win = new IndeterminateProgressWindow("Updating The Color...");
+                win.Show();
+                var request= new RoleColorChangeRequest
+                {
+                    ColorCode = RoleColorPicker.Color.ToString(),
+                    ID = (RolesGrid.SelectedItem as ReturnSystemRoles).RoleID
+                };
+                var response = await adminAPIEndpointsDefinitions.UpdateRoleColor(request);
+                win.Message = "Result is collected..";
+                win.Close();
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var msgBox2 = new ModernMessageBox($"The Color Of The Role Was Successfully Updated.",
+                                                                 "Operation Information",
+                                                                 ModernMessageboxIcons.Done,
+                                                                 "OK");
+                    msgBox2.ShowDialog();
+                    this.IsEnabled = true;
+                    return;
+                }
+                else
+                {
+                    var msgBox2 = new ModernMessageBox($"Couldn't Update The Color Of The Role.",
+                                                                     "Operation Information",
+                                                                     ModernMessageboxIcons.Error,
+                                                                     "OK");
+                    msgBox2.ShowDialog();                
+                    this.IsEnabled = true;
+                    return;
+                }
+
+            }
+            
+            catch (Exception ex)
+            {
+                var msgBox2 = new ModernMessageBox($"Network Or Bug Issue, Please try again later.",
+                                                                   "Operation Information",
+                                                                   ModernMessageboxIcons.Error,
+                                                                   "OK");
+                msgBox2.ShowDialog();
+                this.IsEnabled = true;
+                return;
+            }
+            }
+           else
+            {
+                var msgBox2 = new ModernMessageBox($"Select One Role To Apply The Color To.",
+                                                                            "Operation Information",
+                                                                            ModernMessageboxIcons.Error,
+                                                                            "OK");
+                msgBox2.ShowDialog();
+                this.IsEnabled = true;
+                return;
+            }
+        }
+
+        private async void RefreshRolesTableColors(object sender, RoutedEventArgs e)
+        {
+            this.IsEnabled = false;
+            try
+            {
+
+                var win = new IndeterminateProgressWindow("Fetching the data...");
+                win.Show();
+                var response = await adminAPIEndpointsDefinitions.GetAllTheRolesInTheSystem();
+                win.Message = "Result is collected..";
+                win.Close();
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    RolesColors = response.Content;
+
+                    RolesGrid.ItemsSource = null;
+                    RolesGrid.ItemsSource = RolesColors;
+                    this.IsEnabled = true;
+
+                }
+                else
+                {
+                    var msgBox2 = new ModernMessageBox($"No data was found or it didn't successfully connect to the server.",
+                                                                  "Operation Information",
+                                                                  ModernMessageboxIcons.Error,
+                                                                  "OK");
+                    msgBox2.ShowDialog();
+                    RolesGrid.ItemsSource = null;
+                    this.IsEnabled = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.IsEnabled = true;
+            }
+        }
+
+        private void RolesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedRole = RolesGrid.SelectedItem as ReturnSystemRoles;
+            var selectedcolor = (Color)ColorConverter.ConvertFromString(selectedRole.RoleColorCode);
+
+            RoleColorPicker.Color = selectedcolor;
+        }
+
+        
     }
 
 

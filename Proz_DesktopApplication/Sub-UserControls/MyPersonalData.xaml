@@ -8,24 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Margin="20,30,20,20">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+           
+      
+
      
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            
-            <Grid Grid.Row="0" Margin="5,5,5,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Basic Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5"/>
-                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Basic Info" HorizontalAlignment="Center" FontSize="18" Margin="0,0,0,20"/>
+                <Border BorderThickness="1" CornerRadius="30" Margin="30" Padding="30" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 
 
@@ -62,78 +51,11 @@
 
                     </ScrollViewer>
                 </Border>
-            </Grid>
-<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-
-
-            <Grid Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Address Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5"/>
-                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-
-
-                     
-
-                    </ScrollViewer>
-                </Border>
-            </Grid>
-
-
-
-            <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-
-
-            <Grid Grid.Row="1" Grid.Column="0" Margin="5,5,5,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Health Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5"/>
-                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-
-
-                     
-
-                    </ScrollViewer>
-                </Border>
-            </Grid>
 
 
 
 
-            <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-
-
-            <Grid Grid.Row="1" Grid.Column="1" Margin="5,5,5,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="Access Info" HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,5" Grid.ColumnSpan="2"/>
-                <Border BorderThickness="1" CornerRadius="10" Margin="7" Grid.Row="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-
-
-                        <StackPanel Margin="7">
-                    
-                       
-                        </StackPanel>
-
-                    </ScrollViewer>
-                </Border>
-            </Grid>
-            
-        </Grid>
-  
+        </StackPanel>
 
     </Border>
 </UserControl>

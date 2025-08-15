@@ -12,9 +12,6 @@ FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Register
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\SigninWindow.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Sub-Usercontrols\CompletedPaymentsUsercontrolManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Sub-Usercontrols\TrackCurrentPaymentManager.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Sub-Usercontrols\ViewEmpoyeesFeedbackRequests.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\AddaALeaveRequest.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\AddAFeedback.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\AttendanceUsercontrolManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\CompletedLeaveRequestListManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeeRatingUsercontol.xaml;;
@@ -22,18 +19,17 @@ FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeesLeaveRequestsHRManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageDepartmentsInformationHRManager.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageMyFeedbacks.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageMyLeaveReqests.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManageMyLeaveRequestsManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\ManagerLeaveRequestsHRManager.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\PaymentUsercontol.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-Sub-Usercontrols\PaymentUsercontolManager.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\AddEmployeesToDepartmentsUsercontrol.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\AuditAdminHistory.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\DepartmentCreationUsercontrol.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\DepartmentsManagingShifts.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\EmployeeFeedback.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\EmployeeLeaveRequest.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\EmployeeSettings.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\EmployeeSettingsUser.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\FeedbackTypes.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\JobSection.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\JobSectionHRManager.xaml;;
@@ -44,6 +40,6 @@ FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-User
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\MyLoginHistoryAdmin.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\MyPersonalData.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\settings.xaml;;
+FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\settingsAdmin.xaml;;
 FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\settingsUser.xaml;;
-FC:\Users\monde\Desktop\Proz_DesktopApplication\Proz_DesktopApplication\Sub-UserControls\AddEmployeesToDepartmentsUsercontrol.xaml;;
 

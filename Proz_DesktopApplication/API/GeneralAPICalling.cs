@@ -15,6 +15,21 @@ namespace Proz_DesktopApplication.API
 
         [Post("/Auth/ChangePassword")]
         Task<ApiResponse<ChangePasswordResponse>> ChangeMyPassword([Body] ChangePasswordRequest model);
+
+        [Get("/General/Users/MyLoginHistory")]
+        Task<ApiResponse<List<ReturnLoginHistory>>> GetUserLoginHistory();
+    }
+
+    public class ReturnLoginHistory
+    {
+        public DateTime LoggedOn { get; set; }
+        public string DeviceTokenHashed { get; set; }
+        public string DeviceName { get; set; }
+
+        public string LoggedOnLocal => LoggedOn.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
+
+
     }
 
     public class ChangePasswordResponse

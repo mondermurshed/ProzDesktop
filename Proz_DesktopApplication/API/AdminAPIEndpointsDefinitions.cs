@@ -69,9 +69,121 @@ namespace Proz_DesktopApplication.API
 
         [Get("/Admin/Users/Employees/Get")]
         Task<ApiResponse<List<ReturnEmployees>>> GetEmployees();
+
+        [Get("/Admin/Department/GetAll")]
+        Task<ApiResponse<List<ReturnDepartments>>> GetDepartmentsALL();
+
+        [Patch("/Admin/Users/AssigningEmployee")]
+        Task<ApiResponse<AssignEmployeeToADepartmentResponse>> AssignAnEmployeeToADepartment([Body] AssignEmployeeToADepartmentRequest model);
+
+        [Get("/Admin/Users/Employee/GetDepartmentName")]
+        Task<ApiResponse<GetDepartmentOfEmployeeResponse>> GetEmployeeDepartment([Body] GetDepartmentOfEmployeeRequest model);
+
+        [Patch("/Admin/Users/UnassigningEmployee")]
+        Task<ApiResponse<UnassignEmployeeToADepartmentResponse>> UnassignAnEmployeeToADepartment([Body] UnassignEmployeeToADepartmentRequest model);
+
+        [Get("/General/Company/Name/Get")]
+        Task<ApiResponse<GetCompanyName>> GetCompanyName();
+
+        [Get("/General/Users/Data/PersonalData")]
+        Task<ApiResponse<PersonalInformationReturning>> GetPersonalData();
+
+        [Get("/General/Users/Role/Get")]
+        Task<ApiResponse<ReturnUserRole>> GetRoleName();
+
+        [Patch("/Admin/Company/Name/Update")]
+        Task<ApiResponse<UpdateCompanyNameResponse>> CompanyNameChange([Body] UpdateCompanyNameRequest model);
+
+        [Get("/Admin/System/Roles/Get")]
+        Task<ApiResponse<List<ReturnSystemRoles>>> GetAllTheRolesInTheSystem();
+
+        [Patch("/Admin/System/Roles/Color/Update")]
+        Task<ApiResponse<object>> UpdateRoleColor(RoleColorChangeRequest model);
     }
 
+    public class RoleColorChangeRequest
+    {
+        public Guid ID { get; set; }
+        public string ColorCode { get; set; } = string.Empty;
+    }
 
+    public class ReturnSystemRoles
+    {
+        public string RoleName { get; set; } = string.Empty;
+        public string RoleColorCode { get; set; } = string.Empty;
+        public Guid RoleID { get; set; }
+    }
+
+    public class UpdateCompanyNameRequest
+    {
+        public string CompanyName { get; set; }
+    }
+    public class UpdateCompanyNameResponse
+    {
+        public string? NewCompanyName { get; set; } = null;
+
+    }
+
+    public class ReturnUserRole
+    {
+        public string? RoleName { get; set; }
+    }
+
+    public class PersonalInformationReturning
+    {
+        public string FullName { get; set; }
+        public int? Age { get; set; }
+        public DateOnly? Date_Of_Birth { get; set; }
+        public string Gender { get; set; }
+        public string? Nationality { get; set; }
+        public string Living_On_Primary_Place { get; set; } = "Yes";
+        public string RoleName { get; set; }
+        public string? RoleColor { get; set; }
+        public string AccountStatus { get; set; }
+        public DateOnly AccountCreatedDate { get; set; }
+        public DateOnly HireDate { get; set; }
+        public int AccountAgeInDays { get; set; }
+    }
+
+    public class GetCompanyName
+    {
+        public string CompanyName { get; set; }
+    }
+    public class UnassignEmployeeToADepartmentRequest
+    {
+        public Guid EmployeeID { get; set; }
+        public Guid DepartmentID { get; set; }
+    }
+
+    public class UnassignEmployeeToADepartmentResponse
+    {
+        public List<string>? Message { get; set; } = null;
+        public List<string>? Errors { get; set; } = null;
+    }
+
+    public class GetDepartmentOfEmployeeResponse
+    {
+        public bool GotDepartment { get; set; } = false;
+        public string DepartmentName { get; set; } = null;
+        public Guid DepartmentID { get; set; } = Guid.Empty;
+
+    }
+    public class GetDepartmentOfEmployeeRequest
+    {
+        public Guid EmployeeID { get; set; }
+    }
+  
+    public class AssignEmployeeToADepartmentRequest
+    {
+        public Guid EmployeeID { get; set; }
+        public Guid DepartmentID { get; set; }
+    }
+
+    public class AssignEmployeeToADepartmentResponse
+    {
+        public List<string>? Message { get; set; } = null;
+        public List<string>? Errors { get; set; } = null;
+    }
     public class ReturnEmployees
     {
         public string FullName { get; set; }
@@ -91,6 +203,10 @@ namespace Proz_DesktopApplication.API
 
         public string Notes { get; set; }
         public string Targeted { get; set; }
+
+        public string LoggedOnLocal => Performed_At.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
+
     }
     public class GetLogsForAPersonRequest
     {
@@ -110,6 +226,7 @@ namespace Proz_DesktopApplication.API
         public DateTime LoggedOn { get; set; }
         public string DeviceTokenHashed { get; set; }
         public string DeviceName { get; set; }
+        public string LoggedOnLocal => LoggedOn.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
     }
     public class ReturnLoginHistoryForManagerRequest
     {

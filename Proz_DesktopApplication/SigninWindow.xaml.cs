@@ -305,7 +305,7 @@ namespace Proz_DesktopApplication
                 var win = new IndeterminateProgressWindow("Please wait while we are waiting for the server to response.");
                 win.Show();
                 var response = await _authApi.Login(request);
-                win.Message = "Done!!!";
+                //win.Message = "Done!!!";
                 win.Close();
 
 
