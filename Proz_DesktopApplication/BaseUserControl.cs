@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Proz_DesktopApplication.API;
+using Proz_DesktopApplication.HelperServices;
 
 namespace Proz_DesktopApplication
 {
@@ -14,7 +15,14 @@ namespace Proz_DesktopApplication
                 return window?.Services;
             }
         }
-
+        protected MainHubService? MainHub
+        {
+            get
+            {
+                var window = Window.GetWindow(this) as MainDashboardWindow;
+                return window?._hubConnection;
+            }
+        }
         protected IAuthAPI? AuthApi1
         {
             get
@@ -57,6 +65,15 @@ namespace Proz_DesktopApplication
             {
                 var window = Window.GetWindow(this) as MainDashboardWindow;
                 return window?._DMAPIEndpointsDefinitions;
+            }
+        }
+
+        protected HRMAPIEndpointsDefinitions? _HREndpointsDefinitions1
+        {
+            get
+            {
+                var window = Window.GetWindow(this) as MainDashboardWindow;
+                return window?._HRAPIEndpointsDefinitions;
             }
         }
     }

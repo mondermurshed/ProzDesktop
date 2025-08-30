@@ -13,9 +13,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using ModernMessageBoxLib;
 using Proz_DesktopApplication.API;
+using Proz_DesktopApplication.HelperServices;
 
 namespace Proz_DesktopApplication.Sub_UserControls
 {
@@ -29,10 +31,12 @@ namespace Proz_DesktopApplication.Sub_UserControls
         public IServiceProvider _services;
         public IAuthAPI _authApi;
         public GeneralAPICalling _generalAPICalling;
+        private MainHubService MainHubConnection;
         public settingsUser()
         {
             InitializeComponent();
             this.Loaded += UserControl_Loaded;
+
         }
        
 
@@ -74,6 +78,7 @@ namespace Proz_DesktopApplication.Sub_UserControls
             _services = Services1 ?? throw new InvalidOperationException("Services1 is null");
             _authApi = AuthApi1 ?? throw new InvalidOperationException("AuthApi1 is null");
             _generalAPICalling = GeneralAPICalling1 ?? throw new InvalidOperationException("Services1 is null");
+            MainHubConnection = MainHub ?? throw new InvalidOperationException("MainHUB is null");
 
         }
 
@@ -577,7 +582,7 @@ namespace Proz_DesktopApplication.Sub_UserControls
                     Application.Current.MainWindow = signInWindow;
                     signInWindow.Show();
                     var mainWindow = Window.GetWindow(this) as MainDashboardWindow;
-
+                    await MainHubConnection.Connection.StopAsync();
                     mainWindow?.Close();
 
                 }

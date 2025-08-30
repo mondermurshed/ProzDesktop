@@ -339,6 +339,7 @@ namespace Proz_DesktopApplication
 
 
                     await tcs.Task;
+
                     MainWindow.Show();
                     this.Close();
                 }

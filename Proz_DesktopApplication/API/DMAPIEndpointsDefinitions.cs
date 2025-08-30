@@ -33,11 +33,41 @@ namespace Proz_DesktopApplication.API
 
            [Get("/DM/CompletedLeaveRequests/Get")]
         Task<ApiResponse<List<ReturnFinishedLeaveRequestsResponse>>> GetCompletedEmployeesLeaveRequests([Body] ReturnFinishedLeaveRequestsRequest model);
-        
+
+        [Get("/DM/Employees/Get")]
+        Task<ApiResponse<List<ReturnPerformanceRecordsResponse>>> GetMyEmployees([Body] ReturnPerformanceRecordsRequest model);
+
+        [Post("/DM/Performance/SendPerformance")]
+        Task<ApiResponse<SubmitPerformanceAnswerResponse>> PerformanceSubmitting([Body] SubmitPerformanceAnswerRequest model);
     }
 
+    public class SubmitPerformanceAnswerResponse
+    {
+        public bool Success { get; set; } = false;
+        public string Messagee { get; set; } = string.Empty;
+        public string Error { get; set; } = string.Empty;
+    }
 
-     public class ReturnFinishedLeaveRequestsRequest
+    public class SubmitPerformanceAnswerRequest
+    {
+        public Guid EmployeeID { get; set; }
+        public int Ratting { get; set; }
+        public string Comment { get; set; }
+    }
+
+    public class ReturnPerformanceRecordsRequest
+    {
+        public Guid DepartmentID { get; set; }
+    }
+    public class ReturnPerformanceRecordsResponse
+    {
+        public Guid EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        //public int PerformanceRating { get; set; }
+
+    }
+
+    public class ReturnFinishedLeaveRequestsRequest
     {
         public Guid Department { get; set; }
     }

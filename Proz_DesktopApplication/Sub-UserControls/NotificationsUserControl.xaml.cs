@@ -1,93 +1,93 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using Proz_DesktopApplication.HelperServices;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Proz_DesktopApplication.Sub_UserControls
 {
-    public partial class NotificationsUserControl : UserControl
+    public partial class NotificationsUserControl : BaseUserControlMain
     {
+        private MainHubService _hubConnection;
+        private bool isloaded = false;
         public NotificationsUserControl()
         {
             InitializeComponent();
-            LoadDaysComboBox();
-            LoadPriorityComboBox();
+           
         }
 
-        private void LoadDaysComboBox()
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DaysComboBox.Items.Clear();
-            var today = DateTime.Today;
+            if (isloaded == true)
+                return;
+            isloaded = true;
+            _hubConnection = MainHub ?? throw new InvalidOperationException("MainHUB is null");
 
-            // Add today and previous 6 days
-            for (int i = 0; i < 7; i++)
+            Notifier notifier = new Notifier(cfg =>
             {
-                var day = today.AddDays(-i).ToString("dddd", CultureInfo.InvariantCulture); // e.g. "Monday"
-                DaysComboBox.Items.Add(day);
-            }
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow,
+                    corner: Corner.BottomRight,
+                    offsetX: 10,
+                    offsetY: 10);
 
-            DaysComboBox.SelectedIndex = 0; // Select today
-        }
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(3),
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(5));
 
-        private void LoadPriorityComboBox()
-        {
-            PriorityComboBox.Items.Clear();
-            PriorityComboBox.Items.Add("Display All But New First");
-            PriorityComboBox.Items.Add("Display All But Old First");
-            PriorityComboBox.Items.Add("Display Low Level Priority Only");
-            PriorityComboBox.Items.Add("Display Medium Level Priority Only");
-            PriorityComboBox.Items.Add("Display High Level Priority Only");
+                cfg.Dispatcher = Application.Current.Dispatcher;
+                cfg.DisplayOptions.Width = 350;
+                cfg.DisplayOptions.TopMost = true;
 
-            PriorityComboBox.SelectedIndex = 0; // Select "Low"
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Fake data for demonstration
-            var notifications = new List<Notification>
+            });
+
+            _hubConnection.Connection.On<NotificationResponse>("NewNotification", payload =>
             {
-                new Notification
+                 Dispatcher.Invoke( () =>
                 {
-                    Title = "Upcoming Shift",
-                    Message = "You have a shift tomorrow at 9 AM.",
-                    CreatedAt = DateTime.Now.AddHours(-2),
-                    SeenAt = null,
-                    Type = "Shift Reminder",
-                    Priority = "Low"
-                },
-                new Notification
-                {
-                    Title = "Manager Review",
-                    Message = "Your manager added a new comment to your feedback.",
-                    CreatedAt = DateTime.Now.AddDays(-1),
-                    SeenAt = DateTime.Now.AddHours(-1),
-                    Type = "Feedback",
-                    Priority = "Medium"
-                },
-                new Notification
-                {
-                    Title = "Final Decision",
-                    Message = "Your leave request has been rejected.",
-                    CreatedAt = DateTime.Now.AddDays(-2),
-                    SeenAt = DateTime.Now,
-                    Type = "Leave",
-                    Priority = "Hard"
-                }
-            };
+                   var data = new NotificationResponse
+                   {
+                       Title = payload.Title,
+                       Message = payload.Message,
+                       Created_At = payload.Created_At,
+                       Type = payload.Type,
+                       Priority = payload.Priority
+                   };
 
-            NotificationsDataGrid.ItemsSource = notifications;
+                  
+
+                    NotificationsDataGrid.Items.Add(data);
+                    ////var player = new SoundPlayer("Sounds/NotificationSound.wav");
+                    ////player.Play();
+                    notifier.ShowInformation("A new notification is here, go check it!");
+                  
+                    
+
+                });
+            });
         }
 
-        // Notification model
-        public class Notification
-        {
-            public string Title { get; set; }
-            public string Message { get; set; }
-            public DateTime CreatedAt { get; set; }
-            public DateTime? SeenAt { get; set; }
-            public string Type { get; set; }
-            public string Priority { get; set; }
-        }
+
+
+
+       
+
+    }
+    public class NotificationResponse
+    {
+        public string Title { get; set; }
+        public string Message { get; set; }
+        public DateTime Created_At { get; set; }
+        public string Type { get; set; }
+        public string Priority { get; set; }
+        public string SentAtLocal => Created_At.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
     }
 }

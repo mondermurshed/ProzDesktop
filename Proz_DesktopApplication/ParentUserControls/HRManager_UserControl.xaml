@@ -28,9 +28,9 @@
                 <sub_usercontrols:JobSectionHRManager/>
             </TabItem>
 
-            <TabItem Header="Notifications">
+            <!--<TabItem Header="Notifications">
                 <sub_usercontrols:NotificationsUserControl/>
-            </TabItem>
+            </TabItem>-->
 
             <TabItem Header="My Login History">
                 <sub_usercontrols:MyLoginHistory/>

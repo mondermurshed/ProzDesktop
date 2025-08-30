@@ -12,7 +12,47 @@
         <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
             <!-- TAB 1 -->
             <TabItem Header="Request A New Leave Request">
-                <!--<sub_subUsercontrols:AddaALeaveRequest/>-->
+                <Grid Margin="5,40,5,5">
+
+                    <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="30">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,10,20">
+                                    <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="From" Margin="0,0,0,5" FontWeight="ExtraBold"/>
+                                    <DatePicker x:Name="FromDatePicker" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsTodayHighlighted="True"  Margin="0,0,0,20"  FontSize="14" DisplayDate="2025-07-05" SelectedDateFormat="Short" SelectedDateChanged="FromDatePicker_SelectedDateChanged"   />
+
+
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,20">
+                                    <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Till" Margin="0,0,0,5" FontWeight="ExtraBold"/>
+                                    <DatePicker x:Name="TillDatePicker" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsTodayHighlighted="True"  Margin="0,0,0,20"  FontSize="14" DisplayDate="2025-07-05" SelectedDateFormat="Short"   />
+                                </StackPanel>
+                            </Grid>
+
+
+
+
+                            <TextBlock  Style="{StaticResource MyTextBlockStyle}" Text="Reason" FontWeight="ExtraBold" FontSize="13" Margin="0,0,0,5"/>
+                            <TextBox Style="{StaticResource MyTextBoxStyle}"  FontWeight="Medium" FontSize="13" x:Name="ReasonTextBox" 
+     AcceptsReturn="True"
+     TextWrapping="Wrap"
+     MaxLength="500"
+     VerticalContentAlignment="Top"
+     HorizontalContentAlignment="Left"
+     VerticalAlignment="Top"
+     HorizontalAlignment="Stretch"
+     Margin="0,0,0,70"/>
+
+
+                            <Button Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Stretch" Content="Request The Leave Request" FontSize="13" FontWeight="Medium" Click="CreateANLeaveRequest" />
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
 
             <!-- TAB 2 -->

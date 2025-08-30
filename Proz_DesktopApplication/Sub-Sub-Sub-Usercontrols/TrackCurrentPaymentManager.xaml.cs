@@ -37,13 +37,13 @@ namespace Proz_DesktopApplication.Sub_Sub_Sub_Usercontrols
         private void LoadCurrentPayment(string department)
         {
             // These values should be dynamically loaded per department
-            PeriodStartTextBox.Text = "2025/07/01";
-            PeriodEndTextBox.Text = "2025/07/31";
-            BaseSalaryTextBox.Text = "150,000 YER";
-            CompanyBonusTextBox.Text = "5,000 YER";
-            PerformanceBonusTextBox.Text = "10,000 YER";
-            DeductionsTextBox.Text = "2,000 YER";
-            FinalAmountTextBox.Text = "163,000 YER";
+            //PeriodStartTextBox.Text = "2025/07/01";
+            //PeriodEndTextBox.Text = "2025/07/31";
+            //BaseSalaryTextBox.Text = "150,000 YER";
+            //CompanyBonusTextBox.Text = "5,000 YER";
+            //PerformanceBonusTextBox.Text = "10,000 YER";
+            //DeductionsTextBox.Text = "2,000 YER";
+            //FinalAmountTextBox.Text = "163,000 YER";
         }
     }
 }

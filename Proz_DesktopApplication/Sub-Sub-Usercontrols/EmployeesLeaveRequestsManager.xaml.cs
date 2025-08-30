@@ -197,7 +197,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                     var request = new LeaveRequestAcceptRejectRequest
                     {
                         Accept = true,
-                        Comment = EmployeeReasonTextbox.Text,
+                        Comment = ManagerMessageTextbox.Text,
                         LeaveRequestID = selected.LeaveRequestID
                      
                     };
@@ -308,7 +308,7 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
                     var request = new LeaveRequestAcceptRejectRequest
                     {
                         Accept = false,
-                        Comment = EmployeeReasonTextbox.Text,
+                        Comment = ManagerMessageTextbox.Text,
                         LeaveRequestID = selected.LeaveRequestID
 
                     };

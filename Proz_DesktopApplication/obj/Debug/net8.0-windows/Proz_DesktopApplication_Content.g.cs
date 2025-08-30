@@ -9,5 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("listofthebadwordsfiles/en")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/notificationsound.wav")]
 
 

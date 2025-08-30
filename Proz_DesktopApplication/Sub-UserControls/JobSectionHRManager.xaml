@@ -12,9 +12,7 @@
     <Border Margin="20,30,20,20">
         <mah:MetroAnimatedTabControl mah:HeaderedControlHelper.HeaderFontFamily="Microsoft YaHei UI" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.UnderlinePlacement="Left"   >
             <!-- TAB 1 -->
-            <TabItem Header="Shift Info">
-                <sub_subUsercontrols:MyShiftInfo/>
-            </TabItem>
+           
             <TabItem Header="Attendance">
                 <sub_subUsercontrols:AttendanceUsercontrolManager/>
             </TabItem>

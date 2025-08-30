@@ -29,7 +29,53 @@ namespace Proz_DesktopApplication.API
 
         [Delete("/Employee/LeaveRequest/Remove")]
         Task<ApiResponse<RemoveMyLeaveResponse>> RemoveMyLeaveRequest([Body] RemoveMyLeaveRequest model);
+
+        [Post("/Employee/LeaveRequest/AddFinalAnswer")]
+        Task<ApiResponse<AgreeOnLeaveRequestDecisionResponse>> AgreeonLeaveRequestRequest([Body] AgreeOnLeaveRequestDecisionRequest model);
+
+        [Get("/Employee/PerformanceRecords/Get")]
+        Task<ApiResponse<List<ReturnPerformanceRecordsEmployeeResponse>>> GetMyPerformanceRecords([Body] ReturnPerformanceRecordsListRequest model);
     }
+
+    public class ReturnPerformanceRecordsListRequest
+    {
+        public int Month { get; set; }
+    }
+    public class ReturnPerformanceRecordsEmployeeResponse
+    {
+        public int PerformanceRating { get; set; }
+        public string? ReviewerComment { get; set; }
+        public DateOnly CreatedAt { get; set; }
+        public string Reviewer { get; set; }
+
+        public string PerformanceRatingLabel
+        {
+        get
+            {
+            if(PerformanceRating ==1)
+                    return "Excellent";
+                else if (PerformanceRating == -1)
+                    return "Bad";
+                else
+                    return "Default";
+            }
+        }
+    }
+       
+    public class AgreeOnLeaveRequestDecisionRequest
+    {
+        public Guid LeaveRequestID { get; set; }
+        public bool Agreed { get; set; }
+    }
+
+    public class AgreeOnLeaveRequestDecisionResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public string Error { get; set; }
+    }
+
+
 
     public class RemoveMyLeaveRequest
     {

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ModernMessageBoxLib;
 using Proz_DesktopApplication.API;
+using Proz_DesktopApplication.HelperServices;
 using Proz_DesktopApplication.Properties;
 using Refit;
 
@@ -32,8 +34,35 @@ namespace Proz_DesktopApplication
                     .ConfigureHttpClient(c =>
                     {
                         c.BaseAddress = new Uri("https://api.prozsupport.xyz");
-
+                        
                     });
+
+
+                    services.AddSingleton<TokenService>();
+                    services.AddSingleton<MainHubService>();
+                    //services.AddSingleton<TokenService>();
+                    //services.AddSingleton(sp =>
+                    //{
+
+                    //    var connection = new HubConnectionBuilder()
+                    //        .WithUrl("https://api.prozsupport.xyz/hubs/role", options =>
+                    //        {
+
+                    //            // attach JWT
+                    //            options.AccessTokenProvider = async () =>
+                    //            {
+                    //                //MessageBox.Show("Inside");
+                    //                var tokenService = sp.GetRequiredService<TokenService>();
+                    //                return await tokenService.GetFreshAccessTokenAsync();
+                    //            };
+                    //        })
+                    //        .WithAutomaticReconnect()
+                    //        .Build();
+
+                    //    return connection;
+                    //});
+
+
 
                     services.AddRefitClient<GeneralAPICalling>()
                    .ConfigureHttpClient(c =>
@@ -64,6 +93,14 @@ namespace Proz_DesktopApplication
                  }).AddHttpMessageHandler<TokenAuthHandler>().AddHttpMessageHandler<RefreshTokenHandler>();
 
 
+                    services.AddRefitClient<HRMAPIEndpointsDefinitions>()
+             .ConfigureHttpClient(c =>
+             {
+                 c.BaseAddress = new Uri("https://api.prozsupport.xyz");
+
+             }).AddHttpMessageHandler<TokenAuthHandler>().AddHttpMessageHandler<RefreshTokenHandler>();
+
+
                     services.AddTransient<SigninWindow>();
                     services.AddTransient<ForgotPasswordWindow>();
                     services.AddTransient<RegisterWindow>();
@@ -71,6 +108,7 @@ namespace Proz_DesktopApplication
                     services.AddTransient<MainDashboardWindow>();
                     services.AddTransient<TokenAuthHandler>();
                     services.AddTransient<RefreshTokenHandler>();
+                    services.AddSingleton(PollyPolicyRegistry.CreateDefaultRetryPolicy());
 
                 }).Build();
 
@@ -150,14 +188,14 @@ namespace Proz_DesktopApplication
 
                     if (response.IsSuccessStatusCode)
                     {
-                    MessageBox.Show("ok");
+                    //MessageBox.Show("ok");
                         Proz_DesktopApplication.Properties.Settings.Default.SystemStarted = true;
                         Proz_DesktopApplication.Properties.Settings.Default.Save();
 
                     }
                     else if (response.StatusCode==System.Net.HttpStatusCode.BadRequest)
                     {
-                    MessageBox.Show("Not ok");
+                    //MessageBox.Show("Not ok");
                         Proz_DesktopApplication.Properties.Settings.Default.SystemStarted = false;
                         Proz_DesktopApplication.Properties.Settings.Default.Save();
                     }

@@ -130,8 +130,8 @@ namespace Proz_DesktopApplication.Sub_Sub_Usercontrols {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Proz_DesktopApplication;V1.0.0.0;component/sub-sub-usercontrols/employeesleavere" +
-                    "questsmanager.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Proz_DesktopApplication;component/sub-sub-usercontrols/employeesleaverequestsman" +
+                    "ager.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Sub-Sub-Usercontrols\EmployeesLeaveRequestsManager.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

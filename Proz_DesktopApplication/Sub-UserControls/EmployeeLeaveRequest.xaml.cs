@@ -37,7 +37,7 @@ namespace Proz_DesktopApplication.Sub_UserControls
             //string formatted = FromDatePicker.SelectedDate.Value.ToString("yyyy-MM-dd");
             employeeAPIEndpointsDefinitions = _EmployeeAPIEndpointsDefinitions1 ?? throw new InvalidOperationException("Services1 is null");
             TillDatePicker.IsEnabled = false;
-            FromDatePicker.DisplayDateStart = DateTime.Today;
+            FromDatePicker.DisplayDateStart = DateTime.Today.AddDays(1);
             FromDatePicker.DisplayDateEnd = DateTime.Today.AddDays(30);
 
         }
@@ -185,7 +185,8 @@ namespace Proz_DesktopApplication.Sub_UserControls
 
             if (LeaveRequestsDatagrid.SelectedItem is ReturnLeaveRequestsInformation selected)
             {
-                Toggle.Visibility = Visibility.Collapsed;
+                MyAgreementCheckbox.Visibility = Visibility.Collapsed;
+                SendFinalResult.Visibility = Visibility.Collapsed;
                 SendFinalResult.IsEnabled = false;
               
                 ReasonTextbox.Text = selected.Reason;
@@ -201,7 +202,8 @@ namespace Proz_DesktopApplication.Sub_UserControls
 
                 if (selected.Completed == false && selected.HasSanctions == true)
                 {
-                    Toggle.Visibility = Visibility.Visible;
+                    MyAgreementCheckbox.Visibility = Visibility.Visible;
+                    SendFinalResult.Visibility = Visibility.Visible;
                     SendFinalResult.IsEnabled = true;
 
 
@@ -215,12 +217,131 @@ namespace Proz_DesktopApplication.Sub_UserControls
 
         //}
 
-        private void SendFinalResult_Click(object sender, RoutedEventArgs e)
+        private async void SendFinalResult_Click(object sender, RoutedEventArgs e)
         {
+            if (LeaveRequestsDatagrid.SelectedItems.Count != 1)
+            {
+                var msgBox2 = new ModernMessageBox($"Please select a Leave request.",
+                                                                               "Operation Information",
+                                                                               ModernMessageboxIcons.Error,
+                                                                               "OK");
+                msgBox2.ShowDialog();
+
+                this.IsEnabled = true;
+                return;
+            }
+            bool agreed = false;
+            if (MyAgreementCheckbox.IsChecked == true)
+                agreed = true;
+            if(agreed==false)
+            {
+                var msgBox2 = new ModernMessageBox($"Are you sure that you want to set your answer as 'i don't agree about these sanctions' ? This will reject your leave request.",
+                                               "Operation Information",
+                                               ModernMessageboxIcons.Error,
+                                               "No","Yes");
+                msgBox2.ShowDialog();
+                if(msgBox2.Result != ModernMessageboxResult.Button2)
+                {
+                    this.IsEnabled = true;
+                    return;
+                }
+            }
+            else
+            {
+                var msgBox2 = new ModernMessageBox($"Are you sure that you want to set your answer as 'i agree about these sanctions' ?",
+                                                             "Operation Information",
+                                                             ModernMessageboxIcons.Error,
+                                                             "No", "Yes");
+                msgBox2.ShowDialog();
+                if (msgBox2.Result != ModernMessageboxResult.Button2)
+                {
+                    this.IsEnabled = true;
+                    return;
+                }
+            }
+          
+
+            this.IsEnabled = false;
+            try
+            {
+
+                var selectedfeedback = LeaveRequestsDatagrid.SelectedItem as ReturnLeaveRequestsInformation;
+                if (selectedfeedback?.LeaveRequestId == Guid.Empty)
+                {
+                    var msgBox2 = new ModernMessageBox($"Leave request is not located to be deleted.",
+                                                                     "Operation Information",
+                                                                     ModernMessageboxIcons.Error,
+                                                                     "OK");
+                    msgBox2.ShowDialog();
+
+                    this.IsEnabled = true;
+                    return;
+                }
+            
+                        var request = new AgreeOnLeaveRequestDecisionRequest { LeaveRequestID = selectedfeedback.LeaveRequestId, Agreed= agreed };
+                var win = new IndeterminateProgressWindow("Setting The Answer On The Leave Request...");
+                win.Show();
+                var response = await employeeAPIEndpointsDefinitions.AgreeonLeaveRequestRequest(request);
+                win.Message = "Result is collected..";
+                win.Close();
+
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var msgBox2 = new ModernMessageBox($"{response.Content.Message}",
+                   "Operation Information",
+                   ModernMessageboxIcons.Done,
+                   "OK!");
+                    msgBox2.ShowDialog();
+
+
+
+                    ReasonTextbox.Clear();
+                    DepartmentManagerMessageTextbox.Clear();
+                    FinalMessageTextbox.Clear();
+                    DepartmentManagerAnsweredAtTextbox.Clear();
+                    DepartmentManagerAnsweredByTextbox.Clear();
+                    HRManagerAnsweredAtTextbox.Clear();
+                    HRManagerAnsweredByTextbox.Clear();
+                    MyAgreementCheckbox.Visibility = Visibility.Collapsed;
+                    SendFinalResult.Visibility = Visibility.Collapsed;
+                    LeaveRequestsDatagrid.SelectedCells.Clear();
+
+
+
+
+
+                    this.IsEnabled = true;
+                    return;
+                }
+                else
+                {
+                    var msgBox2 = new ModernMessageBox($"{response.Content.Error}.",
+                                                                  "Operation Information",
+                                                                  ModernMessageboxIcons.Error,
+                                                                  "OK");
+                    msgBox2.ShowDialog();
+                    LeaveRequestsDatagrid.ItemsSource = null;
+                    this.IsEnabled = true;
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var msgBox2 = new ModernMessageBox($"Didn't successfully connect to the server.",
+                                                               "Operation Information",
+                                                               ModernMessageboxIcons.Error,
+                                                               "OK");
+                msgBox2.ShowDialog();
+                this.IsEnabled = true;
+            }
+
 
         }
 
-      
+
 
         private async void RefreshMyFeedbacks(object sender, RoutedEventArgs e)
         {
@@ -331,7 +452,7 @@ namespace Proz_DesktopApplication.Sub_UserControls
                     DepartmentManagerAnsweredByTextbox.Clear();
                     HRManagerAnsweredAtTextbox.Clear();
                     HRManagerAnsweredByTextbox.Clear();
-                    Toggle.Visibility = Visibility.Collapsed;
+                    MyAgreementCheckbox.Visibility = Visibility.Collapsed;
                     SendFinalResult.IsEnabled = false;
                     LeaveRequestsDatagrid.SelectedCells.Clear();
 

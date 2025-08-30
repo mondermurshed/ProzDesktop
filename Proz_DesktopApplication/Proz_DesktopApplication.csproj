@@ -10,10 +10,14 @@
 
   <ItemGroup>
     <None Remove="ListOfTheBadWordsFiles\en" />
+    <None Remove="Sounds\NotificationSound.wav" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="ListOfTheBadWordsFiles\en">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\NotificationSound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -22,12 +26,16 @@
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="5.1.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="5.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageReference Include="ModernMessageBoxLib" Version="1.3.1" />
+    <PackageReference Include="Polly" Version="8.6.3" />
     <PackageReference Include="Refit" Version="8.0.0" />
     <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
+    <PackageReference Include="ToastNotifications" Version="2.5.1" />
+    <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
     <PackageReference Include="zxcvbn-core" Version="7.0.92" />
   </ItemGroup>
 

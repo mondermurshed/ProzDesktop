@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ModernMessageBoxLib;
+using Proz_DesktopApplication.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -6,91 +8,135 @@ using System.Windows.Controls;
 
 namespace Proz_DesktopApplication.Sub_Sub_Usercontrols
 {
-    public partial class PerformanceUsercontrol : UserControl
+    public partial class PerformanceUsercontrol : BaseUserControlMain
     {
-        private List<PerformanceRecord> allRecords;
+        private List<ReturnPerformanceRecordsEmployeeResponse> allRecords;
+        public EmployeeAPIEndpointsDefinitions employeeAPIEndpointsDefinitions;
 
         public PerformanceUsercontrol()
         {
             InitializeComponent();
-            LoadMonths();
-            LoadFakePerformanceData();
+            SetupMonthComboBoxe();
+            Loaded += UserControl_Loaded;
         }
 
-        private void LoadMonths()
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var monthNames = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames
-                             .Where(m => !string.IsNullOrEmpty(m))
-                             .Select((name, index) => new { Name = name, Number = index + 1 })
-                             .ToList();
+           
+            employeeAPIEndpointsDefinitions = _EmployeeAPIEndpointsDefinitions1 ?? throw new InvalidOperationException("Services1 is null");
+            //TillDatePicker.IsEnabled = false;
+            //FromDatePicker.DisplayDateStart = DateTime.Today.AddDays(1);
+            //FromDatePicker.DisplayDateEnd = DateTime.Today.AddDays(30);
 
-            MonthFilter.ItemsSource = monthNames;
-            MonthFilter.DisplayMemberPath = "Name";
-            MonthFilter.SelectedValuePath = "Number";
+        }
 
+        private void SetupMonthComboBoxe()
+        {
+            int currentYear = DateTime.Now.Year;
             int currentMonth = DateTime.Now.Month;
-            MonthFilter.SelectedValue = currentMonth;
-        }
 
-        private void LoadFakePerformanceData()
-        {
-            allRecords = new List<PerformanceRecord>
+
+            MonthFilter.Items.Clear();
+          
+            for (int month = 1; month <= currentMonth; month++)
             {
-                new PerformanceRecord { Date = new DateOnly(2025, 7, 1), Evaluator = "Mr. Khaled", Score = 1, Status = "Excellent", Comment = "Exceeded expectations in all tasks." },
-                new PerformanceRecord { Date = new DateOnly(2025, 7, 5), Evaluator = "Mr. Khaled", Score = 0, Status = "Normal", Comment = "Met most objectives but needs to improve consistency." },
-                new PerformanceRecord { Date = new DateOnly(2025, 7, 10), Evaluator = "Mr. Khaled", Score = 0, Status = "Normal", Comment = "Performance declined due to missed deadlines." }
-            };
+                string monthName = new DateTime(currentYear, month, 1).ToString("MMMM");
 
-            FilterPerformanceByMonth();
-        }
-
-        private void FilterPerformanceByMonth()
-        {
-            if (MonthFilter.SelectedValue is int month)
-            {
-                var filtered = allRecords.Where(p => p.Date.Month == month).ToList();
-                PerformanceDatagrid.ItemsSource = filtered;
+                MonthFilter.Items.Add(new ComboBoxItem
+                {
+                    Content = monthName,
+                    Tag = month
+                });
+           
             }
+
+           
+            MonthFilter.SelectedIndex = currentMonth - 1;
+         
         }
+
+     
+
+       
+
+     
 
         private void PerformanceDatagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PerformanceDatagrid.SelectedItem is PerformanceRecord selected)
+            if (PerformanceDatagrid.SelectedItem is ReturnPerformanceRecordsEmployeeResponse selected)
             {
-                EvaluatorTextBox.Text = selected.Evaluator;
-                CommentTextBox.Text = selected.Comment;
+              
+                CommentTextBox.Text = selected.ReviewerComment;
             }
         }
 
         private void ResetMonthButton_Click(object sender, RoutedEventArgs e)
         {
-            MonthFilter.SelectedValue = DateTime.Now.Month;
+            int currentMonth = DateTime.Now.Month;
+            MonthFilter.SelectedIndex = currentMonth - 1;
+        }
+
+        private async void GetPerformanceRecords(object sender, RoutedEventArgs e)
+        {
+            if (MonthFilter.SelectedItem == null)
+            {
+                var msgBox2 = new ModernMessageBox($"Please select a month.",
+                                                                                "Operation Information",
+                                                                                ModernMessageboxIcons.Error,
+                                                                                "OK");
+                msgBox2.ShowDialog();
+                return;
+            }
+
+            this.IsEnabled = false;
+            try
+            {
+                CommentTextBox.Clear();
+                var selectedItem = MonthFilter.SelectedItem as ComboBoxItem;
+                var request = new ReturnPerformanceRecordsListRequest
+                {
+                    Month = (int)selectedItem.Tag
+                };
+                var win = new IndeterminateProgressWindow("Fetching the data...");
+                win.Show();
+                var response = await employeeAPIEndpointsDefinitions.GetMyPerformanceRecords(request);
+                win.Message = "Result is collected..";
+                win.Close();
+
+
+                if (response.IsSuccessStatusCode && response.Content != null && response.Content.Any())
+                {
+                    allRecords = response.Content;
+
+                    PerformanceDatagrid.ItemsSource = null;
+                    PerformanceDatagrid.ItemsSource = allRecords;
+
+                    this.IsEnabled = true;
+
+                }
+                else
+                {
+                    var msgBox2 = new ModernMessageBox($"No data was found or it didn't successfully connect to the server.",
+                                                                  "Operation Information",
+                                                                  ModernMessageboxIcons.Error,
+                                                                  "OK");
+                    msgBox2.ShowDialog();
+                    PerformanceDatagrid.ItemsSource = null;
+                    this.IsEnabled = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var msgBox2 = new ModernMessageBox($"Didn't successfully connect to the server.",
+                                                               "Operation Information",
+                                                               ModernMessageboxIcons.Error,
+                                                               "OK");
+                msgBox2.ShowDialog();
+                this.IsEnabled = true;
+            }
         }
     }
 
-    public class PerformanceRecord
-    {
-        public PerformanceRecord()
-        {
-            Status = ScoreConverter(Score);
-        }
-        public DateOnly Date { get; set; }
-        public string Evaluator { get; set; } //المقيم
-        public int Score { get; set; }
-        public string Comment { get; set; }
-        public string Status { get; set; }
-
-        public string ScoreConverter(int score)
-        {
-            if (score == -1)
-                return "Bad";
-            else if (score == 1)
-                return "Excellent";
-            else
-                return "Normal";
-            
-        }
-     
-            
-    }
+   
 }

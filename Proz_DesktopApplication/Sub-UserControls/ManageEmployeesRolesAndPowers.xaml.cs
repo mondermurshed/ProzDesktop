@@ -143,7 +143,7 @@ namespace Proz_DesktopApplication.Sub_UserControls
                             }
                             else
                             {
-                                var msgBox1 = new ModernMessageBox($"Something went wrong happended..",
+                                var msgBox1 = new ModernMessageBox($"Something went wrong..",
                                                          "Operation Information",
                                                          ModernMessageboxIcons.Error,
                                                          "OK");
