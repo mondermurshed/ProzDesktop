@@ -12,6 +12,7 @@ using Proz_DesktopApplication.API;
 using Proz_DesktopApplication.HelperServices;
 using Proz_DesktopApplication.Properties;
 using Refit;
+using Velopack;
 
 
 namespace Proz_DesktopApplication
@@ -24,6 +25,14 @@ namespace Proz_DesktopApplication
         public static IHost AppHost { get; private set; }
         public static IServiceProvider Services => AppHost.Services;
 
+        [STAThread]
+        private static void Main(string[] args)
+        {
+            VelopackApp.Build().Run();
+            App app = new();
+            app.InitializeComponent();
+            app.Run();
+        }
         protected async override void OnStartup(StartupEventArgs e)
         {
             AppHost = Host.CreateDefaultBuilder()

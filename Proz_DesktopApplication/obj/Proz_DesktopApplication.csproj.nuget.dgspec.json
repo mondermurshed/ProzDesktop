@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj": {}
+    "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj": {
+    "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
+        "projectUniqueName": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
         "projectName": "Proz_DesktopApplication",
-        "projectPath": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
+        "projectPath": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
         "packagesPath": "C:\\Users\\monde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\Proz_DesktopApplication\\obj\\",
+        "outputPath": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -103,6 +103,10 @@
               "target": "Package",
               "version": "[2.5.1, )"
             },
+            "Velopack": {
+              "target": "Package",
+              "version": "[0.0.1298, )"
+            },
             "zxcvbn-core": {
               "target": "Package",
               "version": "[7.0.92, )"
@@ -119,6 +123,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -128,6 +146,11 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

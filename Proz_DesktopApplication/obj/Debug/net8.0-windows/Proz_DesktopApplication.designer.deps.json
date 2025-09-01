@@ -1006,6 +1006,14 @@
           }
         }
       },
+      "NuGet.Versioning/6.14.0": {
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Versioning.dll": {
+            "assemblyVersion": "6.14.0.116",
+            "fileVersion": "6.14.0.116"
+          }
+        }
+      },
       "Polly/8.6.3": {
         "dependencies": {
           "Polly.Core": "8.6.3"
@@ -1107,6 +1115,17 @@
           "lib/net40/ToastNotifications.Messages.dll": {
             "assemblyVersion": "2.5.1.0",
             "fileVersion": "2.5.1.0"
+          }
+        }
+      },
+      "Velopack/0.0.1298": {
+        "dependencies": {
+          "NuGet.Versioning": "6.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/Velopack.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.1298.60806"
           }
         }
       },
@@ -1688,6 +1707,13 @@
       "path": "modernmessageboxlib/1.3.1",
       "hashPath": "modernmessageboxlib.1.3.1.nupkg.sha512"
     },
+    "NuGet.Versioning/6.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4v4blkhCv8mpKtfx+z0G/X0daVCzdIaHSC51GkUspugi5JIMn2Bo8xm5PdZYF0U68gOBfz/+aPWMnpRd85Jbow==",
+      "path": "nuget.versioning/6.14.0",
+      "hashPath": "nuget.versioning.6.14.0.nupkg.sha512"
+    },
     "Polly/8.6.3": {
       "type": "package",
       "serviceable": true,
@@ -1757,6 +1783,13 @@
       "sha512": "sha512-KG4oMi61ShmRuPK3/yAFhUph/rZGYmS8IcsIvF2Fk3np11fQo6ZjdK2XUmFnY9b0oQY9IilxhCmOdVGoOGEeHQ==",
       "path": "toastnotifications.messages/2.5.1",
       "hashPath": "toastnotifications.messages.2.5.1.nupkg.sha512"
+    },
+    "Velopack/0.0.1298": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PJ6Nm28qJ4ChsHYzgHUJ8g+DGyyHes2+bwxY709+znMhgi8fMp8M1FTF8x6pZMjnsPCWVwoMlxVEyq0NLeRZtA==",
+      "path": "velopack/0.0.1298",
+      "hashPath": "velopack.0.0.1298.nupkg.sha512"
     },
     "zxcvbn-core/7.0.92": {
       "type": "package",

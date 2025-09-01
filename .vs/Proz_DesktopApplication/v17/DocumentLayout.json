@@ -1,7 +1,16 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\monde\\Desktop\\Proz_DesktopApplication\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\monde\\Desktop\\ProzDesktop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\prozdesktop\\proz_desktopapplication\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|c:\\users\\monde\\desktop\\prozdesktop\\proz_desktopapplication\\proz_desktopapplication.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3156B0FE-8ECB-4586-B0F0-3778F2833CF4}|Proz_DesktopApplication\\Proz_DesktopApplication.csproj|solutionrelative:proz_desktopapplication\\proz_desktopapplication.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +39,35 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\App.xaml.cs",
+              "RelativeToolTip": "Proz_DesktopApplication\\App.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T08:34:28.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Proz_DesktopApplication.csproj",
+              "DocumentMoniker": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
+              "RelativeDocumentMoniker": "Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
+              "ToolTip": "C:\\Users\\monde\\Desktop\\ProzDesktop\\Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
+              "RelativeToolTip": "Proz_DesktopApplication\\Proz_DesktopApplication.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-01T08:25:50.573Z"
             }
           ]
         }
